@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List
-from .ast.ast import Ast
+from .ast_gen.ast import Ast
 
 
 class CodeFile(BaseModel):
