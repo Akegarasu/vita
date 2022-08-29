@@ -33,17 +33,22 @@ class RuleManager:
 
     def load_yaml_rules(self, path: str) -> None:
         logger.info(f"loading rules on path {path}")
-        for path, dirs, files in os.walk(path):
-            for f in files:
-                filename = os.path.join(path, f)
-                cfg = load_yaml(filename)
-                for r in cfg["rules"]:
-                    self.rules.append(
-                        Rule(
-                            rule_type=r["type"],
-                            language=cfg["language"],
-                            patterns=r["patterns"],
-                            complied=[regex.compile(i) for i in r["patterns"]]
-                        )
-                    )
-                logger.info(f"loaded {filename} for {len(cfg['rules'])} rules.")
+        if os.path.isfile(path):
+            self._load(path)
+        else:
+            for path, dirs, files in os.walk(path):
+                for f in files:
+                    self._load(os.path.join(path, f))
+
+    def _load(self, path: str):
+        cfg = load_yaml(path)
+        for r in cfg["rules"]:
+            self.rules.append(
+                Rule(
+                    rule_type=r["type"],
+                    language=cfg["language"],
+                    patterns=r["patterns"],
+                    complied=[regex.compile(i) for i in r["patterns"]]
+                )
+            )
+        logger.info(f"loaded {path} for {len(cfg['rules'])} rules.")
