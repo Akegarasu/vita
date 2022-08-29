@@ -1,0 +1,23 @@
+language: python
+
+rules:
+  - id: 1
+    name: test
+    description: 测试
+    type: regex
+    patterns:
+      - e.+?x
+  - id: 2
+    name: test2
+    description: 测试2
+    type: regex
+    patterns:
+      - e.+?x
+      - "http://.*"
+  - id: 3
+    name: test2
+    description: 测试2
+    type: ast
+    patterns:
+      - e.+?x
+      - "http://.*"
