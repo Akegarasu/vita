@@ -1,14 +1,21 @@
+import os
 from pydantic import BaseModel
-from typing import List
+from typing import List, Dict, Optional
 from .ast_gen.model import AstImpl
 from .ast_gen.py import PythonAst
+from .ast_gen.go import GoAst
+from .ast_gen.java import JavaAst
+
+from .log import logger
 
 
 class CodeFile(BaseModel):
-    ext: str
-    ast: AstImpl
+    ext: Optional[str]
+    ast: Optional[AstImpl]
     origin: str
-    processed: str
+    processed: Optional[str]
+    file_path: str
+    file_name: str
 
 
 class CodeManager:
@@ -24,30 +31,63 @@ class CodeManager:
         类型测试用
         :return:
         """
-        self.files.append(CodeFile(ext="123", ast=PythonAst(""), origin="", processed=""))
+        self.files.append(
+            CodeFile(
+                ext="123",
+                ast=PythonAst(""),
+                origin="",
+                processed="",
+                file_name="",
+                file_path="")
+        )
 
-    def load_files(self):
+    def load_files(self, path: str) -> None:
         """
         加载源码文件
         :return:
         """
-        pass
+        logger.info(f"loading source code in {path}")
+        for path, dirs, files in os.walk(path):
+            for f in files:
+                file_full_path = os.path.join(path, f)
+                with open(file_full_path, "r", encoding="utf-8") as fl:
+                    self.files.append(CodeFile(
+                        origin=fl.read(),
+                        file_name=f,
+                        file_path=file_full_path,
+                    ))
+                logger.info(f"loaded file {file_full_path}")
 
     def file_preprocess(self):
         """
         文件预处理
         :return:
         """
-        pass
+        for f in self.files:
+            f.ext = self._classify(f)
+
+            # TODO: file process
+            f.processed = f.origin
 
     def ast_parse(self):
         """
         生成文件 ast 树
         :return:
         """
-        pass
+        for f in self.files:
+            if f.ext == "go":
+                parser = GoAst
+            elif f.ext == "java":
+                parser = JavaAst
+            elif f.ext == "py":
+                parser = PythonAst
+            else:
+                # do nothing here when file ext is not supported
+                continue
+            p = parser(f.processed)
+            f.ast = p.parse()
 
-    def _classify(self):
+    def _classify(self, c: CodeFile) -> str:
         """
         识别文件类型
         :return:
