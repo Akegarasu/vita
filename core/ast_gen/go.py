@@ -1,4 +1,4 @@
-import gopygo
+import goast as gopygo
 
 from abc import ABC
 

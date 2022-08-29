@@ -1,3 +1,4 @@
+import javalang
 from abc import ABC
 
 from .model import AstImpl
@@ -14,4 +15,5 @@ class JavaAst(AstImpl, ABC):
         impl java ast parser method here
         :return:
         """
-        pass
+        tree = javalang.parse.parse("package javalang.brewtab.com; class Test {}")
+        print(tree)
