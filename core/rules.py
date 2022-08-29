@@ -11,8 +11,9 @@ from .log import logger
 
 class Rule(BaseModel):
     """
-    正则匹配规则
+    匹配规则
     """
+    rule_type: str
     language: str
     patterns: List[str]
     complied: List[Any]
@@ -24,7 +25,7 @@ class RuleManager:
         self.rules: List[Rule] = list()
 
     def load_yaml_rules(self, path: str) -> None:
-        logger.info(f"loading regex rules on path {path}")
+        logger.info(f"loading rules on path {path}")
         for path, dirs, files in os.walk(path):
             for f in files:
                 filename = os.path.join(path, f)
@@ -32,6 +33,7 @@ class RuleManager:
                 for r in cfg["rules"]:
                     self.rules.append(
                         Rule(
+                            rule_type=r["type"],
                             language=cfg["language"],
                             patterns=r["patterns"],
                             complied=[regex.compile(i) for i in r["patterns"]]

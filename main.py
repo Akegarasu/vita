@@ -10,7 +10,7 @@ import click
 )
 @click.option(
     "-r",
-    help="正则规则文件目录",
+    help="规则文件目录",
 )
 def cli(t, r):
     v = Vita(rule_path=r)
