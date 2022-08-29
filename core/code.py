@@ -87,9 +87,10 @@ class CodeManager:
             p = parser(f.processed)
             f.ast = p.parse()
 
-    def _classify(self, c: CodeFile) -> str:
+    @staticmethod
+    def _classify(c: CodeFile) -> str:
         """
         识别文件类型
-        :return:
+        :return: file ext
         """
-        pass
+        return c.file_name.split(".")[-1]
