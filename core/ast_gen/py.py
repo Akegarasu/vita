@@ -1,5 +1,14 @@
 import ast
+from abc import ABC
+
+from .model import AstImpl
 
 
-def python_ast(cnt: str):
-    return ast.parse(cnt)
+class PythonAst(AstImpl, ABC):
+
+    def __init__(self, code: str):
+        super().__init__()
+        self.code = code
+
+    def parse(self):
+        return ast.parse(self.code)

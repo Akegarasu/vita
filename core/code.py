@@ -1,11 +1,12 @@
 from pydantic import BaseModel
 from typing import List
-from .ast_gen.model import Ast
+from .ast_gen.model import AstImpl
+from .ast_gen.py import PythonAst
 
 
 class CodeFile(BaseModel):
     ext: str
-    ast: Ast
+    ast: AstImpl
     origin: str
     processed: str
 
@@ -17,6 +18,13 @@ class CodeManager:
 
     def __init__(self):
         self.files: List[CodeFile] = []
+
+    def __test_for_ast_type_impl(self):
+        """
+        类型测试用
+        :return:
+        """
+        self.files.append(CodeFile(ext="123", ast=PythonAst(""), origin="", processed=""))
 
     def load_files(self):
         """
