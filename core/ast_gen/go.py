@@ -13,10 +13,10 @@ class GoAst(AstImpl, ABC):
 
     def parse(self):
         """
-        impl go ast parser method here
+        go ast parser
         :return:
         """
-        pass
+        return gopygo.parse(self.code)
 
 
 """

@@ -12,8 +12,7 @@ class JavaAst(AstImpl, ABC):
 
     def parse(self):
         """
-        impl java ast parser method here
+        java ast parser
         :return:
         """
-        tree = javalang.parse.parse("package javalang.brewtab.com; class Test {}")
-        print(tree)
+        return javalang.parse.parse(self.code)
