@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 from typing import List
+from .ast.ast import Ast
 
 
 class CodeFile(BaseModel):
     ext: str
+    ast: Ast
     origin: str
     processed: str
 
@@ -26,6 +28,13 @@ class CodeManager:
     def file_preprocess(self):
         """
         文件预处理
+        :return:
+        """
+        pass
+
+    def ast_parse(self):
+        """
+        生成文件 ast 树
         :return:
         """
         pass
