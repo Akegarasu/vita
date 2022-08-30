@@ -1,7 +1,5 @@
-from .rules import RuleManager
-from .rules import Rule
-from .code import CodeManager
-from .code import CodeFile
+from .rules import Rule, RuleManager
+from .code import CodeFile, CodeManager
 from .context import MatchResult
 from typing import List
 
