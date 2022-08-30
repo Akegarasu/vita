@@ -13,6 +13,9 @@ class Context(BaseModel):
 
 
 class Severity(Enum):
+    """严重度
+    提醒-低-中-高-严重
+    """
     prompt = 0
     low = 1
     medium = 2
