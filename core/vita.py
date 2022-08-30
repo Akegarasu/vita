@@ -20,7 +20,6 @@ class Vita:
         self.manager.load_files(path=file_path)
         self.manager.file_preprocess()
         self.manager.ast_parse()
-        breakpoint()
 
     def _match(self):
         for c in self.manager.files:
