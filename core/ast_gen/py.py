@@ -1,9 +1,10 @@
 import ast
+import os
 from abc import ABC
 import astpretty
 from typing import Any,List
 from core.ast_gen.model import AstImpl
-from core.context import MatchResult
+from core.context import MatchResult, Context, Severity
 from core.rules import Rule
 
 
@@ -35,7 +36,7 @@ class PythonAst(AstImpl, ABC):
 
     def parse(self):
         self._ast = ast.parse(self.code)
-        return self._ast
+        return self
 
     def get_functions(self) -> List[dict]:
         program = self.code.lstrip()
@@ -55,12 +56,25 @@ class PythonAst(AstImpl, ABC):
     def do_match(self,rule: Rule) -> List[MatchResult]:
         funcList=self.get_functions()
         result: List[MatchResult] = []
-        for r in rule.complied:
-            print(r)
+        for f in funcList:
+            for r in rule.complied:
+                if r.match(f['func']) != 0:
+                    result.append(
+                        MatchResult(
+                            context=Context(code=[(0, "占位符")]),
+                            match_type="ast",
+                            match_rule=r.pattern,
+                            description=rule.description,
+                            file_path='',
+                            severity=Severity.calculate(rule.danger),
+                            language=rule.language
+                        )
+                    )
         return result
 
 if __name__ == "__main__":
     code=open('../rules.py','r').read()
     aaaast=PythonAst(code)
     print(aaaast.get_functions())
+    print(aaaast.do_match())
     print('yes')
