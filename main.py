@@ -14,7 +14,7 @@ import click
 )
 @click.option(
     "-ignore",
-    help="忽略的文件后缀",
+    help="忽略的文件后缀 使用英文逗号分割",
 )
 def cli(t, r, ignore):
     logger.info(f"start run vita using rule {r}, target {t}")
