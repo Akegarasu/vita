@@ -70,7 +70,7 @@ class CodeManager:
             f.ext = self._classify(f)
 
             # TODO: file process
-            f.processed = f.origin
+            f.processed = f.origin.replace("\r\n", "\n")
 
     def ast_parse(self):
         """
