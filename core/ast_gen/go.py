@@ -2,10 +2,12 @@ import core.ast_gen.goast as gopygo
 
 from abc import ABC
 
+from typing import Any
 from core.ast_gen.model import AstImpl
 
 
 class GoAst(AstImpl, ABC):
+    _ast: Any
 
     def __init__(self, code: str):
         super().__init__()
@@ -16,7 +18,7 @@ class GoAst(AstImpl, ABC):
         go ast parser
         :return:
         """
-        return gopygo.parse(self.code)
+        self._ast = gopygo.parse(self.code)
 
 
 """

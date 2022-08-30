@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 from typing import List
+from core.context import MatchResult
 
 
 class AstImpl(ABC):
@@ -17,4 +18,8 @@ class AstImpl(ABC):
 
     @abstractmethod
     def get_functions(self) -> List[str]:
+        ...
+
+    @abstractmethod
+    def do_match(self) -> List[MatchResult]:
         ...
