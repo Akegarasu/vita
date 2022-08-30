@@ -1,12 +1,12 @@
 import javalang
 from abc import ABC
-from typing import Any, List
+from typing import Any, List, Optional
+from pydantic import BaseModel
 from core import context
 from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context, gen_context, Severity
+from core.model import CodeFile
 from core.rules import Rule, RuleManager
-from core.code import CodeFile
-
 
 class JavaAstAnalyze:
     def __init__(self, code):

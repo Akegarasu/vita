@@ -4,30 +4,16 @@ rules:
   - id: 1
     name: os.system
     description: 执行系统命令
-    type: regex
+    type: ast
     danger: 10
     # weight: 0.1
     patterns:
       - 'os.system'
-#  - id: 2
-#    name: test2
-#    description: 测试2
-#    type: ast
-#    danger: 1
-#    patterns:
-#      - e.+?x
-#      - "http://.*"
-  - id: 3
-    name: pickle
-    description: 反序列化漏洞
-    type: regex
-    danger: 1
+  - id: 2
+    name: pickle.loads()
+    description: 反序列化
+    type: ast
+    danger: 9
     patterns:
       - "pickle.loads"
-#  - id: 3
-#    name: test2
-#    description: 测试2
-#    type: ast
-#    patterns:
-#      - e.+?x
-#      - "http://.*"
+
