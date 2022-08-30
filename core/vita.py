@@ -9,18 +9,24 @@ import os
 
 class Vita:
 
-    def __init__(self, rule_path: str):
+    def __init__(self,
+                 rule_path: str) -> None:
         self.rule: RuleManager = RuleManager()
         self.manager: CodeManager = CodeManager()
         self.results: List[MatchResult] = []
 
         self.rule.load_yaml_rules(path=rule_path)
 
-    def run(self, file_path: str) -> None:
+    def run(self,
+            file_path: str,
+            ignore: str) -> None:
         """
         程序入口。
         """
-        self.manager.load_files(path=file_path)
+        self.manager.load_files(
+            path=file_path,
+            ignore=ignore
+        )
         self.manager.file_preprocess()
         self.manager.ast_parse()
 
