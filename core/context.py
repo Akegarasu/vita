@@ -1,6 +1,6 @@
 from enum import Enum
 from pydantic import BaseModel
-from typing import Tuple, List
+from typing import Tuple, List, Optional
 
 CodeLine = Tuple[int, str]
 
@@ -10,6 +10,13 @@ class Context(BaseModel):
     match context here.
     """
     code: List[CodeLine]
+    start_line: Optional[int]
+    end_line: Optional[int]
+
+    def get_context_codes(self, rels: int):
+        s = 0 if self.start_line - rels < 0 else self.start_line - rels
+        e = len(self.code) if self.end_line + rels > len(self.code) else self.end_line + rels
+        return self.code[s:e]
 
 
 class Severity(Enum):
@@ -24,8 +31,16 @@ class Severity(Enum):
 
     @classmethod
     def calculate(cls, danger: int):
-        if danger < 3:
+        if danger <= 2:
             return cls.prompt
+        elif 2 < danger <= 4:
+            return cls.low
+        elif 4 < danger <= 6:
+            return cls.low
+        elif 6 < danger <= 8:
+            return cls.low
+        elif 8 < danger <= 10:
+            return cls.critical
 
 
 class MatchResult(BaseModel):
@@ -44,3 +59,9 @@ class MatchResult(BaseModel):
     """代码语言"""
     severity: Severity
     """严重程度"""
+
+
+def gen_context(c: str):
+    return Context(
+        code=[(i + 1, j) for i, j in enumerate(c.split("\n"))]
+    )
