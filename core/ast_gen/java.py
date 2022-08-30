@@ -6,21 +6,24 @@ from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context
 from core.rules import Rule, RuleManager
 
+
 class JavaAstAnalyze:
-    def __init__(self,code):
+    def __init__(self, code):
         self.code = code
         self.tree = javalang.parse.parse(self.code)
         self.result = []
+
     def getMethodInvocation(self):
         info = {}
         for path, node in self.tree.filter(javalang.tree.MethodInvocation):
             if 'qualifier' in dir(node):
                 info["position"] = node.position.line
-                info["MethodInvocation"] =str(node.qualifier)+ "." + str(node.member)
+                info["MethodInvocation"] = str(node.qualifier) + "." + str(node.member)
                 # print(str(node.qualifier)+ "." + str(node.member) + " and position : " + str(node.position.line))
                 # print(node.position.line)
                 self.result.append(info)
                 info = {}
+
     def getFunction(self):
         info = {}
         for path, node in self.tree.filter(javalang.tree.ClassDeclaration):
@@ -31,8 +34,10 @@ class JavaAstAnalyze:
                 info = {}
                 # print(node.name, end=" ")
                 # print(node.position)
+
     def do_match(self):
         pass
+
 
 class JavaAst(AstImpl, ABC):
     _ast: Any
@@ -42,6 +47,7 @@ class JavaAst(AstImpl, ABC):
         self.code = code
         self.codeList = self.code.split("\n")
         # print(self.code.split("\n"))
+
     def get_functions(self) -> List[str]:
         pass
 
@@ -67,17 +73,17 @@ class JavaAst(AstImpl, ABC):
         Matchresult.severity = ruletest.rules[2].danger
 
         for i in self.result:
-            for position , value in i.items():
-                for j  in pattern:
+            for position, value in i.items():
+                for j in pattern:
                     if j in str(value):
                         Matchresult.match_rule = ruletest.rules[2].description
-                        context =  Context
+                        context = Context
                         context.code = []
-                        codecontent = self.codeList[  i['position'] -2 ] + "\n" + self.codeList[  i['position'] -1 ]  +"\n" + self.codeList[  i['position'] -0 ] +"\n"
-                        context.code.append((i['position'],codecontent))
+                        codecontent = self.codeList[i['position'] - 2] + "\n" + self.codeList[
+                            i['position'] - 1] + "\n" + self.codeList[i['position'] - 0] + "\n"
+                        context.code.append((i['position'], codecontent))
                         Matchresult.context = context
         return Matchresult
-
 
 
 f = open("./javaast/Test.java", "r")
