@@ -1,0 +1,6 @@
+loguru~=0.6.0
+sly~=0.4
+javalang~=0.13.0
+pydantic~=1.9.0
+PyYAML~=6.0
+click~=8.0.1
