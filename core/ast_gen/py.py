@@ -1,31 +1,33 @@
 import ast
-import os
 from abc import ABC
 import astpretty
-from typing import Any,List
+from typing import Any, List
 from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context, Severity
 from core.rules import Rule
 
 
-def getAttribute(f:ast.Attribute):
-    if isinstance(f.value,ast.Name):
-        return getName(f.value)+'.'+f.attr
-    elif isinstance(f.value,ast.Attribute):
-        return getAttribute(f.value)+'.'+f.attr
-    elif isinstance(f.value,ast.Call):
-        return getCall(f.value)+'.'+f.attr
+def getAttribute(f: ast.Attribute):
+    if isinstance(f.value, ast.Name):
+        return getName(f.value) + '.' + f.attr
+    elif isinstance(f.value, ast.Attribute):
+        return getAttribute(f.value) + '.' + f.attr
+    elif isinstance(f.value, ast.Call):
+        return getCall(f.value) + '.' + f.attr
     else:
         return f.attr
 
-def getName(f:ast.Name):
+
+def getName(f: ast.Name):
     return f.id
 
-def getCall(f:ast.Call):
-    if isinstance(f.func,ast.Name):
-        return getName(f.func)+'()'
-    elif isinstance(f.func,ast.Attribute):
-        return getAttribute(f.func)+'()'
+
+def getCall(f: ast.Call):
+    if isinstance(f.func, ast.Name):
+        return getName(f.func) + '()'
+    elif isinstance(f.func, ast.Attribute):
+        return getAttribute(f.func) + '()'
+
 
 class PythonAst(AstImpl, ABC):
     _ast: Any
@@ -53,8 +55,8 @@ class PythonAst(AstImpl, ABC):
                 # print(info)
         return funcList
 
-    def do_match(self,rule: Rule) -> List[MatchResult]:
-        funcList=self.get_functions()
+    def do_match(self, rule: Rule) -> List[MatchResult]:
+        funcList = self.get_functions()
         result: List[MatchResult] = []
         for f in funcList:
             for r in rule.complied:
@@ -72,9 +74,10 @@ class PythonAst(AstImpl, ABC):
                     )
         return result
 
+
 if __name__ == "__main__":
-    code=open('../rules.py','r').read()
-    aaaast=PythonAst(code)
+    code = open('../rules.py', 'r').read()
+    aaaast = PythonAst(code)
     print(aaaast.get_functions())
     print(aaaast.do_match())
     print('yes')
