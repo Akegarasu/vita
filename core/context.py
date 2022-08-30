@@ -63,5 +63,5 @@ class MatchResult(BaseModel):
 
 def gen_context(c: str):
     return Context(
-        code=[(i, j) for i, j in enumerate(c.split("\n"))]
+        code=[(i + 1, j) for i, j in enumerate(c.split("\n"))]
     )
