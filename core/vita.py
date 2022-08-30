@@ -71,7 +71,7 @@ class Vita:
                         match_type="regex",
                         match_rule=r.pattern,
                         description=rule.description,
-                        file_path=os.path.join(cf.file_path, cf.file_name),
+                        file_path=cf.file_path,
                         severity=Severity.calculate(rule.danger),
                         language=rule.language
                     )
