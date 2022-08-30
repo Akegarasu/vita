@@ -13,6 +13,7 @@ rules:
     name: test2
     description: 测试2
     type: regex
+    danger: 9
     patterns:
       - e.+?x
       - "http://.*"
@@ -20,6 +21,7 @@ rules:
     name: test2
     description: 测试2
     type: ast
+    danger: 8
     patterns:
       - e.+?x
       - "http://.*"
