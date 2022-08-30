@@ -3,7 +3,7 @@ from abc import ABC
 from typing import Any, List
 from core import context
 from core.ast_gen.model import AstImpl
-from core.context import MatchResult, Context
+from core.context import MatchResult, Context, gen_context, Severity
 from core.rules import Rule, RuleManager
 
 
@@ -46,7 +46,7 @@ class JavaAst(AstImpl, ABC):
         super().__init__()
         self.code = code
         self.codeList = self.code.split("\n")
-        # print(self.code.split("\n"))
+        self.result = None
 
     def get_functions(self) -> List[str]:
         pass
@@ -56,34 +56,35 @@ class JavaAst(AstImpl, ABC):
         java ast parser
         :return:
         """
-        test = JavaAstAnalyze(self.code)
-        test.getFunction()
-        test.getMethodInvocation()
+        j = JavaAstAnalyze(self.code)
+        j.getFunction()
+        j.getMethodInvocation()
 
-        self.result = test.result
+        self.result = j.result
         self._ast = javalang.parse.parse(self.code)
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
         pattern = ruletest.rules[2].patterns
-
-        Matchresult = MatchResult
-        Matchresult.match_type = "ast"
-        Matchresult.language = "java"
-        Matchresult.file_path = ""
-        Matchresult.severity = ruletest.rules[2].danger
-
+        result = []
         for i in self.result:
             for position, value in i.items():
                 for j in pattern:
                     if j in str(value):
-                        Matchresult.match_rule = ruletest.rules[2].description
-                        context = Context
-                        context.code = []
-                        codecontent = self.codeList[i['position'] - 2] + "\n" + self.codeList[
-                            i['position'] - 1] + "\n" + self.codeList[i['position'] - 0] + "\n"
-                        context.code.append((i['position'], codecontent))
-                        Matchresult.context = context
-        return Matchresult
+                        ctx = gen_context(self.code)
+                        ctx.start_line = i['position']
+                        ctx.end_line = i['position'] + 1
+                        result.append(
+                            MatchResult(
+                                context=ctx,
+                                match_rule=rule.description,
+                                description=rule.description,
+                                match_type="ast",
+                                severity=Severity.calculate(rule.danger),
+                                file_path="",
+                                language="java"
+                            )
+                        )
+        return result
 
 
 if __name__ == "__main__":
