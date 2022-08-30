@@ -6,8 +6,9 @@ from abc import ABC
 
 from typing import Any, List
 from core.ast_gen.model import AstImpl
-from core.code import CodeFile
+
 from core.context import MatchResult, Severity, gen_context
+from core.model import CodeFile
 from core.rules import Rule, RuleManager
 
 newline = re.compile(r'\n')
@@ -50,11 +51,16 @@ class GoAst(AstImpl, ABC):
         for r in self.rule.complied:
             for m in r.finditer(s):
                 ctx = gen_context(self.oriCode)
-                ctx.start_line = len(newline.findall(self.oriCode, 0, m.start())) + 1
-                ctx.end_line = len(newline.findall(self.oriCode, 0, m.end())) + 1
+                start = 0
+                end = 0
+                for i in r.finditer(self.oriCode):
+                    start = i.start()
+                    end = i.end()
+                ctx.start_line = len(newline.findall(self.oriCode, 0, start)) + 1
+                ctx.end_line = len(newline.findall(self.oriCode, 0, end)) + 1
                 self.result.append(MatchResult(
                     context=ctx,
-                    match_rule=r,
+                    match_rule=r.pattern,
                     description=self.rule.description,
                     match_type="ast",
                     severity=Severity.calculate(self.rule.danger),
