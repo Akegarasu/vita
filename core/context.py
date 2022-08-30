@@ -22,6 +22,11 @@ class Severity(Enum):
     high = 3
     critical = 4
 
+    @classmethod
+    def calculate(cls, danger: int):
+        if danger < 3:
+            return cls.prompt
+
 
 class MatchResult(BaseModel):
     context: Context
