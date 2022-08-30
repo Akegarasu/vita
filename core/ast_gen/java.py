@@ -86,11 +86,12 @@ class JavaAst(AstImpl, ABC):
         return Matchresult
 
 
-f = open("./javaast/Test.java", "r")
-test = JavaAst(f.read())
-test.parse()
-ruletest = RuleManager()
-ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\rules\\test_rule.yml")
+if __name__ == "__main__":
+    f = open("./javaast/Test.java", "r")
+    test = JavaAst(f.read())
+    test.parse()
+    ruletest = RuleManager()
+    ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\rules\\test_rule.yml")
 
-print(test.do_match(ruletest).match_rule)
-print(test.do_match(ruletest).context.code[0][1])
+    print(test.do_match(ruletest).match_rule)
+    print(test.do_match(ruletest).context.code[0][1])
