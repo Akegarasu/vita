@@ -1,7 +1,6 @@
 import os
 from pydantic import BaseModel
-from typing import List, Dict, Optional
-from .ast_gen.model import AstImpl
+from typing import List, Dict, Optional, Any
 from .ast_gen.py import PythonAst
 from .ast_gen.go import GoAst
 from .ast_gen.java import JavaAst
@@ -11,7 +10,7 @@ from .log import logger
 
 class CodeFile(BaseModel):
     ext: Optional[str]
-    ast: Optional[AstImpl]
+    ast: Any
     origin: str
     processed: Optional[str]
     file_path: str

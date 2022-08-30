@@ -1,7 +1,7 @@
 import javalang
 from abc import ABC
 
-from .model import AstImpl
+from core.ast_gen.model import AstImpl
 
 
 class JavaAst(AstImpl, ABC):

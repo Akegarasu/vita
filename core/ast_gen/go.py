@@ -1,8 +1,8 @@
-import goast as gopygo
+import core.ast_gen.goast as gopygo
 
 from abc import ABC
 
-from .model import AstImpl
+from core.ast_gen.model import AstImpl
 
 
 class GoAst(AstImpl, ABC):

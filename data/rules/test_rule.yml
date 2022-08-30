@@ -5,6 +5,8 @@ rules:
     name: test
     description: 测试
     type: regex
+    danger: 10
+    # weight: 0.1
     patterns:
       - e.+?x
   - id: 2

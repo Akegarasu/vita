@@ -2,7 +2,7 @@ import os
 
 import regex
 from pydantic import BaseModel
-from typing import List, Any
+from typing import List, Any, Pattern
 
 from .utils import load_yaml
 
@@ -16,7 +16,7 @@ class Rule(BaseModel):
     rule_type: str
     language: str
     patterns: List[str]
-    complied: List[regex.Pattern]
+    complied: List[Pattern]
 
     def match(self, code: str):
         if self.rule_type == "ast":
@@ -40,7 +40,7 @@ class RuleManager:
                 for f in files:
                     self._load(os.path.join(path, f))
 
-    def _load(self, path: str):
+    def _load(self, path: str) -> None:
         cfg = load_yaml(path)
         for r in cfg["rules"]:
             self.rules.append(
@@ -48,7 +48,7 @@ class RuleManager:
                     rule_type=r["type"],
                     language=cfg["language"],
                     patterns=r["patterns"],
-                    complied=[regex.compile(i) for i in r["patterns"]]
+                    complied=r["patterns"]
                 )
             )
         logger.info(f"loaded {path} for {len(cfg['rules'])} rules.")
