@@ -6,15 +6,7 @@ from .ast_gen.go import GoAst
 from .ast_gen.java import JavaAst
 
 from .log import logger
-
-
-class CodeFile(BaseModel):
-    ext: Optional[str]
-    ast: Any
-    origin: str
-    processed: Optional[str]
-    file_path: str
-    file_name: str
+from .model import CodeFile
 
 
 class CodeManager:
@@ -77,18 +69,18 @@ class CodeManager:
         生成文件 ast 树
         :return:
         """
-        for f in self.files:
-            if f.ext == "go":
+        for code_file in self.files:
+            if code_file.ext == "go":
                 parser = GoAst
-            elif f.ext == "java":
+            elif code_file.ext == "java":
                 parser = JavaAst
-            elif f.ext == "py":
+            elif code_file.ext == "py":
                 parser = PythonAst
             else:
                 # do nothing here when file ext is not supported
                 continue
-            p = parser(f.processed)
-            f.ast = p.parse()
+            code_file.ast = parser(code_file)
+            code_file.ast.parse()
 
     @staticmethod
     def _classify(c: CodeFile) -> str:
