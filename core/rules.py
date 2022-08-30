@@ -15,6 +15,8 @@ class Rule(BaseModel):
     rule_type: str
     language: str
     patterns: List[str]
+    description: str
+    danger: int
     complied: List[Pattern]
 
 
@@ -39,8 +41,10 @@ class RuleManager:
                 Rule(
                     rule_type=r["type"],
                     language=cfg["language"],
+                    description=r["description"],
+                    danger=r["danger"],
                     patterns=r["patterns"],
-                    complied=r["patterns"]
+                    complied=r["patterns"],
                 )
             )
         logger.info(f"loaded {path} for {len(cfg['rules'])} rules.")
