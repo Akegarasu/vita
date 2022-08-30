@@ -14,6 +14,7 @@ import click
 )
 @click.option(
     "-ignore",
+    default="",
     help="忽略的文件后缀 使用英文逗号分割",
 )
 def cli(t, r, ignore):
