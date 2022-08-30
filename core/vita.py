@@ -41,4 +41,4 @@ class Vita:
         return code.ast.do_match(rule)
 
     def __match_regex(self, code: CodeFile, rule: Rule) -> List[MatchResult]:
-        pass
+        ...
