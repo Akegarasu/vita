@@ -1,6 +1,5 @@
 import os
 
-import regex
 from pydantic import BaseModel
 from typing import List, Any, Pattern
 

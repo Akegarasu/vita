@@ -1,6 +1,6 @@
 import os
 from pydantic import BaseModel
-from typing import List, Dict, Optional, Any
+from typing import List, Optional, Any
 from .ast_gen.py import PythonAst
 from .ast_gen.go import GoAst
 from .ast_gen.java import JavaAst
