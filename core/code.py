@@ -1,6 +1,6 @@
 import os
 from pydantic import BaseModel
-from typing import List, Dict, Optional, Any
+from typing import List, Optional, Any
 from .ast_gen.py import PythonAst
 from .ast_gen.go import GoAst
 from .ast_gen.java import JavaAst
@@ -40,14 +40,18 @@ class CodeManager:
                 file_path="")
         )
 
-    def load_files(self, path: str) -> None:
+    def load_files(self, path: str, ignore: str) -> None:
         """
         加载源码文件
         :return:
         """
+        ignore_exts = ignore.split(",")
         logger.info(f"loading source code in {path}")
         for path, dirs, files in os.walk(path):
             for f in files:
+                if len(ignore) > 0:
+                    if self._check_ignore(f, ignore_exts):
+                        continue
                 file_full_path = os.path.join(path, f)
                 with open(file_full_path, "r", encoding="utf-8") as fl:
                     self.files.append(CodeFile(
@@ -66,7 +70,7 @@ class CodeManager:
             f.ext = self._classify(f)
 
             # TODO: file process
-            f.processed = f.origin
+            f.processed = f.origin.replace("\r\n", "\n")
 
     def ast_parse(self):
         """
@@ -93,3 +97,16 @@ class CodeManager:
         :return: file ext
         """
         return c.file_name.split(".")[-1]
+
+    @staticmethod
+    def _check_ignore(file_name: str, ignore_exts: List[str]) -> bool:
+        """
+        检测文件类型是否忽略，True文件在忽略类型内，表示应忽略该文件
+        :param file_name: 文件名
+        :param ignore_exts: 忽略的文件类型
+        :return: 是否忽略该文件
+        """
+        file_ext = file_name.split(".")[-1]
+        if file_ext in ignore_exts:
+            return True
+        return False
