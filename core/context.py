@@ -5,3 +5,7 @@ class Context:
 
     def __init__(self):
         pass
+
+
+class MatchResult:
+    context: Context
