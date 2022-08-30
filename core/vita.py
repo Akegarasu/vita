@@ -30,6 +30,8 @@ class Vita:
         for c in self.manager.files:
             logger.info(f"scanning file {c.file_name}")
             for r in self.rule.rules:
+                if r.language != c.ext:
+                    continue
                 if r.rule_type == "ast":
                     self.results.extend(
                         self.__match_ast(code=c, rule=r)
