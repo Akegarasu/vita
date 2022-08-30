@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 from typing import List
 from core.context import MatchResult
+from core.rules import Rule
 
 
 class AstImpl(ABC):
@@ -18,8 +19,12 @@ class AstImpl(ABC):
 
     @abstractmethod
     def get_functions(self) -> List[str]:
+        """
+        待定
+        :return:
+        """
         ...
 
     @abstractmethod
-    def do_match(self) -> List[MatchResult]:
+    def do_match(self, rule: Rule) -> List[MatchResult]:
         ...

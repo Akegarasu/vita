@@ -18,13 +18,6 @@ class Rule(BaseModel):
     patterns: List[str]
     complied: List[Pattern]
 
-    # def match(self, code: str):
-    #     if self.rule_type == "ast":
-    #         pass
-    #     if self.rule_type == "regex":
-    #         for c in self.complied:
-    #             c.match(code)
-
 
 class RuleManager:
 
