@@ -261,7 +261,7 @@ class GoParser(Parser):
             inputFile = open("input", "w",encoding="utf-8")
             inputFile.write(obj.code)
             inputFile.close()
-            command = 'runtime{} -input input -output output'
+            command = 'runtime{}.exe -input input -output output'
             if ("win" in sys.platform):
                 command = command.format("1")
             else:

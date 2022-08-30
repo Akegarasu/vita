@@ -16,6 +16,8 @@ class Rule(BaseModel):
     rule_type: str
     language: str
     patterns: List[str]
+    description: str
+    danger: int
     complied: List[Pattern]
 
 
