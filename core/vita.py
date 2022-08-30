@@ -2,6 +2,7 @@ from .rules import Rule, RuleManager
 from .code import CodeFile, CodeManager
 from .context import MatchResult
 from typing import List
+from .log import logger
 
 
 class Vita:
@@ -21,8 +22,11 @@ class Vita:
         self.manager.file_preprocess()
         self.manager.ast_parse()
 
+        self._match()
+
     def _match(self):
         for c in self.manager.files:
+            logger.info(f"scanning file {c.file_name}")
             for r in self.rule.rules:
                 if r.rule_type == "ast":
                     self.results.extend(
