@@ -1,9 +1,10 @@
-from .rules import RuleManager
-from .rules import Rule
-from .code import CodeManager
-from .code import CodeFile
-from .context import MatchResult
+from .rules import Rule, RuleManager
+from .code import CodeFile, CodeManager
+from .context import MatchResult, Context, Severity
 from typing import List
+from .log import logger
+
+import os
 
 
 class Vita:
@@ -22,11 +23,15 @@ class Vita:
         self.manager.load_files(path=file_path)
         self.manager.file_preprocess()
         self.manager.ast_parse()
-        breakpoint()
+
+        self._match()
 
     def _match(self):
         for c in self.manager.files:
+            logger.info(f"scanning file {c.file_name}")
             for r in self.rule.rules:
+                if r.language != c.ext:
+                    continue
                 if r.rule_type == "ast":
                     self.results.extend(
                         self.__match_ast(code=c, rule=r)
@@ -40,5 +45,22 @@ class Vita:
     def __match_ast(code: CodeFile, rule: Rule) -> List[MatchResult]:
         return code.ast.do_match(rule)
 
-    def __match_regex(self, code: CodeFile, rule: Rule) -> List[MatchResult]:
-        pass
+    @staticmethod
+    def __match_regex(code: CodeFile, rule: Rule) -> List[MatchResult]:
+        result: List[MatchResult] = []
+
+        for r in rule.complied:
+            if r.match(code.processed) != 0:
+                result.append(
+                    MatchResult(
+                        context=Context(code=[(0, "占位符")]),
+                        match_type="regex",
+                        match_rule=r.pattern,
+                        description=rule.description,
+                        file_path=os.path.join(code.file_path, code.file_name),
+                        severity=Severity.calculate(rule.danger),
+                        language=rule.language
+                    )
+                )
+
+            return result

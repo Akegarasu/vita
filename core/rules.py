@@ -1,6 +1,5 @@
 import os
 
-import regex
 from pydantic import BaseModel
 from typing import List, Any, Pattern
 
@@ -16,14 +15,9 @@ class Rule(BaseModel):
     rule_type: str
     language: str
     patterns: List[str]
+    description: str
+    danger: int
     complied: List[Pattern]
-
-    # def match(self, code: str):
-    #     if self.rule_type == "ast":
-    #         pass
-    #     if self.rule_type == "regex":
-    #         for c in self.complied:
-    #             c.match(code)
 
 
 class RuleManager:
@@ -47,8 +41,10 @@ class RuleManager:
                 Rule(
                     rule_type=r["type"],
                     language=cfg["language"],
+                    description=r["description"],
+                    danger=r["danger"],
                     patterns=r["patterns"],
-                    complied=r["patterns"]
+                    complied=r["patterns"],
                 )
             )
         logger.info(f"loaded {path} for {len(cfg['rules'])} rules.")

@@ -2,8 +2,10 @@ import core.ast_gen.goast as gopygo
 
 from abc import ABC
 
-from typing import Any
+from typing import Any, List
 from core.ast_gen.model import AstImpl
+from core.context import MatchResult
+from core.rules import Rule
 
 
 class GoAst(AstImpl, ABC):
@@ -19,6 +21,9 @@ class GoAst(AstImpl, ABC):
         :return:
         """
         self._ast = gopygo.parse(self.code)
+
+    def do_match(self, rule: Rule) -> List[MatchResult]:
+        pass
 
 
 """
