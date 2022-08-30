@@ -40,7 +40,7 @@ class CodeManager:
                 file_path="")
         )
 
-    def load_files(self, path: str, ignore: str='123') -> None:
+    def load_files(self, path: str, ignore: str) -> None:
         """
         加载源码文件
         :return:

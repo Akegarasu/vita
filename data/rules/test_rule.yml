@@ -17,6 +17,14 @@ rules:
     patterns:
       - e.+?x
       - "http://.*"
+  - id: 3
+    name: test2
+    description: 测试2
+    type: ast
+    danger: 1
+    patterns:
+      - e.+?x
+      - "http://.*"
 #  - id: 3
 #    name: test2
 #    description: 测试2
