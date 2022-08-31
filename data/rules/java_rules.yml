@@ -1,4 +1,4 @@
-language: go
+language: java
 
 rules:
   - id: 2

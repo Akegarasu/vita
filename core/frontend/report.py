@@ -26,7 +26,7 @@ def hello():
 
 
 def generate_html(result):
-    f = open('templates/VitaReport.html', 'w')
+    f = open('../web/templates/VitaReport.html', 'w')
     content =''' 
     <!DOCTYPE html>
 <html lang="en">

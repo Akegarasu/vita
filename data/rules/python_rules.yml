@@ -3,7 +3,7 @@ language: python
 rules:
   - id: 1
     name: os.system
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -11,7 +11,7 @@ rules:
       - 'os.system'
 #  - id: 2
 #    name: test2
-#    description: 测试2
+#    description: 鎵ц绯荤粺鍛戒护
 #    type: ast
 #    danger: 1
 #    patterns:
@@ -19,14 +19,14 @@ rules:
 #      - Runtime
   - id: 3
     name: pickle
-    description: 反序列化漏洞
+    description: pickle鍙嶅簭鍒楀寲
     type: regex
     danger: 1
     patterns:
       - "pickle.loads"
   - id: 4
     name: subprocess.call
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -34,7 +34,7 @@ rules:
       - 'subprocess.call'
   - id: 5
     name: subprocess.Popen
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -42,7 +42,7 @@ rules:
       - 'subprocess.Popen'
   - id: 6
     name: os.popen
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -50,7 +50,7 @@ rules:
       - 'os.popen'
   - id: 7
     name: subprocess.run
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -58,7 +58,7 @@ rules:
       - 'subprocess.run'
   - id: 8
     name: getstatusoutput
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -66,7 +66,7 @@ rules:
       - 'getstatusoutput'
   - id: 9
     name: eval
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -74,7 +74,7 @@ rules:
       - 'eval'
   - id: 10
     name: exec
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -82,7 +82,7 @@ rules:
       - 'exec'
   - id: 11
     name: compile
-    description: 危险函数
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -90,7 +90,7 @@ rules:
       - 'compile'
   - id: 12
     name: execfile
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -98,7 +98,7 @@ rules:
       - 'execfile'
   - id: 13
     name: getoutput
-    description: 执行系统命令
+    description: 鎵ц绯荤粺鍛戒护
     type: regex
     danger: 10
     # weight: 0.1
@@ -107,7 +107,7 @@ rules:
 
 #  - id: 3
 #    name: test2
-#    description: 测试2
+#    description: 鎵ц绯荤粺鍛戒护
 #    type: ast
 #    patterns:
 #      - e.+?x
