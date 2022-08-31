@@ -6,6 +6,8 @@ from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context, Severity
 from core.rules import Rule
 
+from core.model import CodeFile
+
 
 def getAttribute(f: ast.Attribute):
     if isinstance(f.value, ast.Name):
@@ -32,7 +34,7 @@ def getCall(f: ast.Call):
 class PythonAst(AstImpl, ABC):
     _ast: Any
 
-    def __init__(self, code: str):
+    def __init__(self, code: CodeFile):
         super().__init__()
         self.code = code
 
@@ -41,18 +43,17 @@ class PythonAst(AstImpl, ABC):
         return self
 
     def get_functions(self) -> List[dict]:
-        program = self.code.lstrip()
+        program = self.code.processed.lstrip()
         tree = ast.parse(program)
 
         funcList = []
         for node in ast.walk(tree):
             if isinstance(node, ast.Call):
-                # astpretty.pprint(node.func)
-                info = {}
-                info['lineno'] = node.func.lineno
-                info['func'] = getCall(node)
-                funcList.append(info)
-                # print(info)
+                funcList.append({
+                    'lineno': node.func.lineno,
+                    'func': getCall(node)}
+                )
+
         return funcList
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
@@ -74,10 +75,9 @@ class PythonAst(AstImpl, ABC):
                     )
         return result
 
-
-if __name__ == "__main__":
-    code = open('../rules.py', 'r').read()
-    aaaast = PythonAst(code)
-    print(aaaast.get_functions())
-    print(aaaast.do_match())
-    print('yes')
+# if __name__ == "__main__":
+#     code = open('../rules.py', 'r').read()
+#     aaaast = PythonAst(code)
+#     print(aaaast.get_functions())
+#     print(aaaast.do_match())
+#     print('yes')
