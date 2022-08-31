@@ -59,6 +59,10 @@ class MatchResult(BaseModel):
     """代码语言"""
     severity: Severity
     """严重程度"""
+    # ptype: str
+    # """漏洞类型"""
+    # confidence: float
+    # """置信度"""
 
 
 def gen_context(c: str):

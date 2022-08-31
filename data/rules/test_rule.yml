@@ -1,4 +1,4 @@
-language: py
+language: java
 
 rules:
   - id: 1
@@ -9,14 +9,14 @@ rules:
     # weight: 0.1
     patterns:
       - 'os.system'
-#  - id: 2
-#    name: test2
-#    description: 测试2
-#    type: ast
-#    danger: 1
-#    patterns:
-#      - e.+?x
-#      - "http://.*"
+  - id: 2
+    name: test2
+    description: 测试2
+    type: ast
+    danger: 1
+    patterns:
+      - exec
+      - Runtime
   - id: 3
     name: pickle
     description: 反序列化漏洞

@@ -5,6 +5,7 @@ from .code import CodeFile, CodeManager
 from .context import MatchResult, Context, Severity, gen_context
 from typing import List
 from .log import logger
+import json
 
 import os
 
@@ -36,7 +37,7 @@ class Vita:
 
         self._match()
         self.output()
-        breakpoint()
+        # breakpoint()
 
     def _match(self):
         for c in self.manager.files:
@@ -44,7 +45,7 @@ class Vita:
             for r in self.rule.rules:
                 if r.language != c.ext:
                     continue
-                if r.rule_type == "ast":
+                if r.rule_type is "ast":
                     self.results.extend(
                         self.__match_ast(cf=c, rule=r)
                     )
@@ -79,47 +80,119 @@ class Vita:
         return result
 
     def output(self):
+        text = {}
+        text['basic'] = {}
+        text['basic']['totleNum'] = "100"
+        text['basic']['criticalLevel'] = "10"
+        text['basic']['highLevel'] = "10"
+        text['basic']['mediumLevel'] = "50"
+        text['basic']['lowLevel'] = "20"
+        text['basic']['prompt'] = "10"
+        text['problem'] = []
         for r in self.results:
-            print(r)
-            ok = f''' [输出报告]\n等级: {r.severity}\n文件: {r.file_path}\n漏洞: {r.description}\n规则: {r.match_rule}\n'''
+            print()
+            print(type(r))
+            print(r.language)
+            tmp_result = {}
+            tmp_result['language'] = r.language
+            tmp_result['match_type'] = r.match_type
+            tmp_result['match_rule'] = r.match_rule
+            tmp_result['description'] = r.description
+            tmp_result['file_path'] = r.file_path
+            tmp_result['severity'] = r.severity.value
             ctx_codes = r.context.get_context_codes(4)
+            tmp_result['context'] = ''
             for cc in ctx_codes:
-                ok += f"{'--> ' + str(cc[0]) if cc[0] == r.context.start_line else '    ' + str(cc[0])}   {cc[1]}\n"
-            ok = ok[:-1]
-            logger.info(ok)
+                tmp_result['context']+= f"{'--> ' + str(cc[0]) if cc[0] == r.context.start_line else '    ' + str(cc[0])}   {cc[1]}\n"
+            tmp_result['context'] = tmp_result['context'][:-1]
+            # tmp_result['ptype'] = r.ptype
+            # tmp_result['confidence'] = r.confidence
+            text['problem'].append(tmp_result)
+
+            # ok = f''' [输出报告]\n等级: {r.severity}\n文件: {r.file_path}\n漏洞: {r.description}\n规则: {r.match_rule}\n'''
+            # ctx_codes = r.context.get_context_codes(4)
+            # for cc in ctx_codes:
+            #     ok += f"{'--> ' + str(cc[0]) if cc[0] == r.context.start_line else '    ' + str(cc[0])}   {cc[1]}\n"
+            # ok = ok[:-1]
+            # logger.info(ok)
+        textarr = []
+        textarr.append(text)
+        real_result = json.dumps(text, ensure_ascii=False)
+        print(text)
 
 
 '''
-{
-    "basic": {
-        "totleNum": "100",
-        "criticalLevel":"10",
-        "highLevel":"10",
-        "mediumLevel":"50",
-        "lowLevel":"20",
-        "prompt":"10"
-    },
-    "problems":[{
-        "language":"go",
-        "context":"    6       start := time.Now()
-        7   	var Info common.HostInfo
-        8   	common.Flag(&Info)
-    --> 9   	common.Parse(&Info)
-        10   	Plugins.Scan(Info)
-        11   	t := time.Now().Sub(start)
-        12   	fmt.Printf(\"[*] 扫描结束,耗时: %s\", t)
-        13   }",
-        "match_type":"ast",
-        "match_rule":"eval",
-        "description":"命令执行",
-        "file_path":"/etc/passwd/main.go",
-        "severity":"critical/high/medium/low/prompt"
-    },{
-        ...
-    },
-    {...},
-    ...
-    ]
+datas = {
+  "basic": {
+      "totleNum": "100",
+      "criticalLevel":"10",
+      "highLevel":"10",
+      "mediumLevel":"50",
+      "lowLevel":"20",
+      "prompt":"10"
+  },
+  "problems":[{
+      "language":"go",
+      "context":"    6       start := time.Now()\n    7   \tvar Info common.HostInfo\n    8   \tcommon.Flag(&Info)\n--> 9   \tcommon.Parse(&Info)\n    10   \tPlugins.Scan(Info)\n    11   \tt := time.Now().Sub(start)\n    12   \tfmt.Printf(\"[*] \u626b\u63cf\u7ed3\u675f,\u8017\u65f6: %s\", t)\n    13   }",
+      "match_type":"ast",
+      "match_rule":"eval",
+      "description":"命令执行",
+      "file_path":"/etc/passwd/main.go",
+      "severity":"critical",
+      "ptype":"木马/后门",
+      "confidence":"0.5"
+  },{
+      "language":"python",
+      "context":"    6       start := time.Now()\n    7   \tvar Info common.HostInfo\n    8   \tcommon.Flag(&Info)\n--> 9   \tcommon.Parse(&Info)\n    10   \tPlugins.Scan(Info)\n    11   \tt := time.Now().Sub(start)\n    12   \tfmt.Printf(\"[*] \u626b\u63cf\u7ed3\u675f,\u8017\u65f6: %s\", t)\n    13   }",
+      "match_type":"regex",
+      "match_rule":"fsdf",
+      "description":"和覅士大夫",
+      "file_path":"/etc/passwd/main.py",
+      "severity":"high",
+      "ptype":"漏洞",
+      "confidence":"1.0"
+  },{
+    "language":"python",
+    "context":"    6       start := time.Now()\n    7   \tvar Info common.HostInfo\n    8   \tcommon.Flag(&Info)\n--> 9   \tcommon.Parse(&Info)\n    10   \tPlugins.Scan(Info)\n    11   \tt := time.Now().Sub(start)\n    12   \tfmt.Printf(\"[*] \u626b\u63cf\u7ed3\u675f,\u8017\u65f6: %s\", t)\n    13   }",
+    "match_type":"regex",
+    "match_rule":"fsdf",
+    "description":"和覅士大夫",
+    "file_path":"/etc/passwd/main.py",
+    "severity":"high",
+    "ptype":"漏洞",
+    "confidence":"0.1"
+},{
+  "language":"python",
+  "context":"    6       start := time.Now()\n    7   \tvar Info common.HostInfo\n    8   \tcommon.Flag(&Info)\n--> 9   \tcommon.Parse(&Info)\n    10   \tPlugins.Scan(Info)\n    11   \tt := time.Now().Sub(start)\n    12   \tfmt.Printf(\"[*] \u626b\u63cf\u7ed3\u675f,\u8017\u65f6: %s\", t)\n    13   }",
+  "match_type":"regex",
+  "match_rule":"fsdf",
+  "description":"和覅士大夫",
+  "file_path":"/etc/passwd/main.py",
+  "severity":"prompt",
+  "ptype":"漏洞",
+  "confidence":"0.1"
+},{
+  "language":"python",
+  "context":"    6       start := time.Now()\n    7   \tvar Info common.HostInfo\n    8   \tcommon.Flag(&Info)\n--> 9   \tcommon.Parse(&Info)\n    10   \tPlugins.Scan(Info)\n    11   \tt := time.Now().Sub(start)\n    12   \tfmt.Printf(\"[*] \u626b\u63cf\u7ed3\u675f,\u8017\u65f6: %s\", t)\n    13   }",
+  "match_type":"regex",
+  "match_rule":"fsdf",
+  "description":"和覅士大夫",
+  "file_path":"/etc/passwd/main.py",
+  "severity":"medium",
+  "ptype":"漏洞",
+  "confidence":"0.1"
+},{
+  "language":"python",
+  "context":"    6       start := time.Now()\n    7   \tvar Info common.HostInfo\n    8   \tcommon.Flag(&Info)\n--> 9   \tcommon.Parse(&Info)\n    10   \tPlugins.Scan(Info)\n    11   \tt := time.Now().Sub(start)\n    12   \tfmt.Printf(\"[*] \u626b\u63cf\u7ed3\u675f,\u8017\u65f6: %s\", t)\n    13   }",
+  "match_type":"regex",
+  "match_rule":"fsdf",
+  "description":"和覅士大夫",
+  "file_path":"/etc/passwd/main.py",
+  "severity":"low",
+  "ptype":"漏洞",
+  "confidence":"0.1"
+}]
 }
+
 
 '''

@@ -65,6 +65,7 @@ class JavaAst(AstImpl, ABC):
         self._ast = javalang.parse.parse(self.code.processed)
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
+
         pattern = ruletest.rules[2].patterns
         result = []
         for i in self.result:
