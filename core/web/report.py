@@ -22,11 +22,11 @@ def func():
 
 @app.route('/')
 def hello():
-    return render_template('target.html')
+    return render_template('VitaReport.html')
 
 
 def generate_html(result):
-    f = open('./templates/target.html', 'w')
+    f = open('templates/VitaReport.html', 'w')
     content =''' 
     <!DOCTYPE html>
 <html lang="en">
@@ -204,5 +204,5 @@ if __name__ == '__main__':
     for i in result:
         print(i)
         print(result[i])
-    generate_html(result)
+    # generate_html(result)
     app.run(port=33500, host='0.0.0.0')
