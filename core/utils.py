@@ -7,7 +7,7 @@ from .log import logger
 
 def load_yaml(file_path: str) -> Optional[Dict]:
     try:
-        with open(file_path, "r") as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             # print(file_path)
             r = yaml.load(f, yaml.FullLoader)
             return r

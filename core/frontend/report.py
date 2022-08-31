@@ -4,6 +4,7 @@ app = Flask(__name__,
             static_folder='./templates/',
             static_url_path='/')
 
+
 def func():
     # for test
     context = {
@@ -20,6 +21,7 @@ def func():
     }
     return context
 
+# TODO:
 @app.route('/')
 def hello():
     return render_template('VitaReport.html')
@@ -27,7 +29,7 @@ def hello():
 
 def generate_html(result):
     f = open('../web/templates/VitaReport.html', 'w')
-    content =''' 
+    content = ''' 
     <!DOCTYPE html>
 <html lang="en">
 
@@ -95,7 +97,7 @@ def generate_html(result):
             grade = 'A'
         else:
             grade = 'C'
-        content+='''
+        content += '''
          <tr class="grade{}">
             <td>{}</td>
             <td>{}</td>
@@ -104,7 +106,7 @@ def generate_html(result):
             <td class="center hidden-phone">{}</td>
          </tr>
         '''.format(grade, result[i][0], result[i][1], result[i][2], str(result[i][3]), str(result[i][4]))
-    content+='''
+    content += '''
                 </tbody>
               </table>
             </div>
@@ -199,10 +201,11 @@ def generate_html(result):
     f.write(content)
     f.close()
 
+
 if __name__ == '__main__':
     result = {'vul1': ['1', '2', '3', 1, 0.97], 'vul2': ['1', '2', '3', 4, 0.86]}
-    for i in result:
-        print(i)
-        print(result[i])
+    # for i in result:
+    #     # print(i)
+    #     # print(result[i])
     # generate_html(result)
     app.run(port=33500, host='0.0.0.0')

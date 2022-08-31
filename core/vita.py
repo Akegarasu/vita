@@ -90,9 +90,6 @@ class Vita:
         text['basic']['prompt'] = "10"
         text['problem'] = []
         for r in self.results:
-            print()
-            print(type(r))
-            print(r.language)
             tmp_result = {}
             tmp_result['language'] = r.language
             tmp_result['match_type'] = r.match_type

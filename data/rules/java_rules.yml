@@ -3,7 +3,7 @@ language: java
 rules:
   - id: 2
     name: test2
-    description: ²âÊÔ2
+    description: æ‰§è¡Œç³»ç»Ÿå‘½ä»¤
     type: ast
     danger: 1
     patterns:
