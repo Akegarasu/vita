@@ -71,7 +71,7 @@ def generate_html(result):
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Advanced Table Example</h3>
+        <h3><i class="fa fa-angle-right"></i> Vita Report Table</h3>
         <div class="row mb">
           <!-- page start-->
           <div class="content-panel">
@@ -79,39 +79,31 @@ def generate_html(result):
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th class="hidden-phone">Platform(s)</th>
-                    <th class="hidden-phone">Engine version</th>
-                    <th class="hidden-phone">CSS grade</th>
+                    <th>Vul name</th>
+                    <th>Vul code</th>
+                    <th class="hidden-phone">Language</th>
+                    <th class="hidden-phone">Danger grade</th>
+                    <th class="hidden-phone">Confidence level</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="gradeX">
-                    <td>Trident</td>
-                    <td>Internet Explorer 4.0</td>
-                    <td class="hidden-phone">Win 95+</td>
-                    <td class="center hidden-phone">4</td>
-                    <td class="center hidden-phone">X</td>
-                  </tr>
-                  <tr class="gradeC">
-                    <td>Trident</td>
-                    <td>Internet Explorer 5.0</td>
-                    <td class="hidden-phone">Win 95+</td>
-                    <td class="center hidden-phone">1</td>
-                    <td class="center hidden-phone">C</td>
-                  </tr>
             '''
     for i in result:
+        if result[i][3] >= 5:
+            grade = 'X'
+        elif result[i][3] <= 2:
+            grade = 'A'
+        else:
+            grade = 'C'
         content+='''
-         <tr class="gradeX">
+         <tr class="grade{}">
             <td>{}</td>
             <td>{}</td>
             <td class="hidden-phone">{}</td>
             <td class="center hidden-phone">{}</td>
             <td class="center hidden-phone">{}</td>
          </tr>
-        '''.format(result[i][0], result[i][1], result[i][2], result[i][3], result[i][4])
+        '''.format(grade, result[i][0], result[i][1], result[i][2], str(result[i][3]), str(result[i][4]))
     content+='''
     </tbody>
               </table>
@@ -208,7 +200,7 @@ def generate_html(result):
     f.close()
 
 if __name__ == '__main__':
-    result = {'vul1': ['1', '2', '3', '4', '5'], 'vul2': ['1', '2', '3', '4', '5']}
+    result = {'vul1': ['1', '2', '3', 1, 0.97], 'vul2': ['1', '2', '3', 4, 0.86]}
     for i in result:
         print(i)
         print(result[i])
