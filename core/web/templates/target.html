@@ -1,33 +1,4 @@
-from flask import Flask, render_template
-
-app = Flask(__name__,
-            static_folder='./templates/',
-            static_url_path='/')
-
-def func():
-    # for test
-    context = {
-        'username': "1",
-        'age': "18",
-        'gender': "2",
-        'flag': "3",
-        'hero': "4",
-        'person': 'dell',
-        'wwwurl': {
-            'baidu': 'www.baidu.com',
-            'google': 'www.google.com'
-        }
-    }
-    return context
-
-@app.route('/')
-def hello():
-    return render_template('target.html')
-
-
-def generate_html(result):
-    f = open('./templates/target.html', 'w')
-    content =''' 
+ 
     <!DOCTYPE html>
 <html lang="en">
 
@@ -101,18 +72,23 @@ def generate_html(result):
                     <td class="center hidden-phone">1</td>
                     <td class="center hidden-phone">C</td>
                   </tr>
-            '''
-    for i in result:
-        content+='''
+            
          <tr class="gradeX">
-            <td>{}</td>
-            <td>{}</td>
-            <td class="hidden-phone">{}</td>
-            <td class="center hidden-phone">{}</td>
-            <td class="center hidden-phone">{}</td>
+            <td>1</td>
+            <td>2</td>
+            <td class="hidden-phone">3</td>
+            <td class="center hidden-phone">4</td>
+            <td class="center hidden-phone">5</td>
          </tr>
-        '''.format(result[i][0], result[i][1], result[i][2], result[i][3], result[i][4])
-    content+='''
+        
+         <tr class="gradeX">
+            <td>1</td>
+            <td>2</td>
+            <td class="hidden-phone">3</td>
+            <td class="center hidden-phone">4</td>
+            <td class="center hidden-phone">5</td>
+         </tr>
+        
     </tbody>
               </table>
             </div>
@@ -203,14 +179,4 @@ def generate_html(result):
 </body>
 
 </html>
-    '''
-    f.write(content)
-    f.close()
-
-if __name__ == '__main__':
-    result = {'vul1': ['1', '2', '3', '4', '5'], 'vul2': ['1', '2', '3', '4', '5']}
-    for i in result:
-        print(i)
-        print(result[i])
-    generate_html(result)
-    app.run(port=55000, host='0.0.0.0')
+    
