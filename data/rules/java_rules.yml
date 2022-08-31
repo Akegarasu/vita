@@ -1,0 +1,11 @@
+language: java
+
+rules:
+  - id: 2
+    name: test2
+    description: 执行系统命令
+    type: ast
+    danger: 1
+    patterns:
+      - exec
+      - Runtime

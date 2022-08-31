@@ -65,6 +65,7 @@ class JavaAst(AstImpl, ABC):
         self._ast = javalang.parse.parse(self.code.processed)
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
+
         pattern = ruletest.rules[2].patterns
         result = []
         for i in self.result:
@@ -93,7 +94,7 @@ if __name__ == "__main__":
     test = JavaAst(f.read())
     test.parse()
     ruletest = RuleManager()
-    ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\rules\\test_rule.yml")
+    ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\rules\\java_rules.yml")
 
     print(test.do_match(ruletest).match_rule)
     print(test.do_match(ruletest).context.code[0][1])
