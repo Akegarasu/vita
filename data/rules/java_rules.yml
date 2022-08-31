@@ -1,0 +1,11 @@
+language: go
+
+rules:
+  - id: 2
+    name: test2
+    description: ≤‚ ‘2
+    type: ast
+    danger: 1
+    patterns:
+      - exec
+      - Runtime

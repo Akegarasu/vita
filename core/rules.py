@@ -31,11 +31,14 @@ class RuleManager:
             self._load(path)
         else:
             for path, dirs, files in os.walk(path):
+                print(files)
                 for f in files:
+                    print(f)
                     self._load(os.path.join(path, f))
 
     def _load(self, path: str) -> None:
         cfg = load_yaml(path)
+        print(cfg)
         for r in cfg["rules"]:
             self.rules.append(
                 Rule(

@@ -118,7 +118,7 @@ class Vita:
         textarr = []
         textarr.append(text)
         real_result = json.dumps(text, ensure_ascii=False)
-        print(text)
+        print(real_result)
 
 
 '''
