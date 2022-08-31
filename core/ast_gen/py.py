@@ -37,6 +37,8 @@ class PythonAst(AstImpl, ABC):
         self.code = code
 
     def parse(self):
+        print(type(self.code))
+        print(self.code)
         self._ast = ast.parse(self.code)
         return self
 

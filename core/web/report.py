@@ -105,7 +105,7 @@ def generate_html(result):
          </tr>
         '''.format(grade, result[i][0], result[i][1], result[i][2], str(result[i][3]), str(result[i][4]))
     content+='''
-    </tbody>
+                </tbody>
               </table>
             </div>
           </div>
@@ -178,18 +178,18 @@ def generate_html(result):
        * Note that the indicator for showing which row is open is not controlled by DataTables,
        * rather it is done here
        */
-  //    $('#hidden-table-info tbody td img').live('click', function() {
-  //      var nTr = $(this).parents('tr')[0];
-  //      if (oTable.fnIsOpen(nTr)) {
-  //        /* This row is already open - close it */
-  //        this.src = "lib/advanced-datatable/media/images/details_open.png";
-  //        oTable.fnClose(nTr);
-  //      } else {
-  //        /* Open this row */
-  //        this.src = "lib/advanced-datatable/images/details_close.png";
-  //        oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
-  //      }
-  //    });
+      $('#hidden-table-info tbody td img').live('click', function() {
+        var nTr = $(this).parents('tr')[0];
+        if (oTable.fnIsOpen(nTr)) {
+          /* This row is already open - close it */
+          this.src = "lib/advanced-datatable/images/details_open.png";
+          oTable.fnClose(nTr);
+        } else {
+          /* Open this row */
+          this.src = "lib/advanced-datatable/images/details_close.png";
+          oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
+        }
+      });
     });
   </script>
 </body>
@@ -205,4 +205,4 @@ if __name__ == '__main__':
         print(i)
         print(result[i])
     generate_html(result)
-    app.run(port=55000, host='0.0.0.0')
+    app.run(port=33500, host='0.0.0.0')

@@ -80,9 +80,46 @@ class Vita:
 
     def output(self):
         for r in self.results:
+            print(r)
             ok = f''' [输出报告]\n等级: {r.severity}\n文件: {r.file_path}\n漏洞: {r.description}\n规则: {r.match_rule}\n'''
             ctx_codes = r.context.get_context_codes(4)
             for cc in ctx_codes:
                 ok += f"{'--> ' + str(cc[0]) if cc[0] == r.context.start_line else '    ' + str(cc[0])}   {cc[1]}\n"
             ok = ok[:-1]
             logger.info(ok)
+
+
+'''
+{
+    "basic": {
+        "totleNum": "100",
+        "criticalLevel":"10",
+        "highLevel":"10",
+        "mediumLevel":"50",
+        "lowLevel":"20",
+        "prompt":"10"
+    },
+    "problems":[{
+        "language":"go",
+        "context":"    6       start := time.Now()
+        7   	var Info common.HostInfo
+        8   	common.Flag(&Info)
+    --> 9   	common.Parse(&Info)
+        10   	Plugins.Scan(Info)
+        11   	t := time.Now().Sub(start)
+        12   	fmt.Printf(\"[*] 扫描结束,耗时: %s\", t)
+        13   }",
+        "match_type":"ast",
+        "match_rule":"eval",
+        "description":"命令执行",
+        "file_path":"/etc/passwd/main.go",
+        "severity":"critical/high/medium/low/prompt"
+    },{
+        ...
+    },
+    {...},
+    ...
+    ]
+}
+
+'''
