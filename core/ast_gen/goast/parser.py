@@ -5,8 +5,10 @@
 .. module:: __init__
     :synopsis: Go parser module.
 """
-
+import json
 import os
+import sys
+import tempfile
 
 from sly import Lexer, Parser
 from sly.yacc import SlyLogger
@@ -250,8 +252,24 @@ class GoParser(Parser):
         ('right', USUB, UXOR, UNOT, UADD),
     )
 
-    def __init__(self):
+    def __init__(self,obj):
         self.names = { }
+        self.flag = True
+        if (self.flag):
+            self.flag = False
+            os.chdir(__file__ + "/../runtime")
+            inputFile = open("input", "w",encoding="utf-8")
+            inputFile.write(obj.code)
+            inputFile.close()
+            command = 'runtime{}.exe -input input -output output'
+            if ("win" in sys.platform):
+                command = command.format("1")
+            else:
+                command = command.format("2")
+            os.system(command)
+            obj._ast = json.load(open("output","r",encoding="utf-8"))
+        obj.code = "package main"
+        self.code = obj.code
 
     @_(
         'line'
@@ -992,8 +1010,9 @@ class GoParser(Parser):
         return Ident(p.IDENT)
 
 
-lexer = GoLexer()
-parser = GoParser()
 
-def parse(text):
-    return parser.parse(lexer.tokenize(text.lstrip().rstrip() + '\n'))
+
+def parse(obj):
+    lexer = GoLexer()
+    parser = GoParser(obj)
+    return parser.parse(lexer.tokenize(obj.code.lstrip().rstrip() + '\n'))

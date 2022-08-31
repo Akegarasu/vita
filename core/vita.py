@@ -32,7 +32,7 @@ class Vita:
             ignore=ignore
         )
         self.manager.file_preprocess()
-        # self.manager.ast_parse()
+        self.manager.ast_parse()
 
         self._match()
         self.output()

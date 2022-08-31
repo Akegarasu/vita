@@ -5,7 +5,7 @@ from core import context
 from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context, gen_context, Severity
 from core.rules import Rule, RuleManager
-from core.code import CodeFile
+from core.model import CodeFile
 
 
 class JavaAstAnalyze:
