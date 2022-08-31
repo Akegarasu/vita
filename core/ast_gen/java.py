@@ -5,6 +5,7 @@ from core import context
 from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context, gen_context, Severity
 from core.rules import Rule, RuleManager
+from core.model import CodeFile
 
 
 class JavaAstAnalyze:
@@ -42,10 +43,10 @@ class JavaAstAnalyze:
 class JavaAst(AstImpl, ABC):
     _ast: Any
 
-    def __init__(self, code: str):
+    def __init__(self, code: CodeFile):
         super().__init__()
         self.code = code
-        self.codeList = self.code.split("\n")
+        self.codeList = self.code.processed.split("\n")
         self.result = None
 
     def get_functions(self) -> List[str]:
@@ -56,12 +57,12 @@ class JavaAst(AstImpl, ABC):
         java ast parser
         :return:
         """
-        j = JavaAstAnalyze(self.code)
+        j = JavaAstAnalyze(self.code.processed)
         j.getFunction()
         j.getMethodInvocation()
 
         self.result = j.result
-        self._ast = javalang.parse.parse(self.code)
+        self._ast = javalang.parse.parse(self.code.processed)
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
         pattern = ruletest.rules[2].patterns
@@ -70,7 +71,7 @@ class JavaAst(AstImpl, ABC):
             for position, value in i.items():
                 for j in pattern:
                     if j in str(value):
-                        ctx = gen_context(self.code)
+                        ctx = gen_context(self.code.processed)
                         ctx.start_line = i['position']
                         ctx.end_line = i['position'] + 1
                         result.append(
@@ -80,7 +81,7 @@ class JavaAst(AstImpl, ABC):
                                 description=rule.description,
                                 match_type="ast",
                                 severity=Severity.calculate(rule.danger),
-                                file_path="",
+                                file_path=self.code.file_path,
                                 language="java"
                             )
                         )

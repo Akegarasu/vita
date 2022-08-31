@@ -1,6 +1,6 @@
 import ast
 from abc import ABC
-import astpretty
+
 from typing import Any, List
 from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context, Severity

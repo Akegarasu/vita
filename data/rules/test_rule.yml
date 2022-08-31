@@ -24,6 +24,7 @@ rules:
     danger: 1
     patterns:
       - "pickle.loads"
+<<<<<<< HEAD
   - id: 4
     name: subprocess.call
     description: 执行系统命令
@@ -104,6 +105,8 @@ rules:
     # weight: 0.1
     patterns:
       - 'getoutput'
+=======
+>>>>>>> main
 #  - id: 3
 #    name: test2
 #    description: 测试2
