@@ -1,12 +1,23 @@
 language: go
 
 rules:
-  - id: 1
+  - id: 12315
     name: path_traversal
     description: Path injection may occur
     type: regex
+    ptype: danger
     danger: 4
-    # weight: 0.1
+    confidence: 0.4
     patterns:
       - '(os)\.(Create|Open|OpenFile)'
       - '(io|ioutil)\.(ReadFile|WriteFile)'
+  - id: 12306
+    name: path_traversal_ast
+    description: Path injection may occur
+    type: ast
+    ptype: danger
+    danger: 4
+    confidence: 0.2
+    patterns:
+      - 'ReadFile'
+      - 'WriteFile'

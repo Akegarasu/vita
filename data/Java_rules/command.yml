@@ -1,0 +1,25 @@
+﻿language: java
+
+rules:
+  - id: 10001
+    name: 命令执行
+    description: 执行系统命令可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - '(Runtime)\.(exec|getRuntime)\.(exec)'
+      - '(ProcessBuilder|ProcessImpl)\.(start)'
+      - '(UNIXProcess)\.(forkAndExec)'
+  - id: 10002
+    name: 执行命令
+    description: 加载恶意字节码或链接库可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - '(Runtime)\.(getRuntime()|load).(load)'
+      - 'defineClass'
+      - 'getOutputProperties'

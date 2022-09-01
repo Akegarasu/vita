@@ -1,0 +1,30 @@
+﻿language: java
+
+rules:
+  - id: 10003
+    name: unserilize
+    description: json反序列化可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - '(JSON)\.(parseObject|parse)'
+  - id: 10004
+    name: unserilize
+    description: jackson反序列化可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - '(ObjectMapper)\.(readValue)'
+  - id: 10006
+    name: unserilize
+    description: java原生反序列化可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - 'readObject'

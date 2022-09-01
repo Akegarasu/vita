@@ -6,7 +6,7 @@ from core.ast_gen.model import AstImpl
 from core.context import MatchResult, Context, gen_context, Severity
 from core.rules import Rule, RuleManager
 from core.model import CodeFile
-
+import re
 
 class JavaAstAnalyze:
     def __init__(self, code):
@@ -65,26 +65,31 @@ class JavaAst(AstImpl, ABC):
         self._ast = javalang.parse.parse(self.code.processed)
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
-        pattern = ruletest.rules[2].patterns
+        pattern = rule.complied
+        print(rule.complied)
         result = []
         for i in self.result:
             for position, value in i.items():
                 for j in pattern:
-                    if j in str(value):
-                        ctx = gen_context(self.code.processed)
-                        ctx.start_line = i['position']
-                        ctx.end_line = i['position'] + 1
-                        result.append(
-                            MatchResult(
-                                context=ctx,
-                                match_rule=rule.description,
-                                description=rule.description,
-                                match_type="ast",
-                                severity=Severity.calculate(rule.danger),
-                                file_path=self.code.file_path,
-                                language="java"
+                    for m in  j.finditer(str(value)):
+                        if m.group():
+                            ctx = gen_context(self.code.processed)
+                            ctx.start_line = i['position']
+                            ctx.end_line = i['position'] + 1
+                            result.append(
+                                MatchResult(
+                                    context=ctx,
+                                    match_rule=m.group(),
+                                    description=rule.description,
+                                    match_type="ast",
+                                    severity=Severity.calculate(rule.danger),
+                                    file_path=self.code.file_path,
+                                    language="java",
+                                    ptype=rule.ptype,
+                                    confidence=rule.confidence
+                                )
                             )
-                        )
+        # print(result)
         return result
 
 
@@ -93,7 +98,7 @@ if __name__ == "__main__":
     test = JavaAst(f.read())
     test.parse()
     ruletest = RuleManager()
-    ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\rules\\test_rule.yml")
+    ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\rules\\java_rules.yml")
 
     print(test.do_match(ruletest).match_rule)
     print(test.do_match(ruletest).context.code[0][1])

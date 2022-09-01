@@ -36,6 +36,9 @@ class GoAst(AstImpl, ABC):
     def reMatch(self,reObj):
         if type(reObj)==dict:
             for i in reObj:
+                if type(i) == str and i == "Comments":
+                    # pass comments
+                    continue
                 if type(reObj[i]) == str:
                     self.relMatch(reObj[i])
                 else:
@@ -65,7 +68,9 @@ class GoAst(AstImpl, ABC):
                     match_type="ast",
                     severity=Severity.calculate(self.rule.danger),
                     file_path=self.filePath,
-                    language="go"
+                    language="go",
+                    ptype=self.rule.ptype,
+                    confidence=self.rule.confidence
                 ))
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
@@ -92,5 +97,5 @@ if __name__ == "__main__":
     # ))
     # goast.parse()
     # ruletest = RuleManager()
-    # ruletest.load_yaml_rules("../../data/rules/test_rule.yml")
+    # ruletest.load_yaml_rules("../../data/rules/go_rules.yml")
     # goast.do_match(ruletest)

@@ -19,6 +19,11 @@ class Rule(BaseModel):
     danger: int
     complied: List[Pattern]
 
+    ptype: str
+    """漏洞类型"""
+    confidence: float
+    """置信度"""
+
 
 class RuleManager:
 
@@ -45,6 +50,8 @@ class RuleManager:
                     danger=r["danger"],
                     patterns=r["patterns"],
                     complied=r["patterns"],
+                    ptype=r["ptype"],
+                    confidence=r["confidence"]
                 )
             )
         logger.info(f"loaded {path} for {len(cfg['rules'])} rules.")

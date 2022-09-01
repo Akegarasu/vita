@@ -5,6 +5,7 @@ from .code import CodeFile, CodeManager
 from .context import MatchResult, Context, Severity, gen_context
 from typing import List
 from .log import logger
+import json
 
 import os
 
@@ -14,10 +15,12 @@ newline = re.compile(r'\n')
 class Vita:
 
     def __init__(self,
-                 rule_path: str) -> None:
+                 rule_path: str,
+                 output_path: str) -> None:
         self.rule: RuleManager = RuleManager()
         self.manager: CodeManager = CodeManager()
         self.results: List[MatchResult] = []
+        self.output_path: str = output_path
 
         self.rule.load_yaml_rules(path=rule_path)
 
@@ -36,7 +39,7 @@ class Vita:
 
         self._match()
         self.output()
-        breakpoint()
+        # breakpoint()
 
     def _match(self):
         for c in self.manager.files:
@@ -73,16 +76,41 @@ class Vita:
                         description=rule.description,
                         file_path=cf.file_path,
                         severity=Severity.calculate(rule.danger),
-                        language=rule.language
+                        language=rule.language,
+                        ptype=rule.ptype,
+                        confidence=rule.confidence
                     )
                 )
         return result
 
     def output(self):
+        out = {'problems': []}
+        severity_count = [0, 0, 0, 0, 0, 0]
         for r in self.results:
-            ok = f''' [输出报告]\n等级: {r.severity}\n文件: {r.file_path}\n漏洞: {r.description}\n规则: {r.match_rule}\n'''
-            ctx_codes = r.context.get_context_codes(4)
-            for cc in ctx_codes:
-                ok += f"{'--> ' + str(cc[0]) if cc[0] == r.context.start_line else '    ' + str(cc[0])}   {cc[1]}\n"
-            ok = ok[:-1]
+            r.context.printable = r.context.gen_context_output(4)
+            tmp = r.dict()
+            tmp['severity'] = r.severity.name
+            severity_count[r.severity.value % 5] += 1
+            severity_count[5] += 1
+            tmp['context'] = r.context.printable
+            tmp['ptype'] = r.ptype
+            tmp['confidence'] = r.confidence
+            out['problems'].append(tmp)
+
+            ok = f''' [输出报告]\n等级: {r.severity}\n文件: {r.file_path}\n漏洞: {r.description}\n规则: {r.match_rule}\n{r.context.printable}'''
             logger.info(ok)
+
+        out['basic'] = {
+            'totleNum': severity_count[5],
+            "criticalLevel": severity_count[4],
+            'highLevel': severity_count[3],
+            'mediumLevel': severity_count[2],
+            'lowLevel': severity_count[1],
+            'prompt': severity_count[0]
+        }
+
+        real_result = json.dumps(out, ensure_ascii=False)
+        with open(__file__+"/../../"+self.output_path + "/data.js", "w", encoding="utf-8") as f:
+            f.write(f"var datas = {real_result}")
+
+        logger.info(f"gen output report in file {self.output_path}/VitaReport.html")

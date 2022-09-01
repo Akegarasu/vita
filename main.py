@@ -13,13 +13,18 @@ import click
     help="规则文件目录",
 )
 @click.option(
+    "-o",
+    default="./templates",
+    help="输出文件路径",
+)
+@click.option(
     "-ignore",
     default="",
     help="忽略的文件后缀 使用英文逗号分割",
 )
-def cli(t, r, ignore):
-    logger.info(f"start run vita using rule {r}, target {t}")
-    Vita(rule_path=r).run(
+def cli(t, r, o, ignore):
+    logger.info(f"start run vita using rule {r}, target {t}, output {o}")
+    Vita(rule_path=r, output_path=o).run(
         file_path=t,
         ignore=ignore
     )

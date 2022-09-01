@@ -1,0 +1,13 @@
+﻿language: java
+
+rules:
+  - id: 10010
+    name: ssrf
+    description: ssrf可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - '(URL|url)\.(openConnection)'
+      - '(ImageIO)\.(read)'

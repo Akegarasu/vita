@@ -17,41 +17,31 @@ class CodeManager:
     def __init__(self):
         self.files: List[CodeFile] = []
 
-    def __test_for_ast_type_impl(self):
-        """
-        类型测试用
-        :return:
-        """
-        self.files.append(
-            CodeFile(
-                ext="123",
-                ast=PythonAst(""),
-                origin="",
-                processed="",
-                file_name="",
-                file_path="")
-        )
-
     def load_files(self, path: str, ignore: str) -> None:
         """
         加载源码文件
         :return:
         """
         ignore_exts = ignore.split(",")
-        logger.info(f"loading source code in {path}")
+        if os.path.isfile(path):
+            self._load(path)
+
         for path, dirs, files in os.walk(path):
             for f in files:
                 if len(ignore) > 0:
                     if self._check_ignore(f, ignore_exts):
                         continue
                 file_full_path = os.path.join(path, f)
-                with open(file_full_path, "r", encoding="utf-8") as fl:
-                    self.files.append(CodeFile(
-                        origin=fl.read(),
-                        file_name=f,
-                        file_path=file_full_path,
-                    ))
-                logger.info(f"loaded file {file_full_path}")
+                self._load(file_full_path)
+
+    def _load(self, full_path: str):
+        with open(full_path, "r", encoding="utf-8", errors="ignore") as fl:
+            self.files.append(CodeFile(
+                origin=fl.read(),
+                file_name=os.path.basename(full_path),
+                file_path=full_path,
+            ))
+        logger.info(f"loaded file {full_path}")
 
     def file_preprocess(self):
         """

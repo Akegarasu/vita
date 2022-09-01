@@ -1,0 +1,114 @@
+language: py
+
+rules:
+  - id: 1
+    name: os.system
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'os.system'
+#  - id: 2
+#    name: test2
+#    description: 执行系统命令
+#    type: ast
+#    danger: 1
+#    patterns:
+#      - exec
+#      - Runtime
+  - id: 3
+    name: pickle
+    description: pickle反序列化
+    type: regex
+    danger: 1
+    patterns:
+      - "pickle.loads"
+  - id: 4
+    name: subprocess.call
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'subprocess.call'
+  - id: 5
+    name: subprocess.Popen
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'subprocess.Popen'
+  - id: 6
+    name: os.popen
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'os.popen'
+  - id: 7
+    name: subprocess.run
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'subprocess.run'
+  - id: 8
+    name: getstatusoutput
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'getstatusoutput'
+  - id: 9
+    name: eval
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'eval'
+  - id: 10
+    name: exec
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'exec'
+  - id: 11
+    name: compile
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'compile'
+  - id: 12
+    name: execfile
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'execfile'
+  - id: 13
+    name: getoutput
+    description: 执行系统命令
+    type: regex
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'getoutput'
+
+#  - id: 3
+#    name: test2
+#    description: 执行系统命令
+#    type: ast
+#    patterns:
+#      - e.+?x
+#      - "http://.*"

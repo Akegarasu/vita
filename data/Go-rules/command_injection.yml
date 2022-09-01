@@ -4,12 +4,22 @@ rules:
   - id: 10043
     name: command_injection
     description: Command injection may occur
-    type: regex
+    type: ast
     danger: 9
-    # weight: 0.1
+    ptype: vuln
+    confidence: 0.5
     patterns:
       - '(os|exec)\.(Command)(Context)?'
       - '(syscall)\.(Exec|ForkExec|StartProcess)'
       - '(golang.org|x|sys|execabs)\.(Command|CommandContext)'
+  - id: 10049
+    name: command_injection_ast
+    description: Command injection may occur
+    type: ast
+    danger: 9
+    ptype: vuln
+    confidence: 0.3
+    patterns:
+      - 'CommandContext'
 
       
