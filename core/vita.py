@@ -76,7 +76,9 @@ class Vita:
                         description=rule.description,
                         file_path=cf.file_path,
                         severity=Severity.calculate(rule.danger),
-                        language=rule.language
+                        language=rule.language,
+                        ptype=rule.ptype,
+                        confidence=rule.confidence
                     )
                 )
         return result
@@ -108,7 +110,7 @@ class Vita:
         }
 
         real_result = json.dumps(out, ensure_ascii=False)
-        with open(self.output_path + "/data.js", "w", encoding="utf-8") as f:
+        with open(__file__+"/../../"+self.output_path + "/data.js", "w", encoding="utf-8") as f:
             f.write(f"var datas = {real_result}")
 
         logger.info(f"gen output report in file {self.output_path}/VitaReport.html")

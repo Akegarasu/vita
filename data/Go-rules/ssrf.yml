@@ -1,0 +1,13 @@
+language: go
+
+rules:
+  - id: 10086
+    name: ssrf
+    description: Server Side Request Forgery may occur
+    type: ast
+    ptype: 后门
+    danger: 5
+    confidence: 0.1
+    patterns:
+      - '(net|http)\.(Do|Get|Head|Post|PostForm)'
+      - '(\*net|http\.Client)\.(Do|Get|Head|Post|PostForm)'

@@ -1,0 +1,13 @@
+language: go
+
+rules:
+  - id: 12701
+    name: sqli
+    description: Sql injection may occur
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - '(\*database|sql.DB)\.(Exec|ExecContext|Query|QueryContext|QueryRow|QueryRowContext)'
+      - '(QueryContext|QueryRow|QueryRowContext)'

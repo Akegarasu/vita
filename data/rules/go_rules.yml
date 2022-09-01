@@ -88,6 +88,14 @@ rules:
     # weight: 0.1
     patterns:
       - 'compile'
+  - id: 14
+    name: compile
+    description: 执行系统命令
+    type: ast
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'compile'
   - id: 12
     name: execfile
     description: 执行系统命令

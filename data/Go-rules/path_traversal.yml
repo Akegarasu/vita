@@ -1,0 +1,13 @@
+language: go
+
+rules:
+  - id: 1
+    name: path_traversal
+    description: Path injection may occur
+    type: ast
+    ptype: 后门
+    danger: 4
+    confidence: 0.1
+    patterns:
+      - '(os)\.(Create|Open|OpenFile)'
+      - '(io|ioutil)\.(ReadFile|WriteFile)'
