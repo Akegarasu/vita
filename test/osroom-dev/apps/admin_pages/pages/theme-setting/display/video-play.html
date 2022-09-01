@@ -1,0 +1,26 @@
+{% extends "based/based_no_sidebar.html" %}
+{% block title %}{{data.name}}-{% endblock %}
+{% block content %}
+<data id="id" content="{{data.id}}"></data>
+<div v-cloak id="app" class="row">
+    <div class="col-xs-12">
+        <div class="panel">
+            <header class="panel-heading">
+                <i class="fa fa-youtube-play"></i>
+                <strong>
+                    {{_("视频播放")}}
+                </strong>
+                <p class="osr-text-overleft">{{data.name}}</p>
+            </header>
+            <div class="panel-body table-responsive">
+                <video width="100%" height="auto" :src="media.url"
+                    poster="/static/sys_imgs/video-play.png" controls="controls"></video>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/theme-setting/display/video-play.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

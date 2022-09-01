@@ -1,0 +1,43 @@
+{% extends "based/based_no_sidebar.html" %}
+{% block title %}{{_("文集")}}-{% endblock %}
+{% block content %}
+<div v-cloak id="app" class="row osr-page">
+    <section class="osr-panel">
+        <div class="col-sm-9">
+            <div class="osr-category">
+                <span class="fa fa-clipboard icon"></span>
+                <div class="info">
+                    <span class="name">
+                        {[category.name]}
+                    </span>
+                </div>
+            </div>
+            <p>
+                <strong class="osr-color-success">
+                    <i class="fa fa-bar-chart-o"></i> {[posts.data_total]}{{_("篇")}}
+                </strong>
+            </p>
+
+            <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+                <ul class="nav nav-tabs">
+                    <li id="head_li_sort_t-desc">
+                        <a data-toggle="tab" class="osr-pointer" v-on:click="get_posts('is_issued',1,'t-desc','')">
+                            <i class="fa fa-file-text-o"></i> {{_("文章")}}
+                        </a>
+                    </li>
+                    <li id="head_li_sort_hot">
+                        <a data-toggle="tab" class="osr-pointer" v-on:click="get_posts('is_issued',1,'hot','')">
+                            <i class="fa fa-thermometer-full"></i> {{_("热门")}}
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            {% include 'own/user/post/_user_posts.html' %}
+
+        </div>
+        {% include 'own/user/_self_introduction.html' %}
+    </section>
+
+</div>
+{% include 'own/corpus/_script_js.html' %}
+{% endblock %}

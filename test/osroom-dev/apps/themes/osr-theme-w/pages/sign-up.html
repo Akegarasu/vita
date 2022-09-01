@@ -1,0 +1,67 @@
+{% extends "osr-theme-w/pages/based/based_no_head.html" %}
+{% block title %}{{_("注册")}}-{% endblock %}
+{% block content %}
+<div id="app" v-cloak>
+       <div class="osr-full-bg-cover" :style="'background:no-repeat center center fixed;'">
+       </div>
+
+      <div class="osr-login-page row col-xs-12 osr-div-center osr-edit-page" style="top:20px;">
+    <p class="text-center">
+        <a href="/">
+            <img class="osr-logo" src="{{g.site_global.site_config.LOGO_IMG_URL}}" alt="Logo">
+        </a>
+    </p>
+    <div class="form-group">
+      <input name="username" id="username" type="text" class="form-control osr-input input-lg osr-hollow-color"
+             v-model="username" minlength="3" placeholder="{{_('用户名')}}"
+             data-bv-notempty-message="{{_('用户名不能为空')}}"
+             data-bv-stringLength-message="{{_('用户名至少3个字符')}}" required/>
+    </div>
+    <div class="form-group">
+      <input name="email" id="email" class="form-control osr-input input-lg osr-hollow-color" type="email" v-model="email"
+             data-bv-emailAddress="true" data-bv-emailAddress-message="{{_('邮箱地址不合法')}}"
+            data-bv-notempty-message="{{_('邮箱地址不能为空')}}" required
+             placeholder="{{_('电子邮箱')}}"  required/>
+    </div>
+    <div class="form-group">
+      <input name="password" id="password" class="form-control osr-input input-lg osr-hollow-color" type="password" v-model="password"
+             minlength="8" placeholder="{{_('输入密码')}}"
+             data-bv-notempty-message="{{_('至少8个字符')}}"
+             data-bv-stringLength-message="{{_('至少8个字符')}}" required/>
+    </div>
+    <div class="form-group">
+      <input name="password2" id="password2" class="form-control osr-input input-lg osr-hollow-color" type="password" v-model="password2"
+             placeholder="{{_('再次输入密码')}}"
+             data-bv-identical="true"
+             data-bv-notempty-message="{{_('至少8个字符')}}"
+             data-bv-identical-message="{{_('前后密码不一致')}}"
+             data-bv-identical-field="password" required/>
+    </div>
+
+    {% include 'osr-theme-w/pages/module/_send_code.html' %}
+
+    <div class="form-group">
+        <button v-on:click="sign_up()" class="btn-block btn osr-btn btn-success osr-submit-btn btn-lg">
+            {{_('注册')}}
+        </button>
+    </div>
+    <div class="form-group">
+        <a href="/sign-in" class="btn-block btn btn-default osr-btn btn-lg">
+            {{_('已有账户')}}
+        </a>
+    </div>
+    <div  class="form-group osr-color-gray text-center osr-white-text">
+        {{_('点击 "注册" 即表示您同意并愿意遵守')}}<br>
+        <a class="osr-white-text" href="/statement?s=user_agreement">《{{_("用户协议")}}》</a>
+        与
+        <a class="osr-white-text" href="/statement?s=privacy_policy">《{{_("隐私政策")}}》</a>
+    </div>
+
+    <div class="form-group">
+          {% include 'osr-theme-w/pages/module/_no_header_select_lan.html' %}
+    </div>
+      </div>
+</div>
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js//sign-up.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

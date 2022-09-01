@@ -1,0 +1,131 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("瞄下")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-edit-page" v-cloak>
+    <section class="osr-panel article">
+        <!-- 文章头-->
+        <h3>
+            {[photo.title]}
+        </h3>
+
+        <div class="author">
+            <div class="info">
+                <div class="meta">
+                   <span class="osr-date" >
+                        {{_("上传于")}} {[photo.time | formatDate]}
+                   </span>
+                </div>
+            </div>
+        </div>
+
+        <article>
+            <!-- 正文-->
+            <div id="galley" class="docs-pictures clearfix">
+                <img :src="photo.url" width="100%" v-on:click="init_viewer()">
+            </div>
+            <br>
+            <div v-html="photo.text_html"></div>
+            <!-- //正文-->
+        </article>
+
+        <!-- 正文footer-->
+        <div class="post-footer">
+
+            <!--文集-->
+            <div class="category">
+                <a  v-if="photo.category">
+                    <span  class="fa fa-folder-o">
+                      {[photo.category]}
+                    </span>
+                </a>
+                <span class="pull-right">
+                    <span class="osr-pointer" data-toggle="modal" data-target="#inform">
+                        {{_("举报")}}
+                    </span>&nbsp;
+                    <span data-toggle="tooltip" title="{{_('转载请联系作者获取授权, 侵权请联系本站删除')}}">
+                        <i class="fa fa-copyright"></i>{{_("著作权归作者所有, 与本站无关")}}
+                    </span>
+
+                </span>
+            </div>
+
+            <!--作者信息-->
+            <div  v-if="photo.user" class="author box">
+                <a class="avatar" :href="'/user?id='+photo.user._id">
+                    <img width="48px" height="48px" class="osr-img-circle-b" v-bind:src="photo.user.avatar_url.url" alt="{{_('头像')}}">
+                </a>
+
+                <div class="info">
+                    <a class="name" :href="'/user?id='+photo.user._id">
+                        {[photo.user.username]}
+                    </a>
+                    <span  v-if="photo.user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                    <span  v-if="photo.user.gender=='f'" class="fa fa-venus osr-fa-gender-f"></span>
+                    <div class="meta">
+                       <a :href="'/user/follow?t=followed_user&id='+photo.user._id">
+                            {[photo.user.follow.follow_user_num]}{{_("关注")}} >&nbsp;|&nbsp;
+                        </a>
+                        <a :href="'/user/follow?t=fans&id='+photo.user._id">
+                            {[photo.user.follow.fans_num]}{{_("粉丝")}} >
+                        </a>
+                    </div>
+                </div>
+                 <button  v-if="photo.user.follow.current_following" v-on:click="unfollowed(photo.user_id)" class="btn osr-btn btn-info pull-right">
+                     {{_("取消关注")}}
+                 </button>
+                <button  v-else v-on:click="follow(photo.user_id)" class="btn osr-btn btn-success pull-right">
+                     <i class="fa fa-plus"></i> {{_("关注")}}
+                 </button>
+                 <div v-fi="photo.user.introduction" class="brief-info">
+                     <hr class="osr-hr">
+                     {[photo.user.introduction]}
+                 </div>
+            </div>
+
+            <!--&lt;!&ndash;分享&ndash;&gt;-->
+            <!--<div class="share text-center">-->
+                <!--<span>-->
+                    <!--<i class="fa fa-wechat osr-icon-btn osr-success"></i>-->
+                    <!--&nbsp;-->
+                    <!--<i class="fa fa-qq osr-icon-btn osr-secondary"></i>-->
+                    <!--&nbsp;-->
+                    <!--<i class="fa fa-weibo osr-icon-btn osr-warning"></i>-->
+                    <!--&nbsp;-->
+                    <!--<i class="fa fa-github osr-icon-btn osr-default"></i>-->
+                <!--</span>-->
+            <!--</div>-->
+        </div>
+    </section>
+    <!--举报模态-->
+    <div class="modal fade" id="inform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_('举报')}}</h4>
+                </div>
+                <div class="modal-body">
+                {% include "osr-theme-w/pages/based/_inform_modal_input.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn osr-btn btn-info" type="button" data-dismiss="modal" aria-hidden="true">
+                        {{_("取消")}}
+                    </button>
+                    <button v-on:click="content_inform(photo._id, 'media', inform.category, inform.details)" class="btn osr-btn btn-success" type="button" data-dismiss="modal" aria-hidden="true">
+                        {{_("提交")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模态框-->
+
+</div>
+
+<script src="/theme/osr-theme-w/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<script src="/theme/osr-theme-w/static/js/image/viewer.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<script src="/theme/osr-theme-w/static/js/image/jquery-viewer.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-theme-w/static/css/image/viewer.min.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet" type="text/css" />
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/photo/introduction.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

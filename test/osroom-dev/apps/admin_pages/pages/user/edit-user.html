@@ -1,0 +1,76 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("编辑用户信息")}}-{% endblock %}
+{% block content %}
+
+<data id="user_id" content="{{data.id}}" hidden></data>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="/osr-admin/user?status={{data.fs}}&page={{data.fp}}"><i class="fa fa-users"></i> {{_("用户管理")}}</a></li>
+            <li class="active">{{_("编辑")}}</li>
+        </ul>
+    </div>
+</div>
+<div v-cloak id="app" class="row osr-adm-edit-page">
+    <div class="col-md-12 osr-col-xs-12">
+        <section class="panel">
+          <header class="panel-heading">
+             <i class="fa fa-user-o"></i> 编辑
+          </header>
+          <div class="panel-body">
+              <div>
+                  <div class="form-group">
+                      <label>{{_("用户名")}}</label>&nbsp;{[user.username]}
+                  </div>
+                  <div class="form-group">
+                      <label>{{_("电子邮箱")}}</label>
+                      <input name="email" id="email" class="form-control osr-input input-sm" type="email" v-model="user.email"
+                             data-bv-emailAddress-message="{{_('邮箱地址不合法')}}" style="max-width: 300px"
+                             placeholder="添加电子邮箱"  >
+                 </div>
+                  <div class="form-group" v-if="!edit_password">
+                      <a v-on:click="edit_pass()">{{_("修改密码")}}</a>
+                  </div>
+                  <div class="form-group" v-else>
+                      <label>{{_("密码修改")}}</label>
+                  <input name="password" id="password" class="form-control osr-input input-sm" type="password" v-model="password"
+                         minlength="8" style="max-width: 300px"
+                         placeholder="{{_('将会覆盖原密码')}}"
+                         data-bv-notempty-message="{{_('至少8个字符')}}"
+                         data-bv-stringLength-message="{{_('至少8个字符')}}" required/>
+                 </div>
+
+                  <div v-if="user.mphone_num" class="form-group">
+                      <label>{{_("手机号码")}}</label>&nbsp;{[user.mphone_num.slice(0,3)]}****{[user.mphone_num.slice(-5,-1)]}
+                  </div>
+
+                  <div class="form-group form-inline">
+                    <label>{{_("用户角色")}}</label><br>
+                      <select id="role" name="role"  class="form-control osr-form-control osr-form-control input-sm m-b-10">
+                         <option v-if="role._id===user.role_id" selected = "selected" v-for="role in roles.datas" v-bind:value =role._id>{[role.name]}</option>
+                         <option v-if="role._id!==user.role_id" v-for="role in roles.datas" v-bind:value =role._id>{[role.name]}</option>
+                    </select>
+                    </div>
+
+                  <div class="form-group">
+                      <div class="checkbox checkbox-success">
+                           <input v-if="user.active" id="active" class="form-check-input" type="checkbox" value="on_site" checked>
+                           <input v-else id="active" class="form-check-input" type="checkbox" value="on_site" unchecked>
+                          <label for="active" class="form-check-label"></label>
+                          {{_("激活")}}
+                      </div>
+                  </div>
+
+                  <button v-on:click="save()" class="btn osr-btn btn-info" >
+                   {{_("保存")}}
+                </button>
+
+              </div>
+          </div>
+        </section>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/user/edit-user.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

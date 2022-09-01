@@ -1,0 +1,6 @@
+{% extends "osr-theme-w/pages/module/email/_based.html" %}
+{% block email_body %}
+    {% for line in data.body%}
+        {{line | safe}}<br>
+    {%endfor%}
+{% endblock %}

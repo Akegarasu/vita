@@ -1,0 +1,47 @@
+<div id="top_nav_pc" class="osr-navbar-left navbar-left hidden-xs">
+
+        {% if g.site_global.site_config.PC_LOGO_DISPLAY == "logo" %}
+            <a href="/" class="osr-logo pull-left" title='{{_("首页")}}' style="color:#27c24cbd">
+            <img src="{{g.site_global.site_config.LOGO_IMG_URL}}" alt="Logo"/>
+            </a>
+        {% else %}
+            <a href="/" class="osr-logo-text pull-left" title='{{_("首页")}}' style="color:#27c24cbd">
+                <strong>{{g.site_global.site_config.APP_NAME}}</strong>
+            </a>
+
+        {% endif %}
+    <ul id="navbar_left" class="nav navbar-nav">
+        {% for nav in g.site_global.theme_config.navs%}
+
+            {% if nav.json_data.next_lev %}
+                <li class="user-menu dropdown">
+                <a class="osr-pointer lv1-a dropdown-toggle" data-toggle="dropdown">
+                {{nav.display_name}}
+                <i class="caret"></i>
+                </a>
+
+                <ul id="{{nav.display_name}}" class="dropdown-menu dropdown-custom dropdown-menu-right">
+                    {% for nav2 in nav.json_data.next_lev %}
+                    <li>
+                        <a href="{{nav2.link}}">
+                            {{nav2.display_name}}
+                        </a>
+                    </li>
+                    {% endfor %}
+               </ul>
+                </li>
+            {% else %}
+                <li class="user-menu dropdown" >
+                    <a class="lv1-a" href="{{nav.json_data.link}}">
+                        {{nav.display_name}}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+
+
+    </ul>
+
+
+</div>

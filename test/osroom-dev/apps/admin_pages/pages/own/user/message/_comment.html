@@ -1,0 +1,64 @@
+<!--消息是评论-->
+<ul v-if="type=='comment'" class="osr-list-group">
+    <li class="osr-list-group-item" v-for="msg in msgs.datas">
+      <div class="item-content">
+          <header>
+              <!--谁回复了评论-->
+              <b class="osr-color-success">[{{_("评论")}}]</b>
+                <span v-if="msg.content.reply_id">
+
+                    <a class="osr-color-secondary" :href="'/osr-admin/own/user?id='+msg.content.user_id">
+                        @{[msg.content.username]}
+                    </a>
+                    {{_("回复了评论")}}:
+                </span>
+
+                <!--谁评论了-->
+                <span v-else>
+                    <a class="osr-color-secondary" :href="'/osr-admin/own/user?id='+msg.content.user_id">
+                        @{[msg.content.username]}
+                    </a>
+                    {{_("评论了")}}:
+                </span>
+                <a v-if="msg.target_type=='post'" :href="'/osr-admin/own/user/post/preview?id='+msg.target_id">
+                  {[msg.title]}
+                </a>
+                <!--title-->
+                <span v-else class="text-info">
+                    {[msg.title]}
+                </span>
+          </header>
+          <!--正文-->
+          <div class="osr-text">
+            {[msg.content.text]}
+          </div>
+          <div class="meta">
+            <span class="osr-date">
+                <i class="fa fa-clock-o"></i> {[msg.time | formatDate ]}
+            </span>
+            <span class="pull-right">
+                <a class="osr-pointer osr-color-secondary" v-on:click="reply_trigger('reply'+msg._id)">
+                     <i class="fa fa-comment-o"></i> {{_('回复')}}
+                </a>&nbsp;
+                <a class="osr-pointer osr-color-danger"  v-on:click="warning_modal(null, 'del_msgs', msg._id)" >
+                     <i class="fa fa-trash"></i> {{_('删除')}}
+                </a>
+            </span>
+          </div>
+             <!--回复框-->
+            <div :id="'reply'+msg._id" hidden>
+                <div  class="form">
+                   <textarea v-bind:id="msg._id" class="form-control osr-input" cols="30" rows="5" ></textarea>
+                    <br>
+                   <button v-on:click="reply_comment(msg.target_type, msg.target_id, msg.content.id, msg.content.user_id, msg.content.username, msg._id)"
+                           type="button" class="btn osr-btn btn-sm btn-info">
+                       {{_('提交')}}
+                   </button>
+                </div>
+            </div>
+            <!--//回复框-->
+      </div>
+    </li>
+</ul>
+
+<!--消息是评论-->

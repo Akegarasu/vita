@@ -1,0 +1,120 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("主题")}}-{% endblock %}
+{% block content %}
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                     <i class="fa fa-html5"></i>
+                    <strong>
+                         {{_("主题")}}
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools m-b-15 form-inline">
+                        <div class="input-group">
+                          <input id="upfile" class="sr-only" type="file" name="upfile">
+                          <label for="upfile"  class="btn btn-sm osr-btn btn-info">
+                            <i class="fa fa-cloud-upload"></i>
+                              {{_("选择主题")}}
+                          </label>&nbsp;
+
+                          <button v-on:click="upload_theme()" type="button" class="btn btn-sm osr-btn btn-success">
+                              {{_("上传")}}
+                          </button>
+
+                        </div>
+                    </div>
+                    <p id="file-list"></p>
+
+                    <div class="alert alert-info osr-alert osr-alert-warning">
+                         <button data-dismiss="alert" class="close close-sm" type="button">
+                             <i class="fa fa-times"></i>
+                         </button>
+                         <div class="osr-remind-alert">
+                        <i class="fa fa-bell-o osr-color-warning" >{{_("提示")}}:</i>
+                        {{_("此主题指的是普通浏览器网页版主题, 与小程序客户端UI无关. 主题上传支持zip压缩包")}}<br>
+                         <i class="osr-color-danger fa fa-exclamation-circle"></i>
+                           {{_('[上传]功能只对单点部署有效: 集群部署的站点, 请把非压缩的"主题包"直接放于各台服务器Osroom系统目录的apps/themes下')}}
+                           <br>
+                        <i class="osr-color-danger fa fa-exclamation-circle"></i>
+                           {{_("[删除]功能只对单点部署有效: 集群部署的站点, 请直接把各台服务器Osroom系统目录的apps/themes下的主题目录删除")}}
+                            <br>
+                             <i class="osr-color-danger fa fa-exclamation-circle"></i>
+                           {{_("[恢复已删默认设置] 为了防止覆盖存在的设置数据, 只恢复已删除的[默认设置],")}}
+                        <br>
+                        <i class="osr-color-danger fa fa-exclamation-circle"></i>
+                            <span class="osr-color-danger">
+                                {{_("删除主题前请手动清理主题设置数据, 系统不会主动清理!")}}
+                            </span>
+                         </div>
+                    </div>
+
+                    <div v-for="(theme, index) in themes"class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <img class="osr-media-img" :src="theme.cover_url+img_w_h" :alt="theme.theme_name">
+                         <div class="img-title" data-toggle="tooltip" :title="theme.theme_name" alt="theme cover">
+                             {[theme.theme_name]}
+                         </div>
+                            <p v-if="!theme.error" class="osr-text-overleft osr-color-secondary">
+                                 <a :href="'/osr-admin/theme-view?theme='+theme.theme_name" target="_blank"
+                                 class="osr-color-success">
+                                    [{{_("点击预览")}}]
+                              </a>
+                                <strong data-toggle="tooltip" :title="theme.introduce">
+                                    {[theme.introduce]}
+                                </strong>
+                            </p>
+                           <span v-if="theme.error" class="osr-color-danger">
+                               {{_("致命错误")}}: {[theme.error]}<br>
+                           </span>
+                          <p class="osr-date">{{_("作者")}}:{[theme.author]}</p>
+                          <p>
+                              <span class="pull-left osr-date">版本:{[theme.version]}</span>
+                              <a class="pull-right text-info" target="_blank" :href="'/osr-admin/theme-setting/readme?name='+theme.theme_name">{{_("查看配置文档")}}</a>
+                          </p>
+                         <br><br>
+                          <div class="btn-group-sm">
+
+                              <a v-if="theme.current" class="btn osr-btn btn-default"
+                                 style="margin-bottom: 5px">
+                                    {{_("已启用")}}
+                              </a>
+                              <a v-if="!theme.current && !theme.error"
+                                 v-on:click="switch_theme(theme.theme_name)"
+                                 class="btn osr-btn btn-info btn-sm"
+                                 style="margin-bottom: 5px"
+                              >
+                                 {{_("启用")}}
+                              </a>
+                              <a :href="'/osr-admin/theme-setting/nav?lang=zh_CN&theme='+theme.theme_name"
+                                 style="margin-bottom: 5px"
+                                 class="btn osr-btn btn-success ">
+                                 {{_("菜单设置")}}
+                              </a>
+
+                              <a  v-on:click="warning_modal({'msg':'{{_('确定? 只恢复已删除的默认设置')}}' }, 'restore', theme.theme_name)"
+                                  class="btn osr-btn btn-default"
+                                  style="margin-bottom: 5px"
+                              >
+                                  <i class="fa fa-refresh"></i> {{_("恢复默认设置")}}
+                              </a>
+                              <a v-if="!theme.current"
+                                 v-on:click="warning_modal({'msg':'{{_('确定? 刪除前请手动清理该主题设置数据')}}' }, 'delete_theme', theme.theme_name)"
+                                 class="btn osr-btn btn-danger"
+                                style="margin-bottom: 5px"
+                              >
+                                  <i class="fa fa-trash"></i> {{_("删除")}}
+                              </a>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/theme-setting/themes.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

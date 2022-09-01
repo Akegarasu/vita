@@ -1,0 +1,41 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("添加页面路由")}}-{% endblock %}
+{% block content %}
+
+<data id="fp" content="{{data.fp}}" hidden></data>
+<data id="ft" content="{{data.ft}}" hidden></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/permission/url?type={{data.ft}}&page={{data.fp}}"><i class="fa fa-shield"></i> {{_("权限控制")}}</a></li>
+                <li class="active">{{_("页面路由")}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row osr-adm-edit-page">
+         <div class="col-md-12 osr-col-xs-12">
+            <section class="panel">
+              <header class="panel-heading">
+                <span><i class="fa fa-compass"></i> {{_("添加页面路由")}}</span>
+              </header>
+              <div class="panel-body">
+                  <div class="form-group">
+                    {{_("页面路由")}}
+                    <input name="url" type="text" v-model="url"  class="form-control osr-input"
+                           data-bv-notempty-message="{{_('路由不能为空')}}"  required/>
+                   </div>
+                   <div class="form-group">
+                       <button v-on:click="add()" class="btn-sm btn osr-btn btn-info osr-submit-btn" >
+                        {{_("添加")}}
+                       </button>
+                  </div>
+              </div>
+            </section>
+         </div>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/permission/url/add.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

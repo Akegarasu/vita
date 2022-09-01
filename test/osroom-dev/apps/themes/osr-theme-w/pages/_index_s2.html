@@ -1,0 +1,54 @@
+
+
+<!--###################################################################
+这是"home-display-img-", image类型。命名方式为home-display-img-1, home-display-img-2
+如果不需要显示，在管理端删除该图片即可在
+osroom管理端->主题展示设置->图文里添加或修改，删除
+#######################################################################-->
+<div v-if="home_display_img" class="osr-page row" style="margin:15px 15px 15px 15px;">
+    <div  v-for="ad in home_display_img" class="col-lg-3 col-sm-6 col-xs-12">
+        <div class="osr-post-info">
+            <div class="osr-image text-center">
+                <a v-if="ad" target="_blank" :href="ad.link">
+                    <img v-if="ad.url" class="osr-media-img" :src="ad.url+img_w_h" :alt="ad.title">
+                    <img v-else class="osr-media-img" src="" :alt="ad.title">
+                     <span v-if="ad.title" class="osr-img-title"  :title="ad.title">
+                         {[ad.title]}
+                     </span>
+                </a>
+            </div>
+            <div v-if="ad.text" class="osr-text-essay" v-html="ad.text_html"></div>
+            <div v-if="ad.code" v-html="ad.code"></div>
+        </div>
+    </div>
+</div>
+
+<!--###################################################################
+这是"home-display-", text类型。命名方式为home-display-1, home-display-2
+如果不需要显示，在管理端删除该文本即可在
+osroom管理端->主题展示设置->文本里添加或修改，删除
+#######################################################################-->
+<div v-if="home_display" class="osr-page row">
+    <br>
+    <div v-for="display in home_display" class="text-center">
+        <h4><b>{[display.title]}</b></h4>
+        <div  v-if="display.text" v-html="display.text_html"></div>
+        <div v-if="display.code" v-html="display.code"></div>
+    </div>
+    <br>
+</div>
+
+
+<!--###################################################################
+这是"display_tag", text类型
+如果不需要显示tag，在管理端删除该文本即可在
+osroom管理端->主题展示设置->文本里修改展示，删除
+#######################################################################-->
+<div v-if="display_tag && display_tag.switch" class="row osr-page text-center">
+    <br>
+    <h4><b>{{_("标签云")}}</b></h4>
+    <a v-for="(tag,index) in tags" :style="'color:#ffffff;background-color:'+colors[index]" class="btn osr-btn btn-m"
+    :href="'/corpus/tag?tag='+tag.tag">
+        {[tag["tag"]]}&nbsp;‧&nbsp;{[tag["tag_cnt"]]}
+    </a>
+</div>

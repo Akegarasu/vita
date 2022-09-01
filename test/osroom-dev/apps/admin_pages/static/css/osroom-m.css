@@ -1,0 +1,41 @@
+/** header **/
+.osr-m-header {
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+    background-color: #007ae2;
+    height: 50px;
+
+}
+.osr-m-header .menu-btn{
+    font-size: 25px;
+    top: 12px;
+    position: relative;
+    color:#fff;
+}
+
+.osr-m-header .menu-avatar{
+    top: 10px;
+    position: relative;
+
+}
+.osr-m-header .menu-avatar>img{
+    top: -5px;
+    position: relative;
+    height: 40px;
+    width: 40px;
+}
+
+.osr-m-logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:#fff;
+    font-size:20px;
+}
+
+.osr-m-logo>img{
+    height: 24px;
+}
+
+/** end header **/

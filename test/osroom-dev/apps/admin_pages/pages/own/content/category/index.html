@@ -1,0 +1,46 @@
+{% extends "based/based_no_sidebar.html" %}
+{% block title %}{{_('内容分类管理')}}-{% endblock %}
+{% block content %}
+<div v-cloak id="app" >
+
+    <div class="row osr-edit-page">
+        <div class="col-md-12 osr-col-xs-12">
+            <section class="osr-panel">
+              <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+                  <strong>{{_("文集")}}</strong>
+                  <a class="pull-right"
+                     href="/osr-admin/own/content/writer?status={{data.ps}}&editor={{data.peditor}}&id={{data.pid}}">
+                        <i class="fa fa-arrow-circle-left"></i>
+                      {{_("返回")}}
+                  </a>
+              </header>
+
+              <div class="panel-body">
+                  <div class="text-center">
+
+                    <div v-for="category in categorys" class="form-group">
+                        <label>
+                        <input name="name" type="text" class="form-control osr-input" v-model="category.name"
+                          data-bv-notempty-message="{{_('不能为空')}}" placeholder="{{_('分类名称')}}" required/>
+                        </label>
+                        <button v-on:click="update(category._id, category.name)" class="btn-sm osr-btn btn btn-info osr-submit-btn">{{_("保存")}}</button>
+                        <button v-on:click="warning_modal(null, 'del', category._id)" class="btn-sm osr-btn btn btn-danger" >{{_("删除")}}</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                        <input name="new_name" type="text" class="form-control osr-input" v-model="new_category"
+                               placeholder="{{_('分类名称')}}" data-bv-notempty-message="{{_('不能为空')}}" required/>
+                        </label>
+                        <button v-on:click="add()" class="btn-sm osr-btn btn btn-success osr-submit-btn">{{_("添加")}}</button>
+                         <button class="btn-sm osr-btn btn btn-default disabled">{{_("删除")}}</button>
+                    </div>
+                 </div>
+              </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/own/content/category/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

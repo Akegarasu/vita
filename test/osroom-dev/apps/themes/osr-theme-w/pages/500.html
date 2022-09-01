@@ -1,0 +1,20 @@
+{% extends "osr-theme-w/pages/based/based_no_head.html" %}
+{% block title %}{{_("500 Server Error")}}-{% endblock %}
+{% block content %}
+<style>
+    *{
+        margin:0;
+        font-weight:lighter;
+        text-decoration:none;
+        text-align:center;
+        line-height:2.2em;
+    }
+</style>
+<div>
+  <div class="osr-login-page row col-xs-12 osr-div-center osr-edit-page">
+    <h1 style="font-size:100px;line-height:1em;">500</h1>
+     <h3>{{_("错误ID")}} 错误代码:{{data.request_id}}<a href="/"> {{_("回到首页")}}</a></h3>
+                    <p>请联系管理员</p>
+  </div>
+</div>
+{% endblock %}

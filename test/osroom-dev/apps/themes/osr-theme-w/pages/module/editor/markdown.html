@@ -1,0 +1,114 @@
+
+    <link href="/theme/osr-theme-w/static/css/markdown/simplemde.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="/theme/osr-theme-w/static/js/markdown/simplemde.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+	<script src="/theme/osr-theme-w/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+	<link href="/theme/osr-theme-w/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+	<textarea id="myEditor"></textarea>
+
+	<span class="osr-pointer" id="upfile-img" data-toggle="modal" data-target="#upload-modal" hidden></span>
+	<!-- 图片上传-->
+    <div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_("插入图片")}}</h4>
+                </div>
+                <div class="modal-body">
+					<div class="input-group text-center">
+						<input class="sr-only" type="file" id="upfile" name="upfile" multiple accept="image/*"  hidden>
+						<label for="upfile"  class="btn osr-btn btn-info">
+							<i class="fa fa-cloud-upload"></i>
+							  {{_("选择图片")}}
+						</label>
+					</div>
+					<p id="file-list"></p>
+                </div>
+                <div class="modal-footer">
+					<button class="btn btn-success" type="button" onclick="upload_img()" data-dismiss="modal" aria-hidden="true"> {{_("上传")}}</button>
+                    <button class="btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //图片上传-->
+
+
+<script>
+    	var toolbar = [
+	    "preview",
+		"bold",
+		"italic",
+		"strikethrough",
+		"heading",
+		"heading-smaller",
+		"heading-bigger",
+		"heading-1",
+		"heading-2",
+		"heading-3",
+		"quote",
+		"unordered-list",
+		"ordered-list",
+		"clean-block",
+		"link",
+		"image",
+		"table",
+		"horizontal-rule",
+		"code",
+		"side-by-side",
+		"fullscreen",
+		"guide",
+
+	]
+
+	var simplemde = new SimpleMDE({
+			toolbar:toolbar,
+			autofocus: true,
+			autosave: {
+				enabled: true,
+				uniqueId: "MyID",
+				delay: 1000,
+			},
+			element: document.getElementById("myEditor"),
+			renderingConfig: {
+				singleLineBreaks: false,
+				codeSyntaxHighlighting: true,
+			},
+
+		});
+	simplemde.value("{{_('当前使用的是MarkDown文本编辑器')}}");
+
+    function upload_img(){
+
+         //上传文件
+        var formData = new FormData();
+        var name = $("#upfile").attr("name");
+        var paths = $("#upfile")[0].files;
+        var len = paths.length;
+        if(len > 5){
+            alert_msg({msg:"{{_('每次最多上传5张图片')}}", msg_type:"w"});
+        }
+        for(var j = 0, len=len; j < len && j<5; j++) {
+            formData.append(paths[j].name, paths[j]);
+        }
+
+        var result = osrHttpUpload("POST","/api/upload/file", formData, args={not_prompt:true});
+        result.then(function (r) {
+            if(r.data.msg_type=="s"){
+                simplemde.insertImgUrl(r.data.urls);
+            }
+        });
+
+    }
+
+	$(function() {
+        $('#upfile').on('change', function() {
+          var fileNames = '';
+          $.each(this.files, function() {
+            fileNames += '<span class="badge">' + this.name + '</span> ';
+          });
+          $('#file-list').html(fileNames);
+        });
+    });
+
+</script>

@@ -1,0 +1,87 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("发送消息")}}-{% endblock %}
+{% block content %}
+
+<div class="row osr-adm-edit-page">
+    <div class="col-md-12 osr-col-xs-12">
+        <section class="panel">
+          <header class="panel-heading">
+             <i class="fa fa-send"></i> 发送消息
+          </header>
+          <div class="panel-body">
+              <div v-cloak id="app" >
+                  <div class="form-group">
+                      <label>{{_("标题")}}</label>
+                      <div>
+                           <input name="name" class="form-control osr-input" type="text"  v-model="msg.title"
+                           data-bv-notempty-message="{{_('标题不能为空')}}" placeholder='{{_("标题")}}' required/>
+                      </div>
+                  </div>
+                <div class="form-group form-inline">
+                      <label class="control-label">{{_("发送类型")}}</label>
+                      <div class="checkbox checkbox-success">
+                           <input name="on-site" id="on_site" class="form-check-input" type="checkbox" value="on_site" checked>
+                           <label for="on_site" class="form-check-label"></label>
+                          {{_("站内")}}
+                      </div>
+                    &nbsp;&nbsp;
+                      <div class="checkbox checkbox-success">
+                           <input name="email" id="is_email" class="form-check-input" type="checkbox" value="email" unchecked>
+                           <label for="is_email" class="form-check-label"></label>
+                          {{_("邮件")}}
+                      </div>
+                    &nbsp;&nbsp;
+                      <div class="checkbox checkbox-success">
+                           <input name="sms" id="is_sms" class="form-check-input" type="checkbox" value="sms" unchecked>
+                           <label for="is_sms" class="form-check-label"></label>
+                          {{_("短信")}}
+                      </div>
+                    <p class="help-block">{{_('邮件和短信发送后无法撤回, 站内消息发送后可以在消息管理删除')}}.</p>
+                </div>
+
+                <div class="form-group">
+                  <label>{{_("用户名")}}</label>
+                    <input type="text" class="form-control osr-input" v-model="username" placeholder='{{_("必须是本站正常用户名(多个用 ; 隔开)")}}' required/>
+                    <p class="help-block">{{_('发送给所有用户请填"All"')}}.</p>
+                </div>
+
+                  <!-- 确认模拟框-->
+                <div class="modal fade" id="send-model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">{{_("确认发送")}}?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <label>{{_('输入字符Send确认发送')}}</label>
+                                <div class="modal-bd form-group">
+                                    <input name="confirm_send" type="text" class="form-control osr-input" v-model="confirm_send"
+                                           data-bv-notempty-message="{{_('输入Send确认')}}" placeholder="{{_('输入确认字符')}}" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn osr-btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                                <button class="btn osr-btn btn-warning osr-submit-btn" type="button"v-on:click="send()"> {{_("发送")}}</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //模拟框-->
+              </div>
+              <div class="form-group">
+                 <label >{{_("文本内容")}}</label>
+                 {% include 'module/editor/richtext.html' %}
+              </div>
+              <button class="btn osr-btn btn-primary osr-submit-btn" data-toggle="modal" data-target="#send-model">
+               {{_("发送")}}
+              </button>
+          </div>
+        </section>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/message/send.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

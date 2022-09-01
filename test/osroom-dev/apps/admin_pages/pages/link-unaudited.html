@@ -1,0 +1,57 @@
+{% extends "based/based_no_head.html" %}
+{% block title %}{{_("跳转确认")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-edit-page">
+    <section class="osr-panel" style="margin-top: 50px;">
+         <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading osr-color-warning">
+            <strong>
+                <i class="fa fa-shield"></i>
+                {{_("跳转确认")}}
+            </strong>
+        </header>
+
+        <div style="margin: 15px;">
+            {{_("以下网站链接安全性未知，是否继续前往？")}}
+            <br>
+            <a>
+                {{data.url}}
+            </a>
+            <br>
+        <div class="input-group pull-right">
+            <div class="btn-group-md">
+                <a href="{{data.url}}" class="btn osr-btn btn-warning osr-submit-btn">
+                    {{_("继续")}}
+                </a>
+                 <a :href="return_url" class="btn osr-btn btn-info osr-submit-btn">
+                    {{_("关闭")}}
+                </a>
+            </div>
+        </div>
+        </div>
+
+
+    </section>
+</div>
+<script>
+    var vue = new Vue({
+      el: '#app',
+      delimiters:['{[', ']}'],
+      data:{
+            return_url:""
+      }
+    })
+
+    // 页面一加载完就自动执行
+    $(document).ready(function(){
+         vue.return_url = document.referrer;
+
+    });
+
+</script>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+

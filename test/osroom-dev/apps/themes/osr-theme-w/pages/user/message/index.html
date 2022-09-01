@@ -1,0 +1,98 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("消息")}}-{% endblock %}
+{% block content %}
+<data id="type"  content="{{data.type}}"></data>
+<data id="page" content="{{data.page}}" hidden></data>
+<div id="app" class="row osr-edit-page" v-cloak>
+    <section class="osr-panel">
+        <div class="col-sm-12">
+            <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+                <ul class="nav nav-tabs">
+                    <li id="head_li_notice">
+                        <a data-toggle="tab" data-target="#notice" class="osr-pointer" onclick="switch_type('notice')">
+                            <i class="fa fa-bell-o"></i> {{_("通知")}}
+                            <span   v-if="unread.notice" class="badge bg-red">
+                                {[unread.notice]}
+                            </span>
+                        </a>
+
+                    </li>
+                    <li id="head_li_comment">
+                        <a data-toggle="tab" data-target="#comment" class="osr-pointer" onclick="switch_type('comment')">
+                            <i class="fa fa-comments-o"></i> {{_("评论")}}
+                            <span   v-if="unread.comment" class="badge bg-red">
+                                {[unread.comment]}
+                            </span>
+                        </a>
+                    </li>
+                    <!--<li id="head_li_private_letter">-->
+                        <!--<a data-toggle="tab" data-target="#private_letter" class="osr-pointer" onclick="switch_type('private_letter')">-->
+                            <!--<i class="fa fa-commenting-o"></i> {{_("私信")}}-->
+                            <!--<span   v-if="unread.private_letter" class="badge bg-red">-->
+                                <!--{[unread.private_letter]}-->
+                            <!--</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                </ul>
+            </header>
+            <div id="notice">
+                {% include 'osr-theme-w/pages/user/message/_notice.html' %}
+            </div>
+            <div id="comment">
+                {% include 'osr-theme-w/pages/user/message/_comment.html' %}
+            </div>
+            <div id="private_letter">
+                {% include 'osr-theme-w/pages/user/message/_private_letter.html' %}
+            </div>
+
+            <!-- 页面导航-->
+                <div class="text-center visible-lg visible-md">
+                    <ul class="pagination">
+                        <li   v-if="pages.last < pages.current_page && pages.last>0">
+                            <a>«</a>
+                        </li>
+                        <li  v-else class="disabled">
+                            <a v-on:click="get_msgs(pages.last)">«</a>
+                        </li>
+
+                        <li v-for="page in pages.last_show" >
+                            <a   v-if="page!='...'" v-on:click="get_msgs(page)">{[page]}</a>
+                            <a  v-else href="#">...</a>
+                        </li>
+
+                        <li class="active">
+                            <a v-on:click="get_msgs(pages.current_page)">{[pages.current_page]}</a>
+                        </li>
+
+                       <li v-for="page in pages.next_show" >
+                            <a   v-if="page!='...'" v-on:click="get_msgs(page)" >{[page]}</a>
+                            <a  v-else href="#">...</a>
+                       </li>
+
+                       <li   v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                            <a v-on:click="get_msgs(pages.next)">»</a>
+                        </li>
+                        <li  v-else class="disabled">
+                            <a>»</a>
+                        </li>
+                    </ul>
+               </div>
+                <!-- //页面导航-->
+                <!-- m页面导航-->
+                <ul class="pager visible-xs visible-sm">
+                    <li   v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                        <a v-on:click="get_msgs(pages.last)">
+                            {{_("上一页")}}
+                        </a>
+                    </li>
+                    <li   v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                        <a v-on:click="get_msgs(pages.next)">{{_("下一页")}}</a>
+                    </li>
+                </ul>
+                <!-- //m页面导航-->
+        </div>
+    </section>
+</div>
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/user/message/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

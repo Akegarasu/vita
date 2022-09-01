@@ -1,0 +1,245 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("评论管理")}}-{% endblock %}
+{% block content %}
+<data id="state" content="{{data.state}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="sort" content="{{data.sort}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-comment-o"></i>
+                    <strong>
+                        {{_("评论")}}(<span class="osr-color-success">{{_("结果")}}{[comments.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                            <select id="status" name="status"  class="form-control osr-form-control input-sm" @change="get_comments($event.target.value, 1, '')">
+                                <option  v-for="sta,k in status_list" v-if="sta==status" selected="selected" :value ="sta">{[k]}</option>
+                                <option v-for="sta,k in status_list" v-if="sta!=status" :value ="sta">{[k]}</option>
+                            </select>
+                        </div>
+                        <div class="input-group pull-right">
+                            <input v-on:keypress="get_comments(status, 1, keyword)" type="text" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_comments(status, 1, keyword)" class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th >
+                                    <div class="checkbox checkbox-success">
+                                      <input id="check_all" v-on:click="osr_check_all(comments.datas, checkAll, set)" type="checkbox"
+                                            v-model="checkAll" unchecked>
+                                      <label for="check_all"></label>
+                                    </div>
+                              </th>
+                              <th>{{_("类别")}}</th>
+                                  <th>{{_("作者")}}</th>
+                                  <th>{{_("详情")}}</th>
+                                  <th>{{_("阶级")}}</th>
+                                  <th>
+                                      {{_("赞")}}
+                                      <i v-on:click="get_comments(status, page, keyword, 'like')" class="fa fa-sort"></i>
+                                  </th>
+
+                                  <th>
+                                      {{_("时间")}}
+                                      <span v-on:click="get_comments(status, page, keyword, 'issue_time')" class="fa fa-sort"></span>
+                                  </th>
+                                  <th>
+                                    {{_("举报")}}
+                                    <i v-on:click="get_comments(status, page, keyword, 'inform_total')" class="fa fa-sort"></i>
+                                  </th>
+                                  <th>
+                                      {{_("鉴定(分)")}}
+                                      <i v-on:click="get_comments(status, page, keyword, 'audit_score')" class="fa fa-sort"></i>
+                                  </th>
+                                  <th>{{_("备注")}}<br>({{_("鉴定类别")}})</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="comment,index in comments.datas">
+                              <td width="50px">
+                                  <div class="checkbox checkbox-success">
+                                       <input :id="comment._id" type="checkbox"  v-bind:value="comment._id" unchecked>
+                                       <label :for="comment._id"></label>
+                                  </div>
+
+                              </td>
+                              <td width="100px">{[comment.type]}</td>
+                                <td width="100px">
+                                    <a :href="'/osr-admin/own/user?id='+comment.user_id" target="_blank">
+                                        {[comment.username]}
+                                    </a>
+                                </td>
+                                <td width="150px" >
+                                    <span v-if="comment.word_num<10" v-html="comment.content"></span>
+                                    <a class="osr-pointer" v-on:click="put_comment_view(index)" data-toggle="modal" data-target="#c-info">
+                                       {{_("查看")}}
+                                    </a>
+                                </td>
+                                <td width="100px">
+                                    <span v-if="comment.reply_id">{{_("评论回复")}}</span>
+                                    <span v-else>1{{_("级评论")}}</span>
+                                </td>
+                                <td width="100px">{[comment.like]}</td>
+                                <td width="150px" class="hide-sm-only">{[comment.issue_time | formatDate]}</td>
+                                <td width="100px">
+                                    <span v-if="comment.inform" class="osr-color-danger">
+                                        {[comment.inform.total]}
+                                    </span>
+                                </td>
+                                <td width="100px">{[comment.audit_score]}</td>
+                                <td width="100px">
+                                    <span v-if="status=='user_remove'">
+                                        <span v-if="comment.is_delete==1">
+                                            {{_("用户删除")}}
+                                        </span>
+                                        <span v-else-if="comment.is_delete==2">
+                                            {{_("管理员删除")}}
+                                        </span>
+                                    </span>
+                                    <span>
+                                        <span v-if="!comment.audited" class="osr-color-warning">({{_("未审核")}})</span>
+                                        <span v-else>
+                                            <span v-if="comment.audit_way=='artificial'">{{_("人工审核")}}</span>
+                                            <span v-else>{{_("自动审核")}}</span>
+                                        </span>
+                                        <br>
+                                        <span class="osr-color-warning" v-if="comment.audit_label">({[comment.audit_label]})</span>
+                                        <span class="osr-color-warning" v-else-if="comment.audit_way=='artificial'">({{_("人工鉴定")}})</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <div class="btn-group btn-group-sm">
+                <button v-on:click="operation_comments('approved')" v-if="status!='is_issued' && status!='user_remove'" type="button" class="btn osr-btn btn-success">
+                    <span class="fa fa-circle-o"></span> {{_("通过")}}
+                </button>
+                <button v-on:click="operation_comments('non-approval')" v-if="status!='unqualified' && status!='user_remove'" type="button" class="btn osr-btn btn-info">
+                    <span class="fa fa-ban"></span> {{_("不通过")}}
+                </button>
+                <button v-on:click="warning_modal({msg:'{{_('确定移入待删区?')}}'}, 'operation_comments', 'pending_delete')" v-if="status!='user_remove'" type="button" class="btn osr-btn btn-warning">
+                    <span class="fa fa-recycle"></span>{{_("移入待删除")}}
+                </button>
+                <button v-on:click="operation_comments('restore')" v-if="status=='user_remove'" type="button" class="btn osr-btn btn-primary">
+                    <span class="fa fa-mail-reply"></span> {{_("恢复")}}
+                </button>
+                <button v-on:click="warning_modal(null, 'operation_comments', 'delete')" v-if="status=='user_remove'" type="button" class="btn osr-btn btn-danger">
+                    <span class="fa fa-trash-o"></span> {{_("永久删除")}}
+                </button>
+
+            </div>
+
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_comments(status, pages.last, keyword)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_comments(status, page, keyword)">{[page]}</a>
+                        <a v-else href="#">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_comments(status, pages.current_page, keyword)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_comments(status, page, keyword)" >{[page]}</a>
+                        <a v-else href="#">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_comments(status, pages.next, keyword)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_comments(status, pages.last, keyword)">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_comments(status, pages.next, keyword)">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+        </div>
+    </div>
+
+    <!-- 评论详细信息模态-->
+    <div class="modal fade" id="c-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_("评论")}}</h4>
+                </div>
+                <div class="modal-body" >
+                    <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a class="osr-pointer" data-toggle="tab" data-target="#show_content">{{_("内容")}}</a>
+                            </li>
+                            <li class="">
+                                <a class="osr-pointer" data-toggle="tab" data-target="#inform">{{_("被举报")}}</a>
+                            </li>
+                        </ul>
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div id="show_content" class="tab-pane active">
+                                <span class="osr-color-secondary">{{_("字数")}}: {[comment_view.word_num]}</span>
+                                <div v-html="comment_view.content"></div>
+                            </div>
+                            <div id="inform" class="tab-pane">
+                                 <div v-if="comment_view.inform">
+                                     <strong>{{_("举报总数")}}: </strong>{[comment_view.inform.total]}<br>
+                                     <strong>{{_("最后举报")}}: </strong>{[comment_view.inform.update_time | formatDate]}<br>
+                                     <span  v-if="k!='total' && k!='update_time'" v-for="(v,k) in comment_view.inform">
+                                        <strong>{[k]}: </strong>{[v.cnt]}<br>
+                                     </span>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //评论详细信息模态-->
+</div>
+<script src="/admin-pages/static/js/osr_page_js/comment/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}
+
+

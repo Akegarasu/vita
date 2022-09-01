@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+	<title>{{data.title}}</title>
+	<!--style-->
+	<style type="text/css">
+		body{
+			width:100%;
+			background-repeat:repeat;
+			margin:0;
+			padding:0;
+		}
+		@media only screen and (min-width: 1024px){
+            .row {
+                padding: 10px 80px 10px 80px;
+            }
+		}
+
+        @media only screen and (max-width: 1024px){
+            .row {
+                padding: 10px 10px 10px 10px;
+            }
+		}
+
+        .header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .content {
+            padding: 5px 5px 5px 5px;
+            margin: 10px 5px 20px 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px 0px 10px 0px;
+            background-color: #e4eae5;
+        }
+
+        .osr-email-logo {
+            height: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+	</style>
+	<!--style-->
+</head>
+<body>
+    <div class="row">
+        <div class="header">
+            {% if data.app_name or data.app_logo_url %}
+            <!--  LOGO---->
+                {% if data.app_logo_url %}
+                    <img class="osr-email-logo"  src="{{data.app_logo_url}}" alt="Logo">
+                {% endif %}
+                <br>
+                {% if data.app_name %}
+                <span style="font-size:23px;">
+                    {{data.app_name | safe }}
+                </span>
+                {% endif %}
+            <!-- end LOGO -->
+            {% endif %}
+        </div>
+         <br>
+        <div>
+            {{_("你好! ")}}&nbsp;
+            {% if data.username%}
+                {{data.username}}:
+            {% endif %}
+            <br>
+        </div>
+        <div class="content">
+            {% block email_body %}
+            {% endblock %}
+            <br>
+            <span>
+            {{ _("谢谢!") }}<br>
+            {% if  data.app_name%}
+                {{data.app_name}} {{ _("团队") }}
+            {% endif %}
+            </span>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class="footer">
+        <a href="{{data.site_url}}">{{data.app_name}}</a><br>
+        {{_("系统邮件, 请勿回复")}}
+    </div>
+</body>
+</html>

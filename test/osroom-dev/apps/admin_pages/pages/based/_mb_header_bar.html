@@ -1,0 +1,20 @@
+<!--手机端header-->
+<div class="osr-m-header visible-xs">
+
+    <a class="fa fa-reorder menu-btn" data-toggle="offcanvas" role="button">
+    </a>
+
+    <a href="/osr-admin" class="osr-m-logo">
+        {% if g.site_global.site_config.MB_LOGO_DISPLAY == "logo" %}
+        <img src="{{g.site_global.site_config.LOGO_IMG_URL}}" alt="Logo"/>
+        {% else %}
+        <strong>{{g.site_global.site_config.APP_NAME}}</strong>
+        {% endif %}
+    </a>
+
+    <a class="menu-avatar pull-right" data-target="ccount-menu" data-toggle="dropdown"  class="dropdown-toggle">
+        <img class="osr-img-circle-b" src="{{current_user.avatar_url}}" alt="User Avatar"/>
+    </a>
+     {% include 'based/_user_dropdown.html' %}
+</div>
+<!--//手机端header-->

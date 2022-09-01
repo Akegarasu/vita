@@ -1,0 +1,181 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("插件管理")}}-{% endblock %}
+{% block content %}
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                     <i class="fa fa-plug"></i>
+                    <strong>
+                         {{_("插件管理")}}(<span class="osr-color-success">{{_("结果")}}{[plugins.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                          <input id="upfile" class="sr-only" type="file" name="upfile" hidden>
+                          <label for="upfile"  class="btn btn-sm osr-btn btn-info">
+                            <i class="fa fa-cloud-upload"></i>
+                              {{_("选择插件")}}
+                          </label>&nbsp;
+
+                          <button v-on:click="upload_plugin()" type="button" class="btn btn-sm osr-btn btn-success">
+                              {{_("上传")}}
+                          </button>
+
+                        </div>
+                        <div class="input-group pull-right">
+                            <input type="text" v-on:keypress="get_plugins(1, keyword)" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_plugins(1, keyword)" class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <p id="file-list"></p>
+                    <div class="alert alert-info osr-alert osr-alert-warning">
+                         <button data-dismiss="alert" class="close close-sm" type="button">
+                             <i class="fa fa-times"></i>
+                         </button>
+                        <div class="osr-remind-alert">
+                        <i class="fa fa-bell-o osr-color-warning" >{{_("提示")}}:</i>
+                        {{_("插件上传支持zip压缩包")}}<br>
+                        <i class="osr-color-danger fa fa-exclamation-circle"></i>
+                           {{_('[上传]功能只对单点部署有效: 集群部署的站点, 请把非压缩的"插件包"直接放于各台服务器Osroom系统目录的apps/plugins下')}}
+                           <br>
+                        <i class="osr-color-danger fa fa-exclamation-circle"></i>
+                           {{_("[删除]功能只对单点部署有效: 集群部署的站点, 请直接把各台服务器Osroom系统目录的apps/plugins下的插件目录删除")}}
+                           <br>
+                        <i class="osr-color-danger fa fa-exclamation-circle"></i>
+                           {{_("插件安装成功后, 1.请检查是否需要安装依赖包. 如果需要， 请安装请进入设置检查依赖包安装情况.")}}
+                           {{_("2.检测插件是否需要配置, 部分插件需要激活后才会出现配置项")}}
+                        </div>
+                    </div>
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th>{{_("名称(别名)")}}</th>
+                              <th>{{_("简介")}}</th>
+                                <th>{{_("插件依赖包安装状态")}}</th>
+                              <th>{{_("安装时间")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="plugin,index in plugins.datas">
+                              <tr v-for="plugin in plugins.datas">
+                                <td width="250">
+                                    <a :href="plugin.plugin_uri" target="target">
+                                        {[plugin.plugin_name]}({[plugin.alias_name]})
+                                    </a><br>
+                                    <a v-on:click="warning_modal({msg:'{{_('确定停止使用此插件?')}}' }, 'operation_plugin', 'stop', plugin.plugin_name)"
+                                       v-if="plugin.active" class="osr-pointer osr-color-warning">
+                                        <i class="fa fa-ban"></i> {{_("停止")}}
+                                    </a>
+                                    <a v-on:click="operation_plugin('start', plugin.plugin_name)"
+                                       v-if="!plugin.active" class="osr-pointer osr-color-success">
+                                        <i class="fa fa-circle-o"></i> {{_("激活")}}
+                                    </a>
+                                     <a :href="'/osr-admin/plugin/setting?plugin='+plugin.plugin_name+'&from_page='+page" class="osr-pointer osr-color-secondary">
+                                        <i class="fa fa-cog"></i> {{_("设置")}}
+                                    </a>
+                                    <a v-on:click="warning_modal(null, 'operation_plugin', 'delete', plugin.plugin_name)" v-if="!plugin.active" class="osr-pointer osr-color-danger">
+                                        <i class="fa fa-trash-o"></i> {{_("删除")}}
+                                    </a>
+                                </td>
+                                <td>
+                                    <span v-if="!plugin.error">
+                                        {[plugin.introduce]}
+                                    </span>
+                                    <span v-else class="osr-color-danger">
+        
+                                        {{_("插件设置有误或缺少插件需求包，请进入设置检查，然后重新激活插件")}}. <br>
+                                        {{_("如果以上操作无效，可能是插件程序出现致命的错误，请删除，重新安装")}}<br>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        {[plugin.error]}
+                                    </span>
+                                    <br>
+                                    <span class="osr-color-secondary">
+                                         版本:{[plugin.version]} | By
+                                        <a :href="plugin.author_uri" target="_blank">{[plugin.author]}</a> |
+                                        协议:{[plugin.license]} |
+                                        <a :href="plugin.plugin_uri" target="_blank">{{_("查看详情")}}</a>
+                                    </span>
+        
+                                </td >
+                                <td width="100px">
+                                    <a :href="'/osr-admin/plugin/setting?plugin='+plugin.plugin_name+'&from_page='+page" v-if="plugin.requirements_exist">
+                                        {{_("查看")}}
+                                    </a>
+                                    <span v-else>
+                                       {{_("不需要")}}
+                                    </span>
+                                </td>
+                                <td width="200">{[plugin.installed_time | formatDate]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                    <a v-on:click="get_plugins( pages.last, keyword)">«</a>
+                </li>
+                <li v-else class="disabled">
+                    <a>«</a>
+                </li>
+        
+                <li v-for="page in pages.last_show" >
+                    <a v-if="page!='...'" v-on:click="get_plugins( page, keyword)">{[page]}</a>
+                    <a v-else href="#">...</a>
+                </li>
+        
+                <li class="active">
+                    <a v-on:click="get_plugins( pages.current_page, keyword)">{[pages.current_page]}</a>
+                </li>
+        
+               <li v-for="page in pages.next_show" >
+                    <a v-if="page!='...'" v-on:click="get_plugins( page, keyword)" >{[page]}</a>
+                    <a v-else href="#">...</a>
+               </li>
+        
+               <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                    <a v-on:click="get_plugins( pages.next, keyword)">»</a>
+                </li>
+                <li v-else class="disabled">
+                    <a>»</a>
+                </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_plugins( pages.last, keyword)">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_plugins( pages.next, keyword)">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/plugin/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

@@ -1,0 +1,183 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("系统邮件")}}-{% endblock %}
+{% block content %}
+<data id="state" content="{{data.state}}"></data>
+<data id="msg_type" content="{{data.msg_type}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                     <i class="fa fa-at"></i>
+                    <strong>
+                         {{_("系统邮件")}}(<span class="osr-color-success">{{_("结果")}}{[emails.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                            <select id="status" name="status"  class="form-control osr-form-control input-sm" @change="get_emails($event.target.value, 1, msg_type, '')">
+                                <option  v-for="sta,k in status_list" v-if="sta==status" selected = "selected" :value ="sta">{[k]}</option>
+                                <option v-for="sta,k in status_list" v-if="sta!=status" :value ="sta">{[k]}</option>
+                            </select>
+                        </div>
+                        <div class="input-group pull-left">
+                            <select id="msg_type" name="msg_type"  class="form-control osr-form-control input-sm" @change="get_emails(status, 1, $event.target.value,'')">
+                                <option  v-for="t,k in msg_types" v-if="t==msg_type" selected = "selected" :value ="t">{[k]}</option>
+                                <option v-for="t,k in msg_types" v-if="t!=msg_type" :value ="t">{[k]}</option>
+                            </select>
+
+                        </div>
+                        <div class="input-group pull-right">
+                            <input type="text" v-on:keypress="get_emails(status, 1, msg_type, keyword)" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_emails(status, 1, msg_type, keyword)"   class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="checkbox checkbox-danger">
+                                      <input id="check_all" v-on:click="osr_check_all(emails.datas, checkAll, set)" type="checkbox"
+                                            v-model="checkAll" unchecked>
+                                      <label for="check_all"></label>
+                                    </div>
+                              </th>
+                              <th>{{_("标题")}}</th>
+                              <th>{{_("内容")}}</th>
+                              <th>{{_("收件人")}}</th>
+                              <th>{{_("类型")}}</th>
+                              <th>{{_("状态")}}</th>
+                              <th v-if="status!='normal'" >{{_("异常|错误信息")}}</th>
+                              <th>{{_("时间")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="email,index in emails.datas">
+                                  <td width="50px">
+                                      <div class="checkbox checkbox-danger">
+                                           <input :id="email._id" type="checkbox"  v-bind:value="email._id" unchecked>
+                                           <label :for="email._id"></label>
+                                      </div>
+
+                                  </td>
+                                  <td width="150px">
+                                        {[email.subject]}
+                                  </td>
+                                    <td width="80px">
+                                        <a class="osr-pointer" v-on:click="put_email_view(index)" data-toggle="modal" data-target="#email-info">
+                                            {{_("详情")}}
+                                        </a>
+                                    </td>
+
+                                    <td >
+                                        <span v-for="temail in email.to">
+                                            {[temail]}<br>
+                                        </span>
+                                        <span  v-if="email.to.length>3" >...</span>
+                                    </td>
+                                    <td >
+                                      {[email.msg_type]}
+                                    </td>
+                                    <td width="50px">
+                                      {[email.status]}
+                                    </td>
+                                    <td v-if="status!='normal'" >{[email.error_info]}</td>
+                                    <td width="200px">{[email.time | formatDate]}</td>
+                              </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <div class="btn-group btn-group-sm">
+                <button v-on:click="warning_modal(null, 'del_emails')" type="button" class="btn osr-btn btn-danger">
+                    <span class="fa fa-trash-o"></span> {{_("删除")}}
+                </button>
+            </div>
+
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a>«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a v-on:click="get_emails(status, pages.last, msg_type, keyword)">«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_emails(status, page, msg_type, keyword)">{[page]}</a>
+                        <a v-else class="osr-pointer">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_emails(status, pages.current_page, msg_type, keyword)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_emails(status, page, msg_type, keyword)" >{[page]}</a>
+                        <a v-else href="#">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_emails(status, pages.next, msg_type, keyword)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_emails(status, pages.last, msg_type, keyword)">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_emails(status, pages.next, msg_type, keyword)">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+        </div>
+    </div>
+
+       <!--模态-->
+    <div class="modal fade" id="email-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{[email_view.subject]}</h4>
+                    <span>{{_("发件人")}}: </span>
+                    <span v-for="(v, index) in email_view.from">
+                        <span v-if="index==0">{[v]}</span>
+                        <span v-else><{[v]}></span>
+                    </span>
+                </div>
+                <div class="modal-body" style="width:100%" v-html="email_view.html">
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //模态-->
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/message/email.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

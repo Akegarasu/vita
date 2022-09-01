@@ -1,0 +1,75 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("菜单设置")}}-{% endblock %}
+{% block content %}
+
+<data id="cid" content="{{data.cid}}"></data>
+    <div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="/osr-admin/theme-setting/themes"><i class="fa fa-html5"></i>{{_("主题安装")}}</a></li>
+            <li class="active">{{_("菜单设置")}}</li>
+
+        </ul>
+    </div>
+</div>
+
+<div v-cloak id="app" >
+    <div class="row osr-adm-edit-page">
+            <div class="col-xs-12">
+                <div class="panel">
+                    <header class="panel-heading">
+                        <i class="fa fa-menu"></i>
+                        <strong>
+                            <span class="osr-color-secondary">{{_("当前设置主题")}}: {[current_theme_name]}</span>
+                        </strong>
+                    </header>
+                <div class="panel-body">
+                     <select id="lang" name="lang"  class="form-control osr-form-control input-sm"
+                        @change="switch_lang($event.target.value)">
+                        {% for k,v in g.site_global.language.all_language.items() %}
+                            {% if k==data.lang %}
+                                <option value="{{ k}}" selected>
+                                    {{ v.name}}
+                                </option>
+                            {% else %}
+                                <option value="{{ k}}">
+                                    {{ v.name}}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                <br>
+                    <div class="form-group">
+                        <input type="text" class="form-control osr-input" v-model="order" minlength="1"
+                                   placeholder="{{_('排序')}}" required/>
+                        <input type="text" class="form-control osr-input" v-model="display_name" minlength="1"
+                               placeholder="{{_('显示名称')}}" required/>
+                            <textarea class="form-control osr-input" v-model="json_data" minlength="2"
+                                      placeholder="{{_('Json数据, 每个主题需要的格式可能不一样，根据主题要求设置')}}" required >
+
+                            </textarea>
+                        <br>
+                        <button v-on:click="add()" class="btn-sm osr-btn btn btn-success">{{_("添加")}}</button>
+                         <button class="btn-sm osr-btn btn btn-default disabled">{{_("删除")}}</button>
+                    </div>
+                    <div v-for="nav in navs" class="form-group">
+                        <input type="text" class="form-control osr-input" v-model="nav.order" minlength="1"
+                               placeholder="{{_('排序')}}" required/>
+                        <input type="text" class="form-control osr-input" v-model="nav.display_name" minlength="1"
+                               placeholder="{{_('显示名称')}}" required/>
+                        <textarea class="form-control osr-input" v-model="nav.json_data" minlength="2"
+                                  placeholder="{{_('Json数据, 每个主题需要的格式可能不一样，根据主题要求设置')}}" required >
+
+                        </textarea>
+                        <br>
+                        <button v-on:click="update(nav._id, nav.display_name, nav.json_data, nav.order)" class="btn-sm osr-btn btn btn-info">{{_("更新")}}</button>
+                        <button v-on:click="warning_modal(null, 'del', nav._id)" class="btn-sm osr-btn btn btn-danger" >{{_("删除")}}</button>
+                    </div>
+              </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/theme-setting/nav.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

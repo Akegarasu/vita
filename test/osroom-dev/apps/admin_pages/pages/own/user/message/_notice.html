@@ -1,0 +1,34 @@
+<!--消息是其他-->
+<ul v-if="type=='notice'" class="osr-list-group">
+    <li class="osr-list-group-item" v-for="msg in msgs.datas">
+      <div class="item-content">
+          <header>
+              <b v-if="msg.label=='audit_failure'" class="osr-color-danger">
+                  [{{_("审核未通过")}}]
+             </b>
+              <b v-else class="text-info">
+                  [{{_("通知")}}]
+              </b>
+
+              <a v-if="msg.target_type=='post'" :href="'/osr-admin/own/user/post/preview?id='+msg.target_id">
+                  {[msg.title]}
+              </a>
+              <span v-else>{[msg.title]}</span>
+
+          </header>
+
+          <div class="osr-text">
+              {[msg.content.text]}
+          </div>
+          <div class="meta">
+              <span class="osr-date">
+                 <i class="fa fa-clock-o"></i> {[msg.time | formatDate ]}
+              </span>
+              <a style="cursor:pointer;" v-on:click="warning_modal(null, 'del_msgs', msg._id)" class="osr-color-danger pull-right">
+                  <i class="fa fa-trash"></i> {{_('删除')}}
+              </a>
+          </div>
+      </div>
+    </li>
+
+</ul>

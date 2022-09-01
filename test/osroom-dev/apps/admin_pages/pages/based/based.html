@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% block _title %}
+    <title>{% block title %}{% endblock %}{{g.site_global.site_config.TITLE_SUFFIX_ADM}}</title>
+    {% endblock %}
+    <meta name="description" content="{{g.site_global.site_config.DEFAULT_DESCRIPTION}}">
+    <meta name="keywords" content="{{g.site_global.site_config.DEFAULT_KEYWORDS}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="SHORTCUT ICON" href="{{g.site_global.site_config.FAVICON}}">
+    <link rel="apple-touch-icon-precomposed" href="{{g.site_global.site_config.FAVICON}}">
+    <meta name="apple-mobile-web-app-title" content="{{g.site_global.site_config.TITLE_SUFFIX_ADM}}">
+    <meta name="author" content="OSROOM osroom.com"/>
+    {% include "based/css.html" %}
+    {% include "based/top-js.html" %}
+
+</head>
+
+{% block body %}
+<body class="skin-black">
+
+    {% include "based/header_bar_adm.html" %}
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        {% include "based/sidebar.html" %}
+        <!-- 右侧, 包含页面的导航栏和内容 -->
+        <div class="right-side osr-right-side">
+            <section class="content osr-adm-content">
+                <!--请求消息显示位置-->
+                <div class="text-center navbar-fixed-top osr-msg-box pull-right" style="right: 0" id="msg-box" >
+                </div>
+                <!--//消息显示位置-->
+                {% block content %}{% endblock %}
+            </section>
+            {% include "based/footer_adm.html" %}
+        </div>
+        <!-- //右侧, 包含页面的导航栏和内容 -->
+
+    </div>
+    {% include "based/footer-js.html" %}
+</body>
+{% endblock %}
+
+{% include 'based/msg_box.html' %}
+</html>

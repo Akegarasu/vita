@@ -1,0 +1,126 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("权重设置")}}-{% endblock %}
+{% block content %}
+<data id="page" content="{{data.page}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+
+                <header class="panel-heading">
+                     <i class="fa fa-user-md"></i>
+                    <strong>
+                         {{_("权重管理")}}(<span class="osr-color-success">{{_("结果")}}{[permissions.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+
+                      <a :href="'/osr-admin/permission/edit?'+'fp='+page"  type="button" class="btn osr-btn btn-info">
+                          <i class="fa fa-plus"></i> {{_("添加")}}
+                      </a>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th>{{_("权重名称")}}</th>
+                              <th>{{_("权重位")}}</th>
+                              <th>{{_("权重值")}}</th>
+                              <th>{{_("缺省权限")}}</th>
+                              <th>{{_("说明")}}</th>
+                              <th>{{_("操作")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="per,index in permissions.datas">
+                              <td>{[per.name]}</td>
+                                 <td>{[per.pos]}</td>
+                              <td>{[per.value]}</td>
+                                <td v-if="per.is_default">
+                                     <span class="fa fa-check" style="color:#5eb95e;"></span>
+                                </td>
+                                <td v-else>
+                                    <span class="fa fa-close" style="color:#dd514c;"></span>
+                                </td>
+                              <td>{[per.explain]}</td>
+                              <td>
+                                <div class="btn-group-sm">
+                                    <a v-bind:href="'/osr-admin/permission/edit?id='+per._id+'&fp='+page" class="btn btn-sm osr-btn btn-info">
+                                        <span class="fa fa-pencil-square-o"></span> {{_("编辑")}}
+                                    </a>
+
+                                    <button v-if="per.name != 'ROOT' && per.name != 'STAFF' && per.name != 'ADMIN' && per.name != 'GENERAL_USER'"
+                                            v-on:click="warning_modal(null, 'delete_per', per._id)"
+                                            class="btn btn-sm osr-btn btn-danger">
+                                        <span class="fa fa-trash-o"></span> {{_("删除")}}
+                                    </button>
+                                </div>
+
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_pers(pages.last)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_pers(page)">{[page]}</a>
+                        <a v-else href="#">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_pers(pages.current_page)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_pers(page)" >{[page]}</a>
+                        <a v-else href="#">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_pers(pages.next)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_pers(pages.last)">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_pers(pages.next)">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+            <div class="alert alert-info osr-alert osr-alert-warning">
+                 <button data-dismiss="alert" class="close close-sm" type="button">
+                     <i class="fa fa-times"></i>
+                 </button>
+               <div class="osr-remind-alert">
+                <i class="fa fa-bell-o osr-color-warning" >{{_("提示")}}:</i><br>
+                   <i class="osr-color-danger fa fa-circle"></i>
+                {{_('"缺省权重"作用,对于没有设置"自定义权限",并且代码中指定可以使用"缺省权重"的API生效(只需符合其中一个缺省权限即可).')}}.<br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/permission/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

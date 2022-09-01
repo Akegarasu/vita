@@ -1,0 +1,83 @@
+<!--文章导航-->
+     <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+        <ul class="nav nav-tabs">
+            <li id="head_li_sort_t-desc" class="active">
+                <a data-toggle="tab" class="osr-pointer" v-on:click="get_posts(1,'t-desc')">
+                    <i class="fa fa-file-text-o"></i> {{_("最新")}}
+                </a>
+            </li>
+            <li id="head_li_sort_hot">
+                <a data-toggle="tab" class="osr-pointer" v-on:click="get_posts(1,'hot')">
+                    <i class="fa fa-thermometer-full"></i> {{_("热门")}}
+                </a>
+            </li>
+        </ul>
+    </header>
+    <ul class="osr-list-group">
+
+        <li class="osr-list-group-item have-img" v-for="post in posts.datas">
+             <!-- 文章图片-->
+               <a class="wrap-img pull-right" target="_blank" :href="'/post?id='+post._id">
+                   <span class="osr-img-tag">
+                      <span   v-if="post.category_name" class="badge badge-info">
+                          {[post.category_name]}
+                      </span>
+                      <span   v-else class="badge badge-info">
+                          {{_('默认文集')}}
+                      </span>
+                    </span>
+                  <img  v-if="post.cover_url"  style="height:100%;width:100%" v-bind:src="post.cover_url+img_w_h" alt="post cover">
+              </a>
+             <!-- //文章图片-->
+              <div class="item-content">
+                  <div class="list-author">
+                      <a :href="'/user?id='+post.user._id">
+                          <img class="osr-img-circle-b" width="30px" height="30px" v-bind:src="post.user.avatar_url.url" alt="{{_('头像')}}">
+                          &nbsp;{[post.user.username]}
+                      </a>
+                      <span  v-if="post.user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                      <span  v-if="post.user.gender=='f'" class="fa fa-venus osr-fa-gender-f"></span>
+                      <span class="osr-date">
+                           <span  v-if="post.issue_time" >
+                              <i class="fa fa-clock-o"></i>&nbsp;{[post.issue_time | formatDate]}
+                          </span>
+                          <span  v-else>
+                              <i class="fa fa-refresh" title="{{_('更新时间')}}"></i>
+                              <i class="fa fa-clock-o"></i>&nbsp;{[post.update_time | formatDate]}
+                          </span>
+                      </span>
+                  </div>
+                    <!--title-->
+                  <a class="osr-title" target="_blank" :href="'/post?id='+post._id">
+                    {[post.title]}
+                  </a>
+                    <!--title-->
+
+                  <!--摘要-->
+                  <div class="osr-text">
+                      <span v-html="post.brief_content"></span>...
+                  </div>
+                    <!--摘要-->
+                  <div class="meta">
+                      <span class="osr-date">
+                          <i class="fa fa-eye"></i>&nbsp;{[post.pv]}
+                          &nbsp;·&nbsp;<i class="fa fa-commenting-o"></i>&nbsp;{[post.comment_num]}
+                     </span>
+                </div>
+
+            </div>
+         </li>
+    </ul>
+
+ <!-- 页面导航-->
+    <div class="row text-center" style="padding-bottom:30px;">
+        <div class="btn-group ">
+            <button  v-if="pages.next > pages.current_page  && pages.next<=pages.page_total"  class="btn osr-btn btn-success" v-on:click="get_posts(pages.next, sort)">
+                {{_("查看更多")}}
+            </button>
+            <button  v-else  class="btn osr-btn btn-success" disabled>
+                {{_("我也是有底线的")}}
+            </button>
+        </div>
+    </div>
+<!-- //页面导航-->

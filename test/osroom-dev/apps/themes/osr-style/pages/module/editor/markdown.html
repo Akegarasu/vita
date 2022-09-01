@@ -1,0 +1,38 @@
+
+    <link href="/theme/osr-style/static/css/markdown/simplemde.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="/theme/osr-style/static/js/markdown/simplemde.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+	<script src="/theme/osr-style/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+	<link href="/theme/osr-style/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+	<textarea id="myEditor"></textarea>
+
+	<span class="osr-pointer" id="upfile-img" data-toggle="modal" data-target="#upload-modal" hidden></span>
+	<!-- 图片上传-->
+    <div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_("插入图片")}}</h4>
+                </div>
+                <div class="modal-body">
+					<div class="input-group text-center">
+						<input class="sr-only" type="file" id="upfile" name="upfile" multiple accept="image/*"  hidden>
+						<label for="upfile"  class="btn osr-btn btn-info">
+							<i class="fa fa-cloud-upload"></i>
+							  {{_("选择图片")}}
+						</label>
+					</div>
+					<p id="file-list"></p>
+                </div>
+                <div class="modal-footer">
+					<button class="btn btn-success" type="button" onclick="upload_img()" data-dismiss="modal" aria-hidden="true"> {{_("上传")}}</button>
+                    <button class="btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //图片上传-->
+
+
+<script src="/theme/osr-style/static/js/osr_page_js/module/editor/markdown.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>

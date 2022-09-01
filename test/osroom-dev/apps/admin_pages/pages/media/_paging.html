@@ -1,0 +1,45 @@
+<!-- 页面导航-->
+<div class="text-center visible-lg visible-md">
+    <ul class="pagination">
+        <li v-if="pages.last < pages.current_page && pages.last>0">
+            <a v-on:click="get_media(pages.last, keyword)">«</a>
+        </li>
+        <li v-else class="disabled">
+            <a>«</a>
+        </li>
+
+        <li v-for="page in pages.last_show" >
+            <a v-if="page!='...'" v-on:click="get_media(page, keyword)">{[page]}</a>
+            <a v-else href="#">...</a>
+        </li>
+
+        <li class="active">
+            <a v-on:click="get_media(pages.current_page, keyword)">{[pages.current_page]}</a>
+        </li>
+
+       <li v-for="page in pages.next_show" >
+            <a v-if="page!='...'" v-on:click="get_media(page, keyword)" >{[page]}</a>
+            <a v-else href="#">...</a>
+       </li>
+
+       <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+            <a v-on:click="get_media(pages.next, keyword)">»</a>
+        </li>
+        <li v-else class="disabled">
+            <a>»</a>
+        </li>
+    </ul>
+</div>
+<!-- //页面导航-->
+<!-- m页面导航-->
+<ul class="pager visible-xs visible-sm">
+    <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+        <a v-on:click="get_media(pages.last, keyword)">
+            {{_("上一页")}}
+        </a>
+    </li>
+    <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+        <a v-on:click="get_media(pages.next, keyword)">{{_("下一页")}}</a>
+        </li>
+</ul>
+<!-- //m页面导航-->

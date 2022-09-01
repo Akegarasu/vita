@@ -1,0 +1,71 @@
+{% extends "osr-style/pages/based/based_no_head.html" %}
+{% block title %}{{_("登录")}}-{% endblock %}
+{% block content %}
+
+<div class="row osr-edit-page osr-login-page">
+    <section class="osr-panel">
+        <div id="app" v-cloak>
+            <p class="text-center">
+                <a href="/">
+                    <img class="osr-logo" src="{{g.site_global.site_config.LOGO_IMG_URL}}" alt="Logo">
+                </a>
+            </p>
+            <div class="form-group">
+              <input name="username" id="username" type="text" class="form-control osr-input input-lg"
+                     v-model="username" minlength="3" placeholder="{{_('用户名或电子邮箱')}}"
+                     data-bv-notempty-message="{{_('用户名或电子邮箱错误')}}"
+                     data-bv-stringLength-message="{{_('用户名或电子邮箱错误')}}" required/>
+            </div>
+            <div class="form-group">
+              <input name="password" id="password" type="password" class="form-control osr-input input-lg" v-model="password"
+                     minlength="8" placeholder="{{_('输入密码')}}"
+                     data-bv-notempty-message="{{_('密码错误')}}"
+                     data-bv-stringLength-message="{{_('密码错误')}}" required/>
+            </div>
+
+            <div  v-if="code_url" class="form-group">
+              <input name="code" type="text" v-model="code" class="form-control osr-input input-lg"
+                     placeholder="{{_('图片验证码')}}"
+                    data-bv-notempty-message="{{_('验证码错误')}}" required/>
+            </div>
+            <div  v-if="code_url" class="form-group">
+                <img :src="code_url" alt="Code Img">
+                <i v-on:click="get_imgcode" class="fa fa-refresh"></i>
+            </div>
+
+            <div class="form-group form-inline">
+              <div class="checkbox checkbox-success">
+                   <input name="remember_me" id="remember_me" class="form-check-input input-lg" type="checkbox"  checked>
+                   <label for="remember_me" class="form-check-label"></label>
+                  <span style="color:#ffffff;">{{_("记住登录")}} |</span>
+                  <a style="color:#ffffff;"　href="/recover-password">{{_("忘记密码")}}?</a>
+
+              </div>
+            </div>
+            <div class="form-group text-center">
+                <button v-on:click="sign_in()" class="btn-block btn osr-btn btn-success btn-lg">
+                    {{_("登录")}}
+                </button>
+            </div>
+            <div class="form-group text-center">
+                <a href="/sign-up" class="btn-block btn osr-btn btn-default btn-lg">
+                    {{_('注册')}}
+                </a>
+            </div>
+              <br>
+
+
+            <div class="form-group osr-color-gray text-center" style="color:#ffffff">
+                {{_('点击 "登录" 即表示您同意并愿意遵守')}}<br>
+                <a style="color:#ffffff" href="/statement?s=user_agreement">《{{_("用户协议")}}》</a>
+            </div>
+            <div class="form-group">
+                  {% include 'osr-style/pages/module/_no_header_select_lan.html' %}
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="/theme/osr-style/static/js/osr_page_js//sign-in.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

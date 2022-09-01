@@ -1,0 +1,71 @@
+
+<div class="box-tools form-inline">
+    <div class="input-group pull-left">
+        <select id="status" name="status"  class="form-control osr-form-control input-sm" @change="switch_category($event.target.value)">
+           <option v-if="ct._id==curren_category" v-for="ct in media_categorys" :value="ct._id+'___'+ct.name" selected>
+                    {[ct.name]}
+            </option>
+            <option v-if="curren_category" value="___全部" >{{_("全部")}}</option>
+            <option v-else value="___全部" selected>{{_("全部")}}</option>
+
+            <option v-if="curren_category !='default'" value="default___默认" >{{_("默认")}}</option>
+            <option v-else  value="default___默认" selected>{{_("默认")}}</option>
+
+            <option v-if="ct._id!=curren_category" v-for="ct in media_categorys" :value="ct._id+'___'+ct.name" >
+                {[ct.name]}
+            </option>
+        </select>
+    </div>
+    <div class="input-group pull-right">
+        <input type="text" v-on:keypress="get_media(1,keyword)" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+        <div class="btn-group">
+            <button v-on:click="get_media(1,keyword)" class="btn btn-sm btn-default osr-btn">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="btn-group-sm">
+   <a v-bind:href="'/osr-admin/category?type='+media_type+'&fp='+page+'&fs=media/'+media_type" class="btn osr-btn btn-info">
+       <i class="fa fa-cog"></i>  {{_("分类设置")}}
+   </a>
+
+  <button v-on:click="get_media()" id="refresh-btn" type="button"
+          class="btn-sm btn osr-btn btn-default">
+       <i class="fa fa-refresh"></i>
+  </button>
+
+  <button v-on:click="get_media(page, keyword, 'time')"  type="button"
+          class="btn-sm btn osr-btn btn-success">
+       {{_("时间排序")}}<i class="fa fa-sort"></i>
+  </button>
+  <button v-if="media_type == 'image' || media_type == 'video'"  v-on:click="get_media(page, keyword, 'inform')"
+          class="btn-sm btn osr-btn btn-success">
+      {{_("举报排序")}}<i class="fa fa-sort"></i>
+  </button>
+
+     <!--<input id="upfile" class="sr-only form-control" type="file" name="upfile">-->
+      <!--<label for="upfile"  class="btn btn-sm osr-btn btn-info">-->
+        <!--<i class="fa fa-cloud-upload"></i>-->
+          <!--{{_("选")}}-->
+      <!--</label>&nbsp;-->
+
+      <!--<button v-on:click="upload_theme()" type="button" class="btn btn-sm osr-btn btn-success">-->
+          <!--{{_("上传")}}-->
+      <!--</button>-->
+
+  <button id="start-upload" type="button" class="btn btn-sm osr-btn btn-info">
+    <i class="fa fa-cloud-upload"></i>
+      <span id="start-upload-text">{{_("上传")}}</span>
+  </button>
+
+  <button v-if="media_type == 'image' || media_type == 'video'"  v-on:click="my_check_all()" id="check-btn" class="btn-sm btn osr-btn btn-warning">
+      <span id="check-btn-text">{{_("全选")}}</span>
+  </button>
+
+  <button v-on:click="warning_modal(null, 'del_media')" id="delete-btn" type="button"
+          class="btn-sm btn osr-btn btn-danger">
+       <i class="fa fa-trash"></i>{{_("删除")}}
+  </button>
+</div>

@@ -1,0 +1,190 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("审核规则")}}-{% endblock %}
+{% block content %}
+<data id="project" content="{{data.project}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-cogs"></i>
+                    <strong>
+                        {{_("审核规则")}}(<span class="osr-color-success">{{_("结果")}}{[audit_rules.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                            <select class="form-control osr-form-control input-sm" @change="get_audit_rules($event.target.value,1,'')">
+                                <option  v-for="(v,key) in keys" v-if="key==project" selected="selected" v-on:value ="key">{[key]}</option>
+                                <option  v-for="(v,key) in keys" v-if="key!=project"  v-on:value ="key">{[key]}</option>
+                            </select>
+                        </div>
+                        <div class="input-group pull-right">
+                            <input type="text" v-on:keypress="get_audit_rules(project, 1, keyword)" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_audit_rules(project, 1, keyword)" class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="btn-group-sm">
+                        <button  data-toggle="modal" data-target="#add_rule" class="btn-sm osr-btn btn-info">
+                           <i class="fa fa-plus"></i> {{_("添加规则")}}
+                        </button>
+                    </div>
+                    <br>
+                    <div class="alert alert-info osr-alert osr-alert-warning">
+                         <button data-dismiss="alert" class="close close-sm" type="button">
+                             <i class="fa fa-times"></i>
+                         </button>
+                        <div class="osr-remind-alert">
+                            <i class="icon-bell-o osr-color-warning" >{{_("提示")}}:</i><br>
+                               <span>
+                                <i class="icon-circle"></i>
+                                   {{_('审核规则配置主要用于预留部分网站使用名称, 如预留用户名称"管理员",不能给普通用户注册使用')}}
+                               </span><br>
+                            <span>
+                                <i class="icon-circle"></i>
+                                {{_("添加规则后,用户则无法在相关项目的内容输入中使用符合规则的字词")}}
+                            <span class="osr-color-danger" >({{_("规则支持正则表达式")}})</span>
+                            ,{{_("规则只对非网站工作人员账号有效")}}.
+                            </span>
+                        </div>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th >
+                                <div class="checkbox checkbox-danger">
+                                  <input id="check_all" v-on:click="osr_check_all(audit_rules.datas, checkAll, set)" type="checkbox"
+                                        v-model="checkAll" unchecked>
+                                  <label for="check_all"></label>
+                                </div>
+                              </th>
+
+                              <th>{{_("项目")}}</th>
+                              <th>{{_("规则")}}</th>
+                              <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="rule in audit_rules.datas">
+                                <td width="50px">
+                                  <div class="checkbox checkbox-danger">
+                                       <input :id="rule._id" type="checkbox"  v-bind:value="rule._id" unchecked>
+                                       <label :for="rule._id"></label>
+                                  </div>
+
+                              </td>
+                                <td class="hide-sm-only">
+                                    {[rule.project]}
+                                  </td>
+                                  <td>
+                                      {[rule.rule]}
+
+                                  </td>
+
+                                  <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a v-on:click="warning_modal(null, 'del', [rule._id])" class="btn osr-btn btn-danger">
+                                            <i class="fa fa-trash-o"></i>{{_("删除")}}
+                                        </a>
+                                    </div>
+                                  </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+             <div class="btn-group btn-group-sm">
+                <button v-on:click="warning_modal(null, 'del')" type="button" class="btn osr-btn btn-danger">
+                    <span class="fa fa-trash-o"></span> {{_("删除选择")}}
+                </button>
+
+            </div>
+
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_audit_rules(project, pages.last, keyword)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_audit_rules(project, page, keyword)">{[page]}</a>
+                        <a v-else class="osr-pointer">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_audit_rules(project, pages.current_page, keyword)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_audit_rules(project, page, keyword)" >{[page]}</a>
+                        <a v-else class="osr-pointer">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_audit_rules(project, pages.next, keyword)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_audit_rules(project, pages.last, keyword)">
+                       {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_audit_rules(project, pages.next, keyword)">{{_("下一页")}}</a>
+                </li>
+
+            </ul>
+            <!-- //m页面导航-->
+        </div>
+    </div>
+
+    <!-- 模拟窗口 add rule-->
+    <div class="modal fade" id="add_rule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_("项目")}}:{[project]}</h4>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <input name="rule" class="form-control osr-input" type="text"  v-model="new_rule" minlength="1" placeholder="{{_('填入规则')}}"
+                                   data-bv-notempty-message="{{_('不能为空')}}" required/>
+                        </div>
+                        <button v-on:click="add()" class="btn osr-btn btn-info">
+                            <i class="fa fa-plus"></i> {{_("添加")}}
+                        </button>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn osr-btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模拟窗口 add rule-->
+
+</div>
+<script src="/admin-pages/static/js/osr_page_js/audit/rule.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

@@ -1,0 +1,43 @@
+    <ul id="account-menu" class="pull-right dropdown-menu dropdown-custom dropdown-menu-right">
+        <li class="dropdown-header text-center">
+            <i class="fa fa-user-o"></i> {{current_user.username}}
+        </li>
+        <li>
+            <a href="/">
+                <span class="fa fa-home"></span>
+                {{_("站点首页")}}
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="/osr-admin/own/content/writer">
+                <i class="fa fa-pencil-square-o "></i>{{_("发布")}}
+            </a>
+             <a href="/osr-admin/own/user/message">
+                <i class="fa fa-bell-o"></i>
+             <span class="badge badge-danger pull-right">{{g.site_global.user_msg.msg_count}}</span>
+                {{_("消息")}}
+            </a>
+            <a href="/osr-admin/own/user">
+                <span class="fa fa-at"></span>
+                {{_("我的主页")}}
+            </a>
+            <a href="/osr-admin/own/account/settings?set=basis">
+                <span class="fa fa-cog"></span>
+                {{_("设置")}}
+            </a>
+            <a href="/osr-admin/own/account/settings?set=profile" class="visible-xs">
+                <span class="fa fa-vcard"></span>
+                {{_("个人资料")}}
+            </a>
+
+
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="osr-pointer" onclick="sign_out()">
+            <span class="fa fa-sign-out"></span>
+                {{_("退出")}}
+            </a>
+        </li>
+   </ul>

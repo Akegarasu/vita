@@ -1,0 +1,13 @@
+﻿language: java
+
+rules:
+  - id: 10020
+    name: xxe
+    description: xxe解析漏洞可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - 'DocumentBuilderSec|SAXParser|TransformerFactory|Validator||SchemaFactory|SAXTransformerFactory|SAXSource|DocumentBuilder|XMLReader'
+      - 'XMLReaderFactory|SAXReader|SAXBuilder|Unmarshaller|XpathExpression|XMLStreamReader|Digester'

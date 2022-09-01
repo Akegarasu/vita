@@ -1,0 +1,138 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("系统短信")}}-{% endblock %}
+{% block content %}
+<data id="state" content="{{data.state}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                     <i class="fa fa-envelope-o"></i>
+                    <strong>
+                         {{_("系统短信")}}(<span class="osr-color-success">{{_("结果")}}{[smss.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                            <select id="status" name="status"  class="form-control osr-form-control input-sm m-b-10" @change="get_smss($event.target.value, 1, '')">
+                                <option  v-for="sta,k in status_list" v-if="sta==status" selected = "selected" :value ="sta">{[k]}</option>
+                                <option v-for="sta,k in status_list" v-if="sta!=status" :value ="sta">{[k]}</option>
+                            </select>
+                        </div>
+                        <div class="input-group pull-right">
+                            <input type="text" v-on:keypress="get_smss(status, 1, keyword)" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_smss(status, 1, keyword)"  class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="checkbox checkbox-danger">
+                                      <input id="check_all" v-on:click="osr_check_all(smss.datas, checkAll, set)" type="checkbox"
+                                            v-model="checkAll" unchecked>
+                                      <label for="check_all"></label>
+                                    </div>
+                              </th>
+                             <th>{{_("内容")}}</th>
+                              <th>{{_("收件人")}}</th>
+                              <th>{{_("状态")}}</th>
+                              <th v-if="status!='normal'" >{{_("异常|错误信息")}}</th>
+                              <th>{{_("时间")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="sms,index in smss.datas">
+                                  <td width="50px">
+                                      <div class="checkbox checkbox-danger">
+                                           <input :id="sms._id" type="checkbox"  v-bind:value="sms._id" unchecked>
+                                           <label :for="sms._id"></label>
+                                      </div>
+
+                                  </td>
+                                  <td width="250px">
+                                    {[sms.body]}
+                                  </td>
+                                  <td width="100px">
+                                        <span v-for="acc in sms.to" class="osr-color-secondary">
+                                            {[acc]}
+                                            <br>
+                                        </span>
+                                  </td>
+                                  <td width="50px">
+                                      {[sms.status]}
+                                  </td>
+                                  <td v-if="status!='normal'" >{[sms.error_info]}</td>
+                                  <td width="150px">{[sms.time | formatDate]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <div class="btn-group btn-group-sm">
+                <button v-on:click="warning_modal(null, 'del_smss')" type="button" class="btn osr-btn btn-danger">
+                    <span class="fa fa-trash-o"></span> {{_("删除")}}
+                </button>
+            </div>
+
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_smss(status, pages.last, keyword)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_smss(status, page, keyword)">{[page]}</a>
+                        <a v-else href="#">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_smss(status, pages.current_page, keyword)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_smss(status, page, keyword)" >{[page]}</a>
+                        <a v-else href="#">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_smss(status, pages.next, keyword)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_smss(status, pages.last, keyword)">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_smss(status, pages.next, keyword)">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/message/sms.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

@@ -1,0 +1,85 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("音频库")}}-{% endblock %}
+{% block content %}
+<data id="cid" content="{{data.cid}}"></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-volume-up"></i>
+                    <strong>
+                        {{_("音频库")}}(<span class="osr-color-success">{{_("结果")}}{[medias.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    {% include 'media/_bar.html' %}
+                     <!-- 上传-->
+                    <div id="upload-html" hidden>
+                        {% include 'module/upload.html' %}
+                    </div>
+                    <!-- //上传-->
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th >
+                                <div class="checkbox checkbox-success">
+                                  <input id="check_all" v-on:click="osr_check_all(medias.datas, checkAll, set)" type="checkbox"
+                                        v-model="checkAll" unchecked>
+                                  <label for="check_all"></label>
+                                </div>
+                              </th>
+                              <th>{{_("名称")}}</th>
+                              <th>{{_("标题")}}</th>
+                              <th>{{_("文本内容")}}</th>
+                              <th>{{_("上传时间")}}</th>
+                              <th>{{_("操作")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="media in medias.datas">
+                                <td width="50px">
+                                  <div class="checkbox checkbox-success">
+                                       <input :id="media._id" type="checkbox"  v-bind:value="media._id" unchecked>
+                                       <label :for="media._id"></label>
+                                  </div>
+
+                                </td>
+
+                                <td>
+                                    <span>{[media.name]}</span>
+                                </td>
+                                <td >
+                                    <span>{[media.title]}</span>
+                                </td>
+                                <td>
+                                    <span v-if="media.text"  data-toggle="tooltip" :title="media.text">
+                                        {[media.text.slice(0,20)]}...
+                                    </span>
+                                    <span v-else>{[media.text]}</span>
+                                </td>
+                                <td>{[media.time | formatDate]}</td>
+                                <td>
+                                    <button v-on:click="play(media)" class="btn-sm btn osr-btn btn-success">
+                                        <i class="fa fa-play-circle-o" > {{_("播放")}}</i>
+                                    </button>
+                                    <a :href="'/osr-admin/media/audio-edit?cid='+curren_category+'&id='+media._id+'&fp='+page" class="btn-sm btn osr-btn btn-info">
+                                        <span class="fa fa-pencil-square-o"></span> {{_("详情|编辑")}}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+             {% include 'media/_paging.html' %}
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/admin-pages/static/js/osr_page_js/media/audio.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% include 'media/_script.html' %}
+{% endblock %}

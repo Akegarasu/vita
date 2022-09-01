@@ -1,0 +1,29 @@
+    <!-- 头部logo: header.less -->
+ <header class="header">
+    <!-- 头部 Navbar: header.less -->
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        {% include 'based/_mb_header_bar.html' %}
+        <div class="no-sidebar-header-left hidden-xs">
+            <a href="/osr-admin"class="back-left"
+            data-toggle="tooltip" data-placement="bottom" title='{{_("回到管理台")}}'>
+                <i class="fa fa-chevron-left"></i> {{_("管理台")}}
+            </a>
+            <a href="/" class="osr-logo"
+               data-toggle="tooltip" data-placement="bottom" title='{{_("站点首页(主题)")}}'>
+                {% if g.site_global.site_config.PC_LOGO_DISPLAY == "logo" %}
+                    <img class="osr-sidebar-sm-logo" src="{{g.site_global.site_config.LOGO_IMG_URL}}" alt="Logo"/>
+                {% elif g.site_global.site_config.PC_LOGO_DISPLAY == "name" %}
+                    {{g.site_global.site_config.APP_NAME}}
+                {% else %}
+                    <img class="osr-sidebar-sm-logo" src="{{g.site_global.site_config.LOGO_IMG_URL}}" alt="Logo"/>
+                    {{g.site_global.site_config.APP_NAME}}
+                {% endif %}
+            </a>
+            <i class="fa fa-question-circle-o"
+                data-toggle="tooltip" data-placement="bottom"
+               title='{{_("系统自带页面")}}'>
+            </i>
+        </div>
+        {% include 'based/_header_bar_menu.html' %}
+    </nav>
+</header>

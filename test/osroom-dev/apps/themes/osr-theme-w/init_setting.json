@@ -1,0 +1,124 @@
+[{
+		"name": "about_us",
+		"category": "协议说明",
+		"type": "text",
+		"text": "这里展示关于我们信息",
+		"title": "关于我们"
+	},
+	{
+		"name": "contact",
+		"category": "协议说明",
+		"type": "text",
+		"text": "Email:xxx@xxx.com",
+		"title": "联系"
+	},
+	{
+		"name": "contact_us",
+		"category": "协议说明",
+		"type": "text",
+		"text": "这里展示联系我们信息",
+		"title": "联系我们"
+	},
+	{
+		"name": "user_agreement",
+		"category": "协议说明",
+		"type": "text",
+		"text": "这里展示用户协议",
+		"title": "用户协议"
+	},
+	{
+		"name": "privacy_policy",
+		"category": "协议说明",
+		"type": "text",
+		"text": "这里展示隐私政策",
+		"title": "隐私政策"
+	},
+	{
+		"name": "photo-page-nav",
+		"category": "Photo导航",
+		"type": "text",
+		"link": "",
+		"title": "Photo页面导航",
+		"code":["城市","风光"],
+		"code_type":"json",
+		"text_html": "导航是[多媒体>图库]中的任一[分类名称]",
+		"text": "导航是[多媒体>图库]中的任一[分类名称]"
+	},
+	{
+		"name": "home-display-cover-1",
+		"category": "首页展示",
+		"type": "image",
+		"title": "OSROOM",
+		"link": "",
+		"text": "说明:Home页面封面大图, 这是'home-display-cover-', image类型. 可在osroom管理端->主题展示设置->图文里添加或修改，删除",
+		"code": "<div style='color:#ffffff'>这里可以修改主题设置中图片home-display-cover-1的code<br>达到你想要的样式,直接嵌入<span style='color:red'>html代码</span></div>"
+	},
+	{
+		"name": "home-display-1",
+		"category": "首页展示",
+		"type": "text",
+		"title": "Home页面文本展示窗",
+		"link": "",
+		"text": "说明:Home页面文本展示窗, 这是'home-display-', text类型. 命名方式为home-display-1, home-display-2如果不需要显示，在管理端删除该文本即可在osroom管理端->主题展示设置->文本里添加或修改，删除"
+	},
+	{
+		"name": "home-display-img-1",
+		"category": "首页展示",
+		"type": "image",
+		"title": "Home页面图片展示窗",
+		"link": "",
+		"text": "命名方式为home-display-img-1"
+	},
+	{
+		"name": "home-display-img-2",
+		"category": "首页展示",
+		"type": "image",
+		"title": "Home页面图片展示窗",
+		"link": "",
+		"text": "如果不需要显示，在管理端删除该图片即可"
+	},
+	{
+		"name": "home-display-img-3",
+		"category": "首页展示",
+		"type": "image",
+		"title": "Home页面图片展示窗",
+		"link": "",
+		"text": "管理端->主题展示设置->图文里添加或修改，删除"
+	},
+	{
+		"name": "home-display-img-4",
+		"category": "首页展示",
+		"type": "image",
+		"title": "Home页面图片展示窗",
+		"link": "",
+		"text": "管理端->主题展示设置->图文里添加或修改，删除"
+	},
+	{
+		"name": "display_tag",
+		"category": "首页展示",
+		"type": "text",
+		"title": "Home页面文章Tags展示开关, 不需要展示则关闭开关",
+		"switch":1,
+		"link": "",
+		"text": "管理端->主题展示设置->图文里添加或修改，删除"
+	},
+	{
+		"name": "设置请看以下链接",
+		"category": "其他图片",
+		"type": "image",
+		"title": "主题Top背景图backgroud_url",
+		"switch":1,
+		"link": "",
+		"text": "/osr-admin/setting/config-edit?project=theme_global_conf, FREE中添加一个KEY: backgroud_url, Value为该图片链接"
+	},
+	{
+		"name": "设置请看以下链接",
+		"category": "其他图片",
+		"type": "image",
+		"title": "文章默认图片post_cover_url",
+		"switch":1,
+		"link": "",
+		"text": "/osr-admin/setting/config-edit?project=theme_global_conf, FREE中添加一个KEY: post_cover_url, Value为该图片链接"
+	}
+
+]

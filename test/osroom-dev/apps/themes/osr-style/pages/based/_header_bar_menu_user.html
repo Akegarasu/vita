@@ -1,0 +1,132 @@
+<div class="osr-navbar-right navbar-right hidden-xs">
+    <ul class="nav navbar-nav">
+        <li>
+            <a href="/search">
+                <i class="fa fa-search"></i>
+            </a>
+        </li>
+        {% if current_user.is_authenticated %}
+         <li class="user-menu dropdown">
+            <a class="lv1-a" href="/content/writer">
+                <i class="fa fa-pencil"></i>
+            </a>
+         </li>
+
+        <!--登录的用户才显示-->
+        <li class="dropdown messages-menu">
+            <!-- 消息提醒: dropdown.less-->
+            <a class="osr-pointer" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                {% if g.site_global.user_msg.msg_count %}
+                <span class="label label-danger">
+                    {{g.site_global.user_msg.msg_count}}
+                </span>
+                {% endif %}
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header">{{_("消息")}} {{g.site_global.user_msg.msg_count}}</li>
+                <li>
+                    <!-- 消息菜单: contains the actual data -->
+                    {% if g.site_global.user_msg.msgs %}
+                    <ul class="menu">
+                        {% for msg in g.site_global.user_msg.msgs[0:5] %}
+                        <li><!-- start message -->
+                            {% if msg.type == "notice" and msg.label!="comment" %}
+                                <a href="/user/message?type=notice">
+                            {% elif  msg.type == "notice" and msg.label=="comment" %}
+                                <a href="/user/message?type=comment">
+                            {% elif msg.type == "private_letter" %}
+                               <a href="/user/message?type=private_letter">
+                            {% else %}
+                               <a href="/user/message">
+                            {% endif %}
+
+                                <h4>
+                                    {% if msg.type == "notice" %}
+                                        {% if msg.label=="comment" %}
+                                            <span class="osr-color-success">
+                                                {{_("新评论")}}
+                                            </span>
+                                        {% elif msg.label=="audit_failure" %}
+                                            <span class="osr-color-danger">
+                                                {{_("审核未通过")}}
+                                            </span>
+                                        {% else %}
+                                            <span class="text-info">
+                                            {{_("通知")}}
+                                            </span>
+                                        {% endif %}
+                                    {% elif msg.type == "private_letter" %}
+                                        <span class="osr-color-success">
+                                        {{_("私信")}}
+                                        </span>
+                                    {% endif %}
+                                </h4>
+                                <p class="osr-text-overleft">
+                                    {{msg.title}}
+                                </p>
+                               </a>
+
+                        </li>
+                        <!-- end message -->
+
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+
+                <li class="footer">
+                    <a href="/user/message">
+                    {{_("查看所有消息")}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- 用户帐号: dropdown.less -->
+
+        <li class="dropdown user user-menu">
+            <a class="osr-pointer" class="dropdown-toggle" data-toggle="dropdown">
+                <!--<i class="fa fa-user-o"></i>-->
+                <img  class="osr-img-circle-b osr-header-avatar" src="{{current_user.avatar_url}}" alt="{{_('头像')}}">
+                <i class="caret"></i>
+            </a>
+            {% include 'osr-style/pages/based/_user_dropdown.html' %}
+        </li>
+        {% else %}
+        <!--未登录用户-->
+        <li class="user-menu dropdown">
+            <a class="lv1-a" href="/sign-in">
+                <i class="fa fa-pencil"></i>
+            </a>
+         </li>
+         <li class="user-menu">
+             <a class="osr-pointer" href="/sign-in">
+                <span class="fa fa-sign-in"></span>
+                    {{_("登录")}}
+             </a>
+         </li>
+
+        {% endif %}
+        <!--//用户登录才显示-->
+
+        <!--多语言-->
+        <li class="dropdown user-menu">
+            <a class="osr-pointer" class="dropdown-toggle" data-toggle="dropdown">
+                {{g.site_global.language.all_language[g.site_global.language.current]["alias"]}}
+                <i class="caret"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                {% for k,v in g.site_global.language.all_language.items() %}
+                <li>
+                    <a style="cursor: pointer;" onclick="set_language('{{k}}')">
+                        {{v.name}}
+                    </a>
+                </li>
+                <li class="divider"></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <!--多语言-->
+    </ul>
+</div>

@@ -1,0 +1,84 @@
+<div v-if="datas.inform" class="row">
+    <div class="col-md-12 col-sm-12">
+        <section class="panel">
+          <header class="panel-heading  osr-color-danger">
+              <i class="fa fa-frown-o"></i>
+               {{_("举报状态")}}
+          </header>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                        <th>{{_("名称")}}</th>
+                        <th>{{_("3小时")}}</th>
+                        <th>{{_("8小时")}}</th>
+                        <th>{{_("1天")}}</th>
+                        <th>{{_("7天")}}</th>
+                        <th>{{_("其他")}}</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                        <tr >
+                            <td>
+                               <span class="fa fa-file-text-o"> {{_("文章")}}</span>
+                            </td>
+                            <td>{[datas.inform["3h_post"]]}</td>
+                            <td>{[datas.inform["8h_post"]]}</td>
+                            <td>{[datas.inform["1_post"]]}</td>
+                            <td>{[datas.inform["7_post"]]}</td>
+                            <td>
+                                <a href="/osr-admin/post?page=1&state=is_issued&sort=inform_total-desc">
+                                    {{_("查看")}}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td>
+                               <span class="fa fa-comment-o"> {{_("评论")}}</span>
+                            </td>
+
+                            <td>{[datas.inform["3h_comment"]]}</td>
+                            <td>{[datas.inform["8h_comment"]]}</td>
+                            <td>{[datas.inform["1_comment"]]}</td>
+                            <td>{[datas.inform["7_comment"]]}</td>
+                            <td>
+                                <a href="/osr-admin/comment?page=1&state=is_issued&sort=inform_total-desc">
+                                    {{_("查看")}}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td>
+                               <span class="fa fa-play-circle"> {{_("多媒体库")}}</span>
+                            </td>
+
+                            <td>{[datas.inform["3h_media"]]}</td>
+                            <td>{[datas.inform["8h_media"]]}</td>
+                            <td>{[datas.inform["1_media"]]}</td>
+                            <td>{[datas.inform["7_media"]]}</td>
+                            <td>
+                                <a href="/osr-admin/media/image?sort=inform-desc">
+                                    {{_("查看")}}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td>
+                               <span class="fa fa-user"> {{_("用户")}}</span>
+                            </td>
+                            <td>{[datas.inform["3h_user"]]}</td>
+                            <td>{[datas.inform["8h_user"]]}</td>
+                            <td>{[datas.inform["1_user"]]}</td>
+                            <td>{[datas.inform["7_user"]]}</td>
+                            <td>
+                                <a href="/osr-admin/user?page=1&state=normal&sort=inform_total-desc">{{_("查看")}}</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+              </table>
+          </div>
+        </section>
+    </div>
+    <!--end col-6 -->
+</div>

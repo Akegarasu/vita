@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/theme/osr-theme-w/static/css/osr-cropper.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+<script src="/theme/osr-theme-w/static/js/cropper.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<script src="/theme/osr-theme-w/static/js/osr-cropper.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+<div id="crop-avatar">
+    <!-- Current avatar -->
+    <div class="text-center" id="avatar-view"
+         data-toggle="modal" data-target="#ava_edit">
+      <img width="100px"  height="100px" class="osr-img-circle-b center-block"
+           v-bind:src="user_profile.avatar_url.url" id="avatar_img" alt="用户头像">
+    </div>
+
+    <!-- 模态-->
+    <div  class="modal fade" id="ava_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog osr-modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_("头像修改")}}</h4>
+                </div>
+                <div class="modal-body text-center">
+
+                   <div style="height:230px;" class="img-container">
+                        <img style="height:230px;" id="ava-image" v-bind:src="user_profile.avatar_url.url" alt="{{_('头像')}}">
+                    </div>
+                    <!--<div class="u-md-3">-->
+                        <!--<div class="img-preview preview-lg circle"></div>-->
+                        <!--<div class="img-preview preview-md circle"></div>-->
+                        <!--<div class="img-preview preview-sm circle"></div>-->
+                    <!--</div>-->
+                   <div class="btn-group">
+                        <input class="sr-only form-control" type="file" id="inputImage" name="file" accept="image/*">
+                        <label for="inputImage"  class="btn btn-sm osr-btn btn-info">
+                            <i class="fa fa-cloud-upload"></i>
+                            {{_("选择图片")}}
+                        </label>
+                   </div>
+                   <div class="btn-group">
+                        <div id="file-list"></div>
+                        <!--<button type="button"-->
+                            <!--class="btn btn-primary btn-sm"-->
+                            <!--data-method="zoom"-->
+                            <!--data-option="0.1">-->
+                            <!--<i class="icon-search-plus"></i> 放大-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-primary btn-sm"-->
+                            <!--data-method="zoom"-->
+                            <!--data-option="-0.1">-->
+                            <!--<i class="icon-search-minus"></i> 缩小-->
+                        <!--</button>-->
+                        <button id="upload_avatar" onclick="avatar_upload()" data-method="getCroppedCanvas"
+                           class="btn btn-sm osr-btn btn-success" data-dismiss="modal" aria-hidden="true">
+                            {{_("保存头像")}}
+                        </button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模态-->
+  <!-- Loading state -->
+  <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+</div>

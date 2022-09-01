@@ -1,0 +1,32 @@
+<div class="col-sm-3">
+    <label>{{_("作者简介")}}</label>
+    <br>
+    <a class="avatar" :href="'/osr-admin/own/user?id='+user._id">
+        <img width="35px" height="35px" class="osr-img-circle-b" v-bind:src="user.avatar_url.url" alt="{{_('头像')}}">
+        &nbsp;
+        <span class="text-success">{[user.username]}</span>
+    </a>
+
+    <div class="osr-text">
+        {[user.introduction]}
+    </div>
+
+    <br>
+    <label>{{_("文集")}}</label>
+    <br>
+    <div>
+        <a  :href="'/osr-admin/own/user?id='+user._id" >
+            <span style="color:#676262">
+              {{_("全部文章")}}
+            </span>
+        </a>
+    </div>
+    <div v-for="category in post_categorys">
+        <a  :href="'/osr-admin/own/corpus?id='+category._id" >
+            <span  class="fa fa-folder-o" style="color:#676262">
+              {[category.name]}
+            </span>
+        </a>
+    </div>
+
+</div>

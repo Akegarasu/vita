@@ -1,0 +1,20 @@
+<!-- 头部logo: header.less -->
+ <header class="header">
+    <!-- 头部 Navbar: header.less -->
+    <nav class="navbar navbar-fixed-top" role="navigation">
+        {% include 'based/_mb_header_bar.html' %}
+
+        <a href="http://osroom.com" target="_blank" class="logo hidden-xs">
+            <img class="osr-adm-logo"
+                 src="/static/sys_imgs/logo.png?h=80&v={{g.site_global.site_config.STATIC_FILE_VERSION}}"  alt="OSROOM Logo" />
+        </a>
+        <!-- 菜单隐藏按钮-->
+        <a  class="navbar-btn sidebar-toggle hidden-xs" data-toggle="offcanvas" role="button">
+            <span class="sr-only">{{_("菜单")}}</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        {% include 'based/_header_bar_menu.html' %}
+    </nav>
+</header>

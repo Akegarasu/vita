@@ -1,0 +1,56 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("邮箱修改")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-edit-page" v-cloak>
+    <section class="osr-panel">
+      <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+          <strong>{{_("邮箱修改")}}</strong>
+          <a class="pull-right" href="/account/settings?set=basis">
+                <i class="fa fa-arrow-circle-left"></i>
+              {{_("返回")}}
+          </a>
+      </header>
+      <div class="panel-body">
+       <div class="form-group">
+          <label for="password">{{_('密码')}}</label>
+            <input name="password" type="password"  class="form-control osr-input" v-model="password" id="password"
+                   minlength="8" placeholder="本平台密码"
+                   data-bv-notempty-message="{{_('密码错误')}}"
+                   data-bv-stringLength-message="{{_('密码错误')}}" required/>
+        </div>
+
+        <div class="form-group">
+          <label>{{_('新邮箱')}}</label>
+            <input name="new_email" type="email" class="form-control osr-input" v-model="email"
+                   id="email" placeholder="{{_('新邮箱')}}"
+                   data-bv-emailAddress="true" data-bv-emailAddress-message="{{_('邮箱地址不合法')}}"
+                   data-bv-notempty-message="{{_('邮箱地址不能为空')}}" required/>
+        </div>
+
+           <!--验证码区域-->
+            <div class="form-group">
+                <label>{{_('验证码')}}</label>
+                <input name="ver_code" type="text" class="form-control osr-input" v-model="current_email_code" id="current_email_code"
+                       minlength="4" placeholder="{{_('当前邮箱收到的验证码')}}"
+                       data-bv-notempty-message="{{_('验证码错误')}}"
+                       data-bv-stringLength-message="{{_('验证码错误')}}" required/>
+            </div>
+            <div class="form-group">
+                <input name="new_email_ver_code" type="text" class="form-control osr-input" v-model="new_email_code" id="new_email_code"
+                       minlength="4" placeholder="{{_('新邮箱收到的验证码')}}"
+                       data-bv-notempty-message="{{_('验证码错误')}}"
+                       data-bv-stringLength-message="{{_('验证码错误')}}" required/>
+            </div>
+            <!--验证码区域-->
+          {% include 'osr-theme-w/pages/account/settings/_send_code.html' %}
+        <button v-on:click="reset()" class="btn osr-btn btn-info osr-submit-btn">
+            {{_('绑定新邮箱')}}
+        </button>
+      </div>
+    </section>
+</div>
+
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/account/settings/email.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

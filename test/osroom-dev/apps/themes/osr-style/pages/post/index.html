@@ -1,0 +1,177 @@
+{% extends "osr-style/pages/based/based.html" %}
+{% block title %}{{_("文章")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-edit-page" v-cloak>
+    <!--存在才显示-->
+    <section  v-if="post._id" class="osr-panel article" >
+        <!--广告 rec_1-->
+        <a  v-if="rec_1" class="hidden-xs hidden-sm" target="_blank" v-bind:href="rec_1.link" >
+             <span class="osr-img-tag">
+                <span class="badge badge-info">
+                      {[rec_1.category]}
+                </span>
+             </span>
+            <img :src="rec_1.url" width="100%" height="100px">
+            <div  v-if="rec_1.title" class="img-title" >{[rec_1.title]}</div>
+        </a>
+
+        <!--广告位-->
+        <!-- 文章头-->
+        <h3>
+            {[post.title]}
+        </h3>
+
+        <div class="author">
+            <a class="avatar" :href="'/user?id='+post.user._id">
+                <img width="48px" height="48px" class="osr-img-circle-b" v-bind:src="post.user.avatar_url.url" alt="{{_('头像')}}">
+            </a>
+            <div class="info">
+                <a class="name" :href="'/user?id='+post.user._id">
+                    {[post.user.username]}
+                </a>
+                <span  v-if="post.user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                <span  v-if="post.user.gender=='f'" class="fa fa-venus osr-fa-gender-f" ></span>
+                <div class="meta">
+                   <span  v-if="post.issue_time" >
+                        <i class="fa fa-clock-o"></i>&nbsp;{[post.issue_time | formatDate]}
+                   </span>
+                   <span  v-else >
+                        <i class="fa fa-refresh" title="{{_('更新时间')}}"></i>
+                        <i class="fa fa-clock-o"></i>&nbsp;{[post.update_time | formatDate]}
+                    </span>
+                    &nbsp;&nbsp;
+                  <i class="fa fa-eye"></i> {{_("浏览")}}{[post.pv]}
+                    &nbsp;&nbsp;
+                  <a href="#ct"><i class="fa fa-commenting-o"></i> {[post.comment_num]}{{_("评论")}}</a>
+                </div>
+            </div>
+        </div>
+
+        <article>
+            <!-- 正文-->
+            <div v-html="post.content" v-highlight></div>
+            <!-- //正文-->
+        </article>
+        <!-- 正文footer-->
+        <div class="post-footer">
+            <!--点赞-->
+            <div class="like text-center">
+                <span v-on:click="like()" class="osr-color-danger osr-pointer">
+                    <i   v-if="post.like_it_already" class="fa fa-heart" ></i>
+                    <i   v-else class="fa fa-heart-o"></i>
+                      {[post.like]}
+                </span>
+            </div>
+
+            <!--文集-->
+            <div class="category">
+                <a  v-if="post.category_name" :href="'/corpus?id='+post.category+'&user_id='+post.user._id" >
+                    <span  class="fa fa-folder-o">
+                      {[post.category_name]}
+                    </span>
+                </a>
+                <a  v-else :href="'/corpus?user_id='+post.user._id">
+                    <span class="fa fa-folder-o">
+                        {{_("默认文集")}}
+                    </span>
+                </a>
+                <span class="pull-right">
+                    <span class="osr-pointer" data-toggle="modal" data-target="#inform">
+                        {{_("举报")}}
+                    </span>&nbsp;
+                    <span data-toggle="tooltip" title="{{_('转载请联系作者获取授权')}}">
+                        <i class="fa fa-copyright"></i>{{_("著作权归作者所有")}}
+                    </span>
+
+                </span>
+            </div>
+
+            <!--标签-->
+            <div  v-if="post.tags && post.tags.length>0" class="tag" >
+                <i class="fa fa-tag"></i>
+               <a v-for="tag in post.tags" :href="'/corpus/tag?tag='+tag">
+                   {[tag]}&nbsp;
+               </a>
+            </div>
+
+            <!--作者信息-->
+            <div class="author box">
+                <a class="avatar" :href="'/user?id='+post.user._id">
+                    <img width="48px" height="48px" class="osr-img-circle-b" v-bind:src="post.user.avatar_url.url" alt="{{_('头像')}}">
+                </a>
+
+                <div class="info">
+                    <a class="name" :href="'/user?id='+post.user._id">
+                        {[post.user.username]}
+                    </a>
+                    <span  v-if="post.user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                    <span  v-if="post.user.gender=='f'" class="fa fa-venus osr-fa-gender-f" ></span>
+                    <div class="meta">
+                       <a :href="'/user/follow?t=followed_user&id='+post.user._id">
+                            {[post.user.follow.follow_user_num]}{{_("关注")}} >&nbsp;|&nbsp;
+                        </a>
+                        <a :href="'/user/follow?t=fans&id='+post.user._id">
+                            {[post.user.follow.fans_num]}{{_("粉丝")}} >
+                        </a>
+                    </div>
+                </div>
+                 <button  v-if="post.user.follow.current_following" v-on:click="unfollowed(post.user_id)" class="btn osr-btn btn-info pull-right" >
+                     {{_("取消关注")}}
+                 </button>
+                <button  v-else v-on:click="follow(post.user_id)" class="btn osr-btn btn-success pull-right">
+                     <i class="fa fa-plus"></i> {{_("关注")}}
+                 </button>
+                 <div v-fi="post.user.introduction" class="brief-info">
+                     <hr class="osr-hr">
+                     {[post.user.introduction]}
+                 </div>
+            </div>
+
+            <!--分享-->
+            <!--<div class="share text-center">-->
+                <!--<span>-->
+                    <!--<i class="fa fa-wechat osr-icon-btn osr-success"></i>-->
+                    <!--&nbsp;-->
+                    <!--<i class="fa fa-qq osr-icon-btn osr-secondary"></i>-->
+                    <!--&nbsp;-->
+                    <!--<i class="fa fa-weibo osr-icon-btn osr-warning"></i>-->
+                    <!--&nbsp;-->
+                    <!--<i class="fa fa-github osr-icon-btn osr-default"></i>-->
+                <!--</span>-->
+            <!--</div>-->
+            <br>
+            {% include "osr-style/pages/post/_comment.html" %}
+        </div>
+    </section>
+    <!--举报模态-->
+    <div class="modal fade" id="inform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_('文章举报')}}</h4>
+                </div>
+                <div class="modal-body">
+                {% include "osr-style/pages/based/_inform_modal_input.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn osr-btn btn-info" type="button" data-dismiss="modal" aria-hidden="true">
+                        {{_("取消")}}
+                    </button>
+                    <button v-on:click="content_inform(post._id, 'post', inform.category, inform.details)" class="btn osr-btn btn-success" type="button" data-dismiss="modal" aria-hidden="true">
+                        {{_("提交")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模态框-->
+
+</div>
+<script src="/theme/osr-style/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-style/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+<script src="/theme/osr-style/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+
+<script src="/theme/osr-style/static/js/osr_page_js/post/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

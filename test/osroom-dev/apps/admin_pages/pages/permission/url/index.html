@@ -1,0 +1,188 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("URL权限管理")}}-{% endblock %}
+{% block content %}
+<data id="type" content="{{data.type}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                     <i class="fa fa-shield"></i>
+                    <strong>
+                         {{_("URL&API权限控制")}}(<span class="osr-color-success">{{_("结果")}}{[urls.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                            <select class="form-control osr-form-control input-sm" @change="switch_type(1, $event.target.value)">
+                                <option :value="t[1]" selected="selected" v-if="t[1] == current_type" v-for="t in types" >
+                                {[t[0]]}
+                                </option>
+                                 <option  :value="t[1]" v-if="t[1] != current_type" v-for="t in types">
+                                       {[t[0]]}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-group pull-right">
+                            <input type="text" v-on:keypress="get_urls(1,keyword)" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_urls(1,keyword)" class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br><br>
+                    <div class="btn-group-sm">
+                        <a v-if="current_type=='page'" type="button" :href="'/osr-admin/permission/url/add?fp='+page+'&ft='+current_type" class="btn btn-sm osr-btn btn-info">
+                          <i class="fa fa-plus"></i> {{_("添加页面")}}
+                        </a>
+
+                        <a  target="_blank" type="button" href="/osr-admin/permission/table" class="btn btn-sm osr-btn btn-success">
+                          <i class="fa fa-table"></i> {{_("权限表")}}
+                        </a>
+                     </div>
+                    <br>
+
+                     <div id="osr_help_alert" class="alert alert-info osr-alert osr-alert-warning" hidden>
+                         <button data-dismiss="alert" class="close close-sm" type="button">
+                             <i class="fa fa-times"></i>
+                         </button>
+                       <div class="osr-remind-alert">
+                        <i class="fa fa-bell-o osr-color-warning" >{{_("提示")}}:</i><br>
+                           <i class="osr-color-danger fa fa-circle"></i>
+                        {{_('"未自定义"权限,　并且代码中指定可以使用"缺省权重"的API将自动使用缺省权限验证(只需符合其中一个缺省权限即可).')}}.<br>
+                        </div>
+                    </div>
+                 <table class="table table-hover">
+                    <thead>
+                        <tr>
+                          <th>{{_("API/路由")}}</th>
+                          <th>{{_("类型")}}</th>
+                          <th>{{_("请求方式")}}</th>
+                            <th>{{_("登录验证")}}</th>
+                          <th>
+                              {{_("权限验证")}}
+                              <i v-on:click="switch_help_alert()" class="fa fa-question-circle osr-color-success" ></i>
+                          </th>
+                          <th>{{_("操作")}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="url in urls.datas">
+                          <td width="100px" >
+                              <a>{[url.url]}</a>
+                          </td>
+                        <td>
+                             <a>{[url.type]}</a>
+                        </td>
+                        <td>
+                             <span v-for="md in url.methods" class="osr-color-secondary">
+                                {[md]}&nbsp;
+                            </span>
+                          </td>
+                            <td>
+                                  <div v-if="url.type=='page'">
+                                    <span class="osr-color-success">{{_("登录验证")}}: </span>
+                                    <span v-if="!url.login_auth">
+                                        &nbsp;&nbsp;{{_("否")}}
+                                    </span>
+                                    <br v-else>
+                                    <span v-for="(v,k) in url.login_auth" class="task-title-sp">
+                                        &nbsp;&nbsp;<b>{[k | uppercase]}:</b>
+
+                                        <i v-if="v" class="fa fa-check osr-color-success"></i>
+                                        <i v-else class="fa fa-close osr-color-danger"></i>
+                                        <br>
+                                    </span>
+                                </div>
+
+                              </td>
+                            <td>
+                                  <span v-if="!url.custom_permission">
+                                &nbsp;&nbsp;{{_("未自定义")}}
+                                    </span>
+                                    <span v-for="(v,k) in url.custom_permission" class="task-title-sp">
+                                        &nbsp;&nbsp;<b>{[k | uppercase]}:</b>
+                                        <span v-for="per in permissions" v-if="v & per[1]" class="osr-color-secondary">
+                                            {[per[0]]}&nbsp;
+                                        </span>
+                                        <span v-if="!v">
+                                            {{_("未自定义")}}
+                                        </span>
+                                        <br>
+                                    </span>
+
+                             </td>
+                            <td>
+                                 <div class="btn-group-sm" >
+                                    <a :href="'/osr-admin/permission/url/edit?id='+url._id+'&ft='+current_type+'&fp='+page" class="btn osr-btn btn-info">
+                                        <span class="fa fa-pencil-square-o"></span> {{_("编辑")}}
+                                    </a>
+                                    <button v-if="url.type=='page'" v-on:click="warning_modal(null, 'del_url', url._id)" class="btn osr-btn btn-danger osr-pointer">
+                                        <span class="fa fa-trash"></span> {{_("删除")}}
+                                    </button>
+                                </div>
+                             </td>
+                        </tr>
+                    </tbody>
+                 </table>
+                </div>
+                <!-- 页面导航-->
+                <div class="text-center hidden-md-down">
+                    <ul class="pagination">
+                         <li v-if="pages.last < pages.current_page && pages.last>0">
+                            <a v-on:click="get_urls( pages.last, keyword)">«</a>
+                        </li>
+                        <li v-else class="disabled">
+                            <a>«</a>
+                        </li>
+
+                        <li v-for="page in pages.last_show" >
+                            <a v-if="page!='...'" v-on:click="get_urls( page, keyword)">{[page]}</a>
+                            <a v-else href="#">...</a>
+                        </li>
+
+                        <li class="active">
+                            <a v-on:click="get_urls( pages.current_page, keyword)">{[pages.current_page]}</a>
+                        </li>
+
+                       <li v-for="page in pages.next_show" >
+                            <a v-if="page!='...'" v-on:click="get_urls( page, keyword)" >{[page]}</a>
+                            <a v-else href="#">...</a>
+                       </li>
+
+                       <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                            <a v-on:click="get_urls( pages.next, keyword)">»</a>
+                        </li>
+                        <li v-else class="disabled">
+                            <a>»</a>
+                        </li>
+                    </ul>
+               </div>
+                <!-- //页面导航-->
+                <!-- m页面导航-->
+                <ul class="pager visible-xs visible-sm">
+                    <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                        <a v-on:click="get_urls( pages.last, keyword)">
+                            {{_("上一页")}}
+                        </a>
+                    </li>
+                    <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                        <a v-on:click="get_urls( pages.next, keyword)">{{_("下一页")}}</a>
+                    </li>
+                </ul>
+                <!-- //m页面导航-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/permission/url/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

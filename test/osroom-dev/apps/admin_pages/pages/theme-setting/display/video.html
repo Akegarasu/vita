@@ -1,0 +1,74 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("视频")}}-{% endblock %}
+{% block content %}
+<data id="cid" content="{{data.cid}}"></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-youtube-play"></i>
+                    <strong>
+                        {{_("视频库")}}(<span class="osr-color-success">{{_("结果")}}{[medias.data_total]}</span>)
+                        <span class="osr-color-secondary">[{{_("当前设置主题")}}: {[theme_name]}]</span>
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    {% include 'theme-setting/display/_bar.html' %}
+                     <!-- 上传-->
+                    <div id="upload-html" hidden>
+                        {% include 'module/upload.html' %}
+                    </div>
+                    <!-- //上传-->
+
+                    <div v-for="(media, index) in medias.datas" class="osr-img-list col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <span class="osr-img-tag-media">
+                          <span  v-if="media.category" class="badge badge-info">
+                              {[media.category]}
+                          </span>
+                          <span  v-else class="badge badge-info text-danger">
+                              {{_("未分类")}}
+                          </span>
+                        </span>
+                        <img class="osr-media-img" src="/static/sys_imgs/video-play.png"  :alt="media.title">
+                        <div v-if="media.title" class="img-title osr-text-overleft"  data-toggle="tooltip" :title="media.title">
+                              <a class="fa fa-play-circle-o"  target="_blank" :href="'/osr-admin/theme-setting/display/video-play?id='+media._id+'&name='+media.name"></a>
+                            {[media.title]}
+                         </div>
+                        <div v-else class="img-title">
+                            <a class="fa fa-play-circle-o"  target="_blank" :href="'/osr-admin/theme-setting/display/video-play?id='+media._id+'&name='+media.name"></a>
+                            &nbsp;
+                        </div>
+
+                         <div class="osr-text-overleft" data-toggle="tooltip" :title="media.name">
+                            {[media.name]}
+                        </div>
+
+                          <span class="checkbox checkbox-success">
+                               <input :id="media._id" type="checkbox"  v-bind:value="media._id" unchecked>
+                               <label :for="media._id"></label>
+                              <a class="pull-right" :href="'/osr-admin/theme-setting/display/video-edit?theme='+current_theme_name+'&cid='+curren_category+'&id='+media._id+'&fp='+page" a>
+                                    <i class="fa fa-edit"></i>{{_("编辑|详情")}}
+                              </a>
+                          </span>
+                        <span class="osr-date">
+                            <span v-if="media.inform" class="fa fa-warning osr-color-danger osr-pointer"
+                                    v-on:click="put_media_view(media.inform)" data-toggle="modal" data-target="#inform-info">
+                                  {[media.inform.total]}
+                            </span>
+                            &nbsp;
+                            {[media.time | formatDate]}{{_("上传")}}
+                        </span>
+                        <hr>
+                    </div>
+                </div>
+                {% include 'theme-setting/display/_paging.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/theme-setting/display/video.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>    {% include 'theme-setting/display/_script.html' %}
+{% endblock %}

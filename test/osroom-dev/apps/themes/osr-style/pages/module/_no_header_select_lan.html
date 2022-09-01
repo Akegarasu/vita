@@ -1,0 +1,6 @@
+<span class="am-icon-language am-icon-sm am-secondary"></span>
+ {% for k,v in g.site_global.language.all_language.items() %}
+    <a  style="cursor: pointer;color:#ffffff" onclick="set_language('{{k}}')">
+        &nbsp;·&nbsp;{{v.name}}
+    </a>
+ {% endfor %}

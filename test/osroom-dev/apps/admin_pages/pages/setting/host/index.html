@@ -1,0 +1,67 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("服务器")}}-{% endblock %}
+{% block content %}
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+
+                <header class="panel-heading">
+                     <i class="fa fa-server"></i>
+                    <strong>
+                         {{_("服务器")}}
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th>{{_("主机名")}}</th>
+                              <th>{{_("主机IP")}}</th>
+                              <th>{{_("网站已运行")}}</th>
+                              <th>{{_("启动日志")}}</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="host in hosts">
+                                <td>{[host.host_info.hostname]}</td>
+                                <td>{[host.host_info.local_ip]}</td>
+                                <td>22</td>
+                                <td>
+                                <a target="_blank" :href="'/osr-admin/sys-logs/log?page=1&name=site_start.log&ip='+host.host_info.local_ip">
+                                    {{_("查看")}}
+                                </a>
+                               </td>
+                               <td>
+                                  <div class="btn-group btn-group-sm">
+                                    <a :href="'/osr-admin/setting/host/edit?ip='+host.host_info.local_ip" class="btn osr-btn btn-info">
+                                        <span class="fa fa-pencil-square-o"></span>{{_("编辑连接")}}
+                                    </a>
+
+                                    <a :href="'/osr-admin/setting/host/exec-cmd?ip='+host.host_info.local_ip"  class="btn osr-btn btn-warning">
+                                        <span class="fa fa-refresh"></span>{{_("执行命令")}}
+                                    </a>
+                                    <a v-on:click="warning_modal(null, 'del_host', host._id)"  class="btn osr-btn btn-danger">
+                                        <span class="fa fa-trash-o"></span>{{_("删除")}}
+                                    </a>
+
+                                </div>
+
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/setting/host/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

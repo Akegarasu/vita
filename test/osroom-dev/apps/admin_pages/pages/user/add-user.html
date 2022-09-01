@@ -1,0 +1,58 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("添加新用户")}}-{% endblock %}
+{% block content %}
+
+<data id="user_id" content="{{data.id}}" hidden></data>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="/osr-admin/user?status={{data.fs}}&page={{data.fp}}"><i class="fa fa-users"></i> {{_("用户管理")}}</a></li>
+            <li class="active">{{_("添加新用户")}}</li>
+        </ul>
+    </div>
+</div>
+<div v-cloak id="app" class="row osr-adm-edit-page">
+    <div class="col-md-12 osr-col-xs-12">
+        <section class="panel">
+          <header class="panel-heading">
+             <i class="fa fa-user-o"></i> {{_("新用户")}}
+          </header>
+                <div class="panel-body ">
+                       <div class="form-group">
+                  <input name="username" id="username" type="text" class="form-control osr-input input-sm"
+                         v-model="username" minlength="3" placeholder="{{_('用户名')}}"
+                         data-bv-notempty-message="{{_('用户名不能为空')}}"
+                         data-bv-stringLength-message="{{_('用户名至少3个字符')}}" required/>
+                </div>
+                <div class="form-group">
+                  <input name="email" id="email" class="form-control osr-input input-sm" type="email" v-model="email"
+                         data-bv-emailAddress-message="{{_('邮箱地址不合法')}}"
+                         placeholder="电子邮箱(可不填)">
+                </div>
+                <div class="form-group">
+                  <input name="password" id="password" class="form-control osr-input input-sm" type="password" v-model="password"
+                         minlength="8" placeholder="{{_('输入密码')}}"
+                         data-bv-notempty-message="{{_('至少8个字符')}}"
+                         data-bv-stringLength-message="{{_('至少8个字符')}}" required/>
+                </div>
+                <div class="form-group">
+                  <input name="password2" id="password2" class="form-control osr-input input-sm" type="password" v-model="password2"
+                         placeholder="{{_('再次输入密码')}}"
+                         data-bv-identical="true"
+                         data-bv-notempty-message="{{_('至少8个字符')}}"
+                         data-bv-identical-message="{{_('前后密码不一致')}}"
+                         data-bv-identical-field="password" required/>
+                </div>
+
+                <button v-on:click="sign_up()" class="btn osr-btn btn-info" >
+                   {{_("添加")}}
+                </button>
+
+          </div>
+        </section>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/user/add-user.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

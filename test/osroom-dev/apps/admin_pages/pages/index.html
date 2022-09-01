@@ -1,0 +1,39 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("仪表盘")}}-{% endblock %}
+{% block content %}
+<div v-cloak id="app">
+    <div class="row" >
+
+        <div class="col-md-12">
+            <div class="alert alert-info osr-alert osr-alert-secondary osr-bg-color-secondary">
+             <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+             </button>
+                <h4>{{_("欢迎使用OSROOM")}}</h4>
+              <span>{{_("版本")}}&nbsp;{{g.site_global.site_config.sys_version}}</span>&nbsp;&nbsp;
+              <a href="https://github.com/osroom/osroom" target="_blank">
+                  <i class="fa fa-github"></i>
+                  {{_("查看最新版本")}}
+              </a>
+            </div>
+        </div>
+
+    </div>
+
+    {% include '_index_chd1.html' %}
+    {% include '_index_chd2.html' %}
+    {% include '_index_chd3.html' %}
+    <div id="more" class="row text-center" >
+        <div class="btn-group ">
+            <button class="btn osr-btn btn-primary" onclick="get_inform()">
+                {{_("查看更多")}}
+            </button>
+        </div>
+    </div>
+
+</div>
+<script src="/admin-pages/static/js/plugins/Chart.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+<script src="/admin-pages/static/js/osr_page_js/home.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}
