@@ -10,6 +10,7 @@ class Context(BaseModel):
     match context here.
     """
     code: List[CodeLine]
+    printable: Optional[str]
     start_line: Optional[int]
     end_line: Optional[int]
 
@@ -17,6 +18,14 @@ class Context(BaseModel):
         s = 0 if self.start_line - rels < 0 else self.start_line - rels
         e = len(self.code) if self.end_line + rels > len(self.code) else self.end_line + rels
         return self.code[s:e]
+
+    def gen_context_output(self, rels: int) -> str:
+        ok = ""
+        ctx_codes = self.get_context_codes(rels=rels)
+        for cc in ctx_codes:
+            ok += f"{'--> ' + str(cc[0]) if cc[0] == self.start_line else '    ' + str(cc[0])}   {cc[1]}\n"
+        ok = ok[:-1]
+        return ok
 
 
 class Severity(Enum):
@@ -59,10 +68,10 @@ class MatchResult(BaseModel):
     """代码语言"""
     severity: Severity
     """严重程度"""
-    # ptype: str
-    # """漏洞类型"""
-    # confidence: float
-    # """置信度"""
+    ptype: str
+    """漏洞类型"""
+    confidence: float
+    """置信度"""
 
 
 def gen_context(c: str):

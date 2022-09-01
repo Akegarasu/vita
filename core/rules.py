@@ -19,6 +19,11 @@ class Rule(BaseModel):
     danger: int
     complied: List[Pattern]
 
+    ptype: str
+    """漏洞类型"""
+    confidence: float
+    """置信度"""
+
 
 class RuleManager:
 
@@ -31,14 +36,11 @@ class RuleManager:
             self._load(path)
         else:
             for path, dirs, files in os.walk(path):
-                # print(files)
                 for f in files:
-                    # print(f)
                     self._load(os.path.join(path, f))
 
     def _load(self, path: str) -> None:
         cfg = load_yaml(path)
-        # print(cfg)
         for r in cfg["rules"]:
             self.rules.append(
                 Rule(
@@ -48,6 +50,8 @@ class RuleManager:
                     danger=r["danger"],
                     patterns=r["patterns"],
                     complied=r["patterns"],
+                    ptype=r["ptype"],
+                    confidence=r["confidence"]
                 )
             )
         logger.info(f"loaded {path} for {len(cfg['rules'])} rules.")

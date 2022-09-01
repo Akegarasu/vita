@@ -24,7 +24,7 @@ import click
 )
 def cli(t, r, o, ignore):
     logger.info(f"start run vita using rule {r}, target {t}, output {o}")
-    Vita(rule_path=r,output_path=o).run(
+    Vita(rule_path=r, output_path=o).run(
         file_path=t,
         ignore=ignore
     )
