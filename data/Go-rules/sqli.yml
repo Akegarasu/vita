@@ -6,7 +6,7 @@ rules:
     description: Sql injection may occur
     type: ast
     danger: 9
-    ptype: 后门
+    ptype: vuln
     confidence: 0.1
     patterns:
       - '(\*database|sql.DB)\.(Exec|ExecContext|Query|QueryContext|QueryRow|QueryRowContext)'
