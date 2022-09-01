@@ -68,7 +68,9 @@ class GoAst(AstImpl, ABC):
                     match_type="ast",
                     severity=Severity.calculate(self.rule.danger),
                     file_path=self.filePath,
-                    language="go"
+                    language="go",
+                    ptype=self.rule.ptype,
+                    confidence=self.rule.confidence
                 ))
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
