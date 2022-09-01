@@ -36,6 +36,9 @@ class GoAst(AstImpl, ABC):
     def reMatch(self,reObj):
         if type(reObj)==dict:
             for i in reObj:
+                if type(i) == str and i == "Comments":
+                    # pass comments
+                    continue
                 if type(reObj[i]) == str:
                     self.relMatch(reObj[i])
                 else:
