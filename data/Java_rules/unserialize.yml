@@ -19,16 +19,6 @@ rules:
     confidence: 0.1
     patterns:
       - '(ObjectMapper)\.(readValue)'
-  - id: 10005
-    name: unserilize
-    description: rmi反序列化可能会出现
-    type: ast
-    danger: 9
-    ptype: 后门
-    confidence: 0.1
-    patterns:
-      - '(Registry)\.(lookup)'
-      - 'lookup'
   - id: 10006
     name: unserilize
     description: java原生反序列化可能会出现

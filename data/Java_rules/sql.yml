@@ -13,3 +13,4 @@ rules:
       - 'executeQuery'
       - 'createNativeQuery'
       - 'doQuery'
+      - 'preparedStatement.execute'

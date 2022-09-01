@@ -11,12 +11,3 @@ rules:
     patterns:
       - '(URL|url)\.(openConnection)'
       - '(ImageIO)\.(read)'
-  - id: 10011
-    name: ssrf
-    description: ssrf可能会出现
-    type: ast
-    danger: 9
-    ptype: 后门
-    confidence: 0.1
-    patterns:
-      - '(HttpClient|HttpURLConnection|)\.(execute|executeMethod)'

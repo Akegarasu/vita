@@ -1,4 +1,4 @@
-language: java
+﻿language: java
 
 rules:
   - id: 10020
