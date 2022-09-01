@@ -45,7 +45,7 @@ class CodeManager:
                     if self._check_ignore(f, ignore_exts):
                         continue
                 file_full_path = os.path.join(path, f)
-                with open(file_full_path, "r", encoding="utf-8") as fl:
+                with open(file_full_path, "r", encoding="utf-8",errors="ignore") as fl:
                     self.files.append(CodeFile(
                         origin=fl.read(),
                         file_name=f,
