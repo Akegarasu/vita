@@ -1,0 +1,36 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("个人设置")}}{% endblock %}
+{% block content %}
+<!-- Date Picker -->
+<link href="/theme/osr-theme-w/static/css/bootstrap-datetimepicker.min.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet" type="text/css" />
+<data id="user_set" content="{{data.set}}" hidden></data>
+
+<div id="app" class="row osr-edit-page" v-cloak>
+    <section class="osr-panel">
+        <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+            <ul class="nav nav-tabs">
+                <li id="head_li_basis">
+                    <a data-toggle="tab" data-target="#basis" class="osr-pointer" onclick="switch_type('basis')">
+                        <i class="fa fa-list-alt"></i> {{_("基础设置")}}
+                    </a>
+                </li>
+                <li id="head_li_profile">
+                    <a data-toggle="tab" data-target="#profile" class="osr-pointer" onclick="switch_type('profile')">
+                        <i class="fa fa-vcard"></i> {{_("个人资料")}}
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <div id="basis">
+            {% include 'osr-theme-w/pages/account/settings/_basis.html' %}
+        </div>
+        <div id="profile">
+            {% include 'osr-theme-w/pages/account/settings/_profile.html' %}
+        </div>
+    </section>
+</div>
+
+<script src="/theme/osr-theme-w/static/js/plugins/bs-datetimepicker/bootstrap-datetimepicker.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" type="text/javascript"></script>
+<script src="/theme/osr-theme-w/static/js/osr_page_js/account/settings.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

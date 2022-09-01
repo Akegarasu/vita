@@ -1,0 +1,102 @@
+<!--文章列表-->
+
+<div class="col-xs-12" >
+    <h3 class="text-center">{{_("最新内容")}}</h3>
+    <div class="osr-post-list">
+        <div  v-for="post in posts.datas" class=" osr-img-list osr-post-single col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="osr-post-info">
+                <div class="osr-post-image">
+                    <a target="_blank" :href="'/post?id='+post._id">
+                        <img v-if="post.cover_url" class="osr-media-img" :src="post.cover_url+img_w_h" :alt="post.title">
+                        <img v-else class="osr-media-img" src="{{g.site_global.theme_config.FREE['post_cover_url']}}" :alt="post.title">
+                         <span class="osr-img-title"  :title="post.title">
+                             {[post.title]}
+                         </span>
+                    </a>
+                </div>
+                <!--作者+时间-->
+                <div class="osr-info-text">
+                  <span class="osr-text">
+                      <a :href="'/user?id='+post.user._id" class="osr-text">
+                          <i class="fa fa-user osr-color-blue"></i>
+                          &nbsp;{[post.user.username]}
+                      </a>
+                  </span>
+                  <span  v-if="post.user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                  <span  v-if="post.user.gender=='f'" class="fa fa-venus osr-fa-gender-f"></span>
+                  &nbsp;&nbsp;
+                    <span class="osr-date pull-right">
+                          <span  v-if="post.issue_time" >
+                              <i class="fa fa-calendar-o osr-color-blue"></i>&nbsp;{[post.issue_time | formatDate]}
+                          </span>
+                          <span  v-else>
+                              <i class="fa fa-refresh osr-color-blue" title="{{_('更新')}}"></i>
+                              <i class="fa fa-clock-o osr-color-blue"></i>&nbsp;{[post.update_time | formatDate]}
+                          </span>
+                    </span>
+
+                <!--//作者+时间-->
+                <div class="osr-text-essay" v-html="post.brief_content">
+                </div>
+                <div class="osr-text-margin">
+                    <span>
+                        <a  class="osr-date" v-if="post.category_name" :href="'/user?cid='+post.category+'&id='+post.user._id" >
+                          <i class="fa fa-folder-o osr-color-blue"></i>&nbsp;{[post.category_name]}
+                        </a>
+                        <a class="osr-date" v-else :href="'/user?id='+post.user._id+'&cid=default'">
+                           <i class="fa fa-folder-o osr-color-blue"></i>&nbsp;{{_("默认文集")}}
+                        </a>
+                    </span>
+                     <span class="osr-date pull-right">
+                          <i class="fa fa-eye osr-color-blue"></i>&nbsp;{[post.pv]}
+                          &nbsp;&nbsp;
+                        <i class="fa fa-commenting-o osr-color-blue"></i>&nbsp;{[post.comment_num]}
+                    </span>
+                </div>
+                <!--标签-->
+                <div class="osr-text-margin">
+                    <a  v-for="(tag, index) in post.tags" :href="'/corpus/tag?tag='+tag">
+                        <button style="color:#ffffff;" class="osr-date btn osr-btn osr-btn-radius osr-btn-xs osr-btn-blue">
+                            {[tag]}
+                        </button>&nbsp;
+                    </a>
+                </div>
+               </div>
+            </div>
+             <!--//标签-->
+        </div>
+      </div>
+        <br>
+
+    <!-- 页面导航-->
+    <div class="row text-center" style="padding-bottom:30px;color: #ffffff">
+        <div class="btn-group ">
+            <button  v-if="pages.next > pages.current_page  && pages.next<=pages.page_total"
+                     class="btn btn-lg osr-btn osr-btn-blue" v-on:click="get_posts(pages.next, sort)">
+                {{_("查看更多")}}
+            </button>
+            <button  v-else  class="btn btn-lg osr-btn osr-btn-blue" disabled>
+                {{_("没有更多了哦")}}
+            </button>
+        </div>
+    </div>
+    <!-- //页面导航-->
+
+        <!--<div style="padding: 20px 20px 20px 20px;">-->
+             <!--&lt;!&ndash; m页面导航&ndash;&gt;-->
+            <!--<ul class="pager">-->
+                <!--<li  v-if="pages.last < pages.current_page && pages.last>0" class="previous">-->
+                    <!--<a v-on:click="get_posts(pages.last, sort)" class="osr-pointer">-->
+                        <!--{{_("上一页")}}-->
+                    <!--</a>-->
+                <!--</li>-->
+                 <!--<span class="text-center osr-text">{{_('第{[posts.current_page]}页/共{[posts.page_total]}页')}}</span>-->
+                <!--<li  v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">-->
+                    <!--<a v-on:click="get_posts(pages.next, sort)" class="osr-pointer">-->
+                        <!--{{_("下一页")}}-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--&lt;!&ndash; //m页面导航&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->

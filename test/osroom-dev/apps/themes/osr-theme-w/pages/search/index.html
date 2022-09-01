@@ -1,0 +1,120 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("搜索")}}-{% endblock %}
+{% block content %}
+<div id="app" v-cloak>
+    <div class="row osr-page" style="padding-top:30px">
+        <section class="osr-panel">
+            <div class="input-group text-center dropdown" style="max-width: 500px;margin-right: auto;margin-left: auto;">
+                <input type="text" name="q" 
+                class="form-control osr-input input-lg dropdown-toggle"
+                aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"
+                v-model="keyword" placeholder="{{_('文章 用户')}}">
+                <span class="input-group-btn">
+                    <button  class="btn btn-md btn-flat osr-btn-blue btn-lg" style="color:#ffffff"
+                             v-on:click="global_search(keyword, target, 1)">
+                        {{_("搜索")}}
+                    </button>
+                </span>
+                <div v-if="search_logs && search_logs.length>0" class="dropdown-menu" aria-labelledby="search-input"
+                    style="padding: 4px 13px;margin: 0px;border-radius: 0px;border:0px;min-width: 100%;">
+                    <span class="dropdown-item osr-text" v-for="log in search_logs" >
+                        <a v-on:click="global_search(log.search, target, 1)" class="osr-pointer">
+                            {[log.search]}
+                        </a>
+                        <br>
+                    </span>
+                    <hr class="osr-hr">
+                    <span class="dropdown-item osr-text osr-pointer" v-on:click="clear_logs()">
+                        {{_('清除历史')}}
+                    </span>
+                  </div>
+                <div>
+                </div>
+            </div>
+            
+            <!--文章导航-->
+             <header  class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+                <ul class="nav nav-tabs">
+                    <li id="head_li_post">
+                        <a data-toggle="tab" data-target="post" class="osr-pointer" v-on:click="global_search(keyword, 'post', 1)">
+                            <i class="fa fa-file-text-o"></i> {{_("文章")}}
+                        </a>
+                    </li>
+                    <li id="head_li_user">
+                        <a data-toggle="tab" data-target="user" class="osr-pointer" v-on:click="global_search(keyword, 'user', 1)">
+                            <i class="fa fa-user"></i> {{_("用户")}}
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <!--post-->
+            <ul  v-if="target=='post'" id="post" class="osr-list-group">
+                <li class="osr-list-group-item have-img" v-for="post in posts.items.datas">
+                      <div class="item-content">
+                          <div class="list-author">
+                              <span class="osr-date">
+                                   <span  v-if="post.issue_time" >
+                                      <i class="fa fa-clock-o"></i>&nbsp;{[post.issue_time | formatDate]}
+                                  </span>
+                              </span>
+                          </div>
+                            <!--title-->
+                          <a class="osr-title" target="_blank" :href="'/post?id='+post._id">
+                            {[post.title]}
+                          </a>
+                            <!--title-->
+
+                          <!--摘要-->
+                          <div class="osr-text">
+                              <span v-html="post.brief_content"></span>...
+                          </div>
+                            <!--摘要-->
+
+                    </div>
+                 </li>
+            </ul>
+            <!--//post-->
+            <!--user-->
+            <ul  v-if="target=='user'" id="user" class="osr-users-list">
+                    <li class="osr-users-list-item" v-for="user in users.items.datas">
+                        <div class="author">
+                            <a class="avatar" :href="'/user?id='+user._id">
+                                <img width="48px" height="48px" class="osr-img-circle-b" v-bind:src="user.avatar_url.url" alt="{{_('头像')}}">
+                            </a>
+                            <div class="info">
+                                <a class="name" :href="'/user?id='+user._id">
+                                    {[user.username]}
+                                </a>
+                                <span  v-if="user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                                <span  v-if="user.gender=='f'" class="fa fa-venus osr-fa-gender-f"></span>
+                                <div class="meta">
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+            </ul>
+            <!--//user-->
+
+            <!-- m页面导航-->
+            <ul class="pager col-sm-12">
+                <li  v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="global_search(keyword, target, pages.last)" class="osr-pointer">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                 <span class="text-center osr-text">{{_('第{[posts.items.current_page]}页/共{[posts.items.page_total]}页')}}</span>
+                <li  v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="global_search(keyword, target, pages.next)" class="osr-pointer">
+                        {{_("下一页")}}
+                    </a>
+                </li>
+            </ul>
+            <!-- //页面导航-->
+    </section>
+    </div>
+</div>
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/search/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

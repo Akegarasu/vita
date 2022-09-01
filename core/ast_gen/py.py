@@ -61,22 +61,23 @@ class PythonAst(AstImpl, ABC):
         # print(func_list)
         for f in func_list:
             for r in rule.complied:
-                for m in r.finditer(f['func']):
-                    # print(m)
-                    ctx = gen_context(self.code.processed)
-                    ctx.start_line = f['lineno']
-                    ctx.end_line = f['lineno']+1
-                    result.append(
-                        MatchResult(
-                            context=ctx,
-                            match_type="ast",
-                            match_rule=r.pattern,
-                            description=rule.description,
-                            file_path=self.code.file_path,
-                            severity=Severity.calculate(rule.danger),
-                            language='Python',
-                            ptype=rule.ptype,
-                            confidence=rule.confidence
+                if type(f['func']) == str:
+                    for m in r.finditer(f['func']):
+                        # print(m)
+                        ctx = gen_context(self.code.processed)
+                        ctx.start_line = f['lineno']
+                        ctx.end_line = f['lineno']+1
+                        result.append(
+                            MatchResult(
+                                context=ctx,
+                                match_type="ast",
+                                match_rule=r.pattern,
+                                description=rule.description,
+                                file_path=self.code.file_path,
+                                severity=Severity.calculate(rule.danger),
+                                language='Python',
+                                ptype=rule.ptype,
+                                confidence=rule.confidence
+                            )
                         )
-                    )
         return result

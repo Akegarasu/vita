@@ -1,0 +1,19 @@
+<script src="/theme/osr-style/static/js/vue.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<script src="/theme/osr-style/static/js/jquery.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" type="text/javascript"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="/theme/osr-style/static/js/html5shiv.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+  <script src="/theme/osr-style/static/js/respond.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<![endif]-->
+<script src="/theme/osr-style/static/js/osroom.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<script type="text/javascript">
+    //设置csrf token, 否则无法请求api数据. 保证请求数据的网页是自己的网页
+     var csrftoken = "{{ csrf_token() }}"
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    });
+</script>

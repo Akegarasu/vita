@@ -1,0 +1,92 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("角色编辑|添加")}}-{% endblock %}
+{% block content %}
+<data id="role_id" content="{{data.id}}" hidden></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/role?page={{data.fp}}"><i class="fa fa-user-md"></i> {{_("角色管理")}}</a></li>
+                <li  v-if="role" class="active">{{_("编辑")}}</li>
+                <li  v-else class="active">{{_("添加")}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row osr-adm-edit-page">
+
+        <div class="col-md-12 osr-col-xs-12">
+            <section class="panel">
+              <header class="panel-heading">
+                <span v-if="role"><i class="fa fa-user-md"></i>  {{_("编辑")}}: {[role.name]}</span>
+                <span v-else ><i class="fa fa-plus"></i> {{_("添加")}}</span>
+              </header>
+              <div class="panel-body">
+                  <div>
+                        <div class="form-group">
+                          <label>{{_("角色名")}}&nbsp;</label>
+                          <input name="name" type="text" class="form-control osr-input"  v-model="role.name" id="name"
+                                 minlength="3" placeholder="{{_('角色名称')}}"
+                                 data-bv-notempty-message="{{_('角色名不能为空')}}"
+                                 data-bv-stringLength-message="{{_('至少3个字')}}" required>
+                        </div>
+
+                      <div class="form-group">
+                        <label for="permissions">{{_("权重")}}(<a href="#per">{{_("权限表")}}</a>)</label>
+                        <select height=100 id="permissions" name="permissions" class="form-control" multiple="multiple">
+                            <option v-if="role.permissions & p[1]" selected = "selected" v-for="p in permissions" v-bind:value =p[1]>{[p[0]]}</option>
+                            <option v-if="!(role.permissions & p[1])" v-for="p in permissions" v-bind:value =p[1]>{[p[0]]}</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="checkbox checkbox-success">
+                               <input v-if="role.default" id="default" class="form-check-input" type="checkbox" value="on_site" checked>
+                               <input v-else id="default" class="form-check-input" type="checkbox" value="on_site" unchecked>
+                              <label for="default" class="form-check-label"></label>
+                              {{_("默认角色")}}
+                          </div>
+                      </div>
+
+                    <div class="form-group">
+                      <label>{{_("备注")}}&nbsp;</label>
+                      <input type="text" class="form-control osr-input"  id="info" placeholder="{{_('备注')}}" v-bind:value="role.instructions" />
+                    </div>
+
+                    <button v-on:click="save()" class="btn osr-btn btn-info osr-submit-btn" >
+                       {{_("保存")}}
+                    </button>
+                  </div>
+              </div>
+            </section>
+            <div id="per" class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-shield"></i>
+                    <strong>
+                        {{_("权限表")}}
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th>{{_("权限名(Key)")}}</th>
+                              <th>{{_("权重")}}</th>
+                              <th>{{_("说明")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="p in permissions">
+                              <td v-for="v in p">{[v]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/role/edit-role.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

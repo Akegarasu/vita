@@ -1,0 +1,47 @@
+language: py
+
+rules:
+  - id: 1
+    name: os.xxx
+    description: 命令执行
+    type: ast
+    danger: 10
+    ptype: 漏洞
+    confidence: 0.7
+    patterns:
+      - 'os.spawnl(pe|p|e)?'
+      - 'os.spawnv(e|p|pe|)?'
+      - 'os.popen(2|3|4)?'
+      - 'os.execl(e|p|pe)?'
+      - 'os.execl(e|p|pe)?'
+      - 'os.execv(e|p|pe)?'
+      - 'os.startfile'
+      - 'client.exec_command'
+      - 'ftp.cwd'
+      - 'os.system'
+      - 'eval'
+      - 'exec'
+      - 'compile'
+  - id: 2
+    name: chmod
+    description: 权限提升
+    type: ast
+    danger: 9
+    ptype: 漏洞
+    confidence: 0.8
+    patterns:
+      - 'os.chmod'
+
+  - id: 3
+    name: 反序列化
+    description: python反序列化
+    type: ast
+    danger: 7
+    ptype: 漏洞
+    confidence: 0.5
+    patterns:
+      - 'read_pickle'
+      - 'pickle.load'
+      - 'pickle.loads'
+      - 'unpickler.decode'
+      - 'unpickler.Unpickler().restore'

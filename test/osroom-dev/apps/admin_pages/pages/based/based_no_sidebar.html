@@ -1,0 +1,34 @@
+{% extends "based/based.html" %}
+{% block _title %}
+    <title>
+        {% block title %}{% endblock %}
+        {{g.site_global.site_config.TITLE_SUFFIX}}
+    </title>
+{% endblock %}
+
+{% block body %}
+<body class="skin-black">
+
+    {% include "based/header_bar.html" %}
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+         {% include "based/sidebar.html" %}
+
+        <!-- 页面的导航栏和内容 -->
+        <div class="osr-right-side">
+            <section class="content osr-content">
+                <!--请求消息显示位置-->
+                <div class="text-center navbar-fixed-top osr-msg-box pull-right" style="right: 0" id="msg-box" >
+                </div>
+                <!--//消息显示位置-->
+                {% block content %}{% endblock %}
+            </section>
+            {% include "based/footer.html" %}
+
+        </div>
+        <!-- //页面的导航栏和内容 -->
+    </div>
+    {% include "based/footer-js.html" %}
+</body>
+
+<script src="/admin-pages/static/js/osr_page_js/based/based_no_sidebar.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{%  endblock %}

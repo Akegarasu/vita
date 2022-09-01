@@ -1,0 +1,25 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("平台协议")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-edit-page" v-cloak>
+    <section  v-if="notice" class="osr-panel article">
+        <!-- 文章头-->
+        <h3>
+            {[notice.title]}
+        </h3>
+        <br>
+        <article>
+            <!-- 正文-->
+            <div v-html="notice.text_html" v-highlight></div>
+            <!-- //正文-->
+        </article>
+        <div v-if="notice.code" v-html="notice.code"></div>
+    </section>
+</div>
+
+<script src="/theme/osr-theme-w/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-theme-w/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+<script src="/theme/osr-theme-w/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/notice/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

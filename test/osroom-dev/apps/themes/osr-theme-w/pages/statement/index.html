@@ -1,0 +1,41 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("平台协议")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-edit-page" v-cloak>
+    <section class="osr-panel article">
+        <header  v-if="name!='demo_use_agreement'" class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+            <ul class="nav nav-tabs">
+                <li id="head_li_user_agreement">
+                    <a data-toggle="tab" class="osr-pointer" v-on:click='get_global("user_agreement")'>
+                         {{_("用户协议")}}
+                    </a>
+                </li>
+                <li id="head_li_privacy_policy">
+                    <a data-toggle="tab" class="osr-pointer" v-on:click='get_global("privacy_policy")'>
+                         {{_("隐私政策")}}
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+        <!-- 文章头-->
+        <h3>
+            {[statement.title]}
+        </h3>
+        <br>
+        <article>
+            <!-- 正文-->
+            <div v-html="statement.text_html" v-highlight></div>
+            <!-- //正文-->
+        </article>
+        <div v-if="statement.code" v-html="statement.code"></div>
+    </section>
+
+</div>
+
+<script src="/theme/osr-theme-w/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-theme-w/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+<script src="/theme/osr-theme-w/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/statement/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

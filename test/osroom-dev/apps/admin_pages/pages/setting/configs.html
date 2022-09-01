@@ -1,0 +1,134 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("参数配置")}}-{% endblock %}
+{% block content %}
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-cogs"></i>
+                    <strong>
+                        {{_("参数配置")}}(<span class="osr-color-success">{{_("结果")}}{[projects.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-right">
+                            <input type="text" v-on:keypress="get_projects(1, keyword)" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_projects(1, keyword)" class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+
+                    <div class="alert alert-info osr-alert osr-alert-warning">
+                         <button data-dismiss="alert" class="close close-sm" type="button">
+                             <i class="fa fa-times"></i>
+                         </button>
+                       <div class="osr-remind-alert">
+                            <i class="fa fa-bell-o osr-color-warning" >{{_("提示")}}:</i>
+                            {{_("系统可修改配置，修改配置前请了解配置的作用")}}<br>
+                            <i class="fa fa-circle osr-color-danger"></i> {{_("修改后需要重启系统生效")}}
+                           &nbsp;<i class="fa fa-circle-o osr-color-success"></i> {{_("修改后直接生效")}}
+                        </div>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{_("配置项")}}</th>
+                                <th>{{_("说明")}}</th>
+                                <th>{{_("修改需要重启")}}</th>
+                                <th>{{_("最后更新")}}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="project in projects.datas">
+                                <td width="150px">
+                                    <span class="osr-color-success">{[project.project]}</span>
+                                </td>
+                                <td width="350px">
+                                    <span v-html="project.__info__">
+
+                                    </span>
+                                </td >
+                                <td width="150px" v-if="project.__restart__ == 'must'">
+                                      <i class="fa fa-circle osr-color-danger"></i>
+                                  </td>
+                                  <td width="150px" v-else>
+                                      <i class="fa fa-circle-o osr-color-success"></i>
+                                  </td>
+                                <td width="150px">
+                                    {[project.update_time | formatDate]}
+                                </td >
+                                <td>
+                                    <a :href="'/osr-admin/setting/config-edit?project='+project.project+'&from_page='+page" class="btn osr-btn btn-info">
+                                        <i class="fa fa-edit"></i> {{_("修改配置")}}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_projects( pages.last, keyword)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_projects( page, keyword)">{[page]}</a>
+                        <a v-else href="#">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_projects( pages.current_page, keyword)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_projects( page, keyword)" >{[page]}</a>
+                        <a v-else href="#">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_projects( pages.next, keyword)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                 <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_projects( pages.last, keyword)" class="osr-pointer">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_projects( pages.next, keyword)" class="osr-pointer">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+        </div>
+    </div>
+
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/setting/configs.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

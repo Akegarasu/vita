@@ -1,0 +1,26 @@
+
+<footer class="osr-footer" style="color:#ffffff">
+    <div id="go-up" class="osr-btn-block " style="display: none;">
+        <a href="#t"  title="{{_('回到顶部')}}"
+           style="border-radius:50px!important;color:#ffffff;background-color: #f39c12;"
+           class="osr-btn btn btn-lg btn-warning">
+              <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+  <div class="text-center">
+       <!--友情链接-->
+      <ul>
+          {% for k,v in g.site_global.site_config.FRIEND_LINK.items() %}
+            <li style="display:inline;">
+                <a href="{{v.url}}" target="_blank" style="color:#dde2e6;">
+                    {{k}}
+                </a>
+            </li>&nbsp;
+          {% endfor %}
+      </ul>
+      <!--//友情链接-->
+      <div>
+      {{ g.site_global.site_config.FOOTER_CONTENT | safe }}
+  </div>
+  </div>
+</footer>

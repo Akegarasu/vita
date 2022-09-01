@@ -1,0 +1,122 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("角色管理")}}-{% endblock %}
+{% block content %}
+<data id="page" content="{{data.page}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+
+                <header class="panel-heading">
+                     <i class="fa fa-user-md"></i>
+                    <strong>
+                         {{_("用户角色")}}(<span class="osr-color-success">{{_("结果")}}{[roles.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+
+                      <a href="/osr-admin/role/edit-role"  type="button" class="btn osr-btn btn-info">
+                          <i class="fa fa-plus"></i> {{_("添加角色")}}
+                      </a>
+                      <a href="/osr-admin/permission/table" type="button" class="btn osr-btn btn-success">
+                            <i class="fa fa-table"></i> {{_("权限表")}}
+                      </a>&nbsp;
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th>{{_("角色")}}</th>
+                              <th>{{_("权限")}}</th>
+                              <th>{{_("权重")}}</th>
+                              <th>{{_("默认")}}</th>
+                              <th>{{_("说明")}}</th>
+                              <th>{{_("操作")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="role,index in roles.datas">
+                              <td>{[role.name]}</td>
+                              <td>
+                                  <span v-for="(name,index) in role.permission_names">
+                                      {[name]}<br>
+                                  </span>
+                              </td>
+                              <td>{[role.permissions]}</td>
+                                <td v-if="role.default">
+                                     <span class="fa fa-check" style="color:#5eb95e;"></span>
+                                </td>
+                                <td v-else>
+                                    <span class="fa fa-close" style="color:#dd514c;"></span>
+                                </td>
+                              <td>{[role.instructions]}</td>
+                              <td>
+                                <div class="btn-group-sm">
+                                    <a v-bind:href="'/osr-admin/role/edit-role?id='+role._id+'&fp='+page" class="btn btn-sm osr-btn btn-info">
+                                        <span class="fa fa-pencil-square-o"></span> {{_("编辑")}}
+                                    </a>
+                                    <button v-on:click="warning_modal(null, 'delete_role', role._id)" class="btn btn-sm osr-btn btn-danger">
+                                        <span class="fa fa-trash-o"></span> {{_("删除")}}
+                                    </button>
+                                </div>
+
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_roles(pages.last)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_roles(page)">{[page]}</a>
+                        <a v-else href="#">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_roles(pages.current_page)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_roles(page)" >{[page]}</a>
+                        <a v-else href="#">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_roles(pages.next)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_roles(pages.last)">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_roles(pages.next)">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+            
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/role/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

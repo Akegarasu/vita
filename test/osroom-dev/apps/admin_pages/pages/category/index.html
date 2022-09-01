@@ -1,0 +1,65 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("内容分类管理")}}-{% endblock %}
+{% block content %}
+<data id="type" content="{{data.type}}"></data>
+<div v-cloak id="app" >
+    <div v-if="single_type"  class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/{{data.fs}}?page={{data.fp}}">
+                    <i class="fa fa-archive"></i> {[curren_type[0]]}</a>
+                </li>
+                <li class="active">{[curren_type[0]]}分类</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row osr-adm-edit-page">
+        <div class="col-md-12 osr-col-xs-12">
+            <section class="panel">
+              <header class="panel-heading">
+                  <span v-if="single_type"> {[curren_type[0]]}分类</span>
+                  <span v-else>{{_("内容分类")}}</span>
+
+
+                  <a class="pull-right" v-if="single_type" href="/osr-admin/{{data.fs}}?page={{data.fp}}">
+                        <i class="fa fa-arrow-circle-left"></i>
+                        {{_("返回")}}
+                    </a>
+
+              </header>
+              <div class="panel-body">
+
+                    <div class="form-group" v-if="!single_type">
+                        <select @change="switch_type($event.target.value)" class="form-control osr-form-control input-sm m-b-10">
+                              <option v-if="v===curren_type[1]" v-for="(v,k) in category_types" :value="v" selected>{[k]} </option>
+                              <option v-if="v!==curren_type[1]" v-for="(v,k) in category_types" :value="v" >{[k]} </option>
+                        </select>
+                    </div>
+
+                  <div class="text-center">
+
+                    <div v-for="category in categorys" class="form-group">
+                        <label>
+                        <input type="text" class="form-control osr-input" v-model="category.name" minlength="1" placeholder="{{_('分类名称')}}" required/>
+                        </label>
+                        <button v-on:click="update(category._id, category.name)" class="btn-sm osr-btn btn btn-info">{{_("保存")}}</button>
+                        <button v-on:click="warning_modal(null, 'del', category._id)" class="btn-sm osr-btn btn btn-danger" >{{_("删除")}}</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                        <input type="text" class="form-control osr-input" v-model="new_category" minlength="1" placeholder="{{_('分类名称')}}" required/>
+                        </label>
+                        <button v-on:click="add()" class="btn-sm osr-btn btn btn-success">{{_("添加")}}</button>
+                         <button class="btn-sm osr-btn btn btn-default disabled">{{_("删除")}}</button>
+                    </div>
+                 </div>
+              </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script src="/admin-pages/static/js/osr_page_js/category/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

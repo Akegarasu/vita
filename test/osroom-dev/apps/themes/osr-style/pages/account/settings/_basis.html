@@ -1,0 +1,94 @@
+
+<div id="user-basis" class="col-md-12 osr-col-xs-12">
+    <section class="panel">
+      <!--<header class="panel-heading">-->
+          <!--{{_("基础设置")}}-->
+          <!--<a class="pull-right">-->
+                <!--<i class="fa fa-arrow-circle-left"></i>-->
+                <!--{{_("返回")}}-->
+            <!--</a>-->
+
+      <!--</header>-->
+      <div class="panel-body">
+         <div class="form-group">
+                {% include 'osr-style/pages/account/settings/_avatar.html' %}
+            </div>
+          <div class="form-group">
+                <label >{{_('用户名')}}</label>
+                <input name="username" class="form-control osr-input" v-model="user_profile.username" :value="user_profile.username"
+                minlength="3"  placeholder="{{_('用户名不能使用特殊符号')}}"
+                data-bv-notempty-message="{{_('用户名不能为空')}}"
+                data-bv-stringLength-message="{{_('至少3个字')}}" required>
+          </div>
+
+         <div class="form-group">
+            <label >
+                {{_('个性域')}}
+            </label>&nbsp;
+            <span  v-if="user_profile.custom_domain != -1" class="osr-color-success">{[user_profile.custom_domain]}</span>
+            <a   v-else-if="!input_domain && user_profile.custom_domain == -1" v-on:click="ready_add_domain()"> {{_('添加')}}</a>
+            <a   v-else-if="input_domain"v-on:click="ready_add_domain()"> {{_('取消')}}</a>
+            <input name="domain" class="form-control osr-input"  v-if="input_domain" type="text" minlength="4" v-model="user_profile.custom_domain"
+              placeholder="{{_('保存后不能修改')}}"
+              data-bv-notempty-message="{{_('用户名不能为空')}}"
+              pattern="[a-zA-Z0-9]+"
+              data-bv-regexp-message="{{_('只能是字母或数字')}}"
+              data-bv-stringLength-message="{{_('至少4个字')}}" required>
+         </div>
+
+        <div class="form-group form-inline">
+            <label class="control-label">{{_('编辑器')}}&nbsp;</label>
+            <div class="radio radio-success">
+                <input  v-if="user_profile.editor=='markdown'" id="markdown" class="form-radio-input" type="radio" name="editor"
+                       v-model="user_profile.editor" value="markdown" checked>
+                <input  v-else id="markdown" class="form-radio-input" type="radio" name="editor"
+                       v-model="user_profile.editor" value="markdown">
+                <label class="form-radio-label" for="markdown"> {{_("Markdown")}} </label>
+            </div>
+            &nbsp;&nbsp;
+            <div class="radio radio-success">
+                <input  v-if="user_profile.editor=='rich_text'" id="rich_text" class="form-radio-input" type="radio" name="editor"
+                       v-model="user_profile.editor" value="rich_text" checked>
+                <input  v-else id="rich_text" class="form-radio-input" type="radio" name="editor"
+                       v-model="user_profile.editor" value="rich_text">
+                <label class="form-radio-label" for="rich_text"> {{_("富文本")}} </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>{{_('邮&nbsp;&nbsp;&nbsp;&nbsp;箱')}}</label>&nbsp;&nbsp;
+            <span>
+                {[user_profile.email]}
+            </span>
+            &nbsp<a class="btn osr-btn btn-xs btn-success" href="/account/settings/email">{{_('修改')}}</a>
+        </div>
+          <div class="form-group">
+            <label>{{_('手&nbsp;&nbsp;&nbsp;&nbsp;机')}}</label>&nbsp;&nbsp;
+            <span  v-if="user_profile.mphone_num">
+                {[user_profile.mphone_num.slice(0,3)]}****{[user_profile.mphone_num.slice(-4)]}
+            </span>
+            <span  v-else>{{_("无")}}</span>
+
+            <a class="btn osr-btn btn-xs btn-success" href="/account/settings/mphone">
+                <span  v-if="user_profile.mphone_num" >{{_('修改')}}</span>
+                <span  v-else >{{_('添加')}}</span>
+            </a>
+        </div>
+        <div  class="form-group">
+            <label>
+                {{_('密&nbsp;&nbsp;&nbsp;&nbsp;码')}}&nbsp;******
+            </label>
+            &nbsp;&nbsp;
+            <a class="btn osr-btn btn-xs btn-success" href="/account/settings/reset-password">{{_('重设')}}</a>
+
+        </div>
+        <div class="btn-group">
+            <button v-on:click="save_basic()" class="btn osr-btn btn-info osr-submit-btn">{{_('保存')}}</button>
+        </div>
+
+      </div>
+    </section>
+</div>
+
+<script src="/theme/osr-style/static/js/osr_page_js/account/settings/_basis.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>

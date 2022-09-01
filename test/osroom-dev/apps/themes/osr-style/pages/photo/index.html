@@ -1,0 +1,101 @@
+{% extends "osr-style/pages/based/based.html" %}
+{% block title %}{{_("图库")}}-{% endblock %}
+{% block content %}
+<data id="category" content="{{data.category}}"></data>
+<div id="app" v-cloak>
+    <div class="row osr-page">
+            <div class="col-xs-12">
+                 <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+                    <ul class="nav nav-tabs">
+                        <li id="head_li_all">
+                            <a data-toggle="tab" class="osr-pointer" v-on:click='get_global(1, category_names)'>
+                                 {{_("全部")}}
+                            </a>
+                        </li>
+                        <li :id="'head_li_'+index" v-for="(ct,index) in category_names">
+                            <a data-toggle="tab" class="osr-pointer" v-on:click='get_global(1,[ct])'>
+                                 {[ct]}
+                            </a>
+                        </li>
+                    </ul>
+                </header>
+                <br>
+
+                <div id="galley" class="docs-pictures clearfix">
+                    <div  v-for="(media, index) in photos.datas" class="osr-img-list osr-pointer col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <img class="osr-media-img" :src="media.url+img_w_h" :alt="media.title"
+                             :data-original="media.url" v-on:click="init_viewer()">
+                         <div  v-if="media.title" class="img-title osr-text-overleft"  data-toggle="tooltip" :title="media.title">
+                             {[media.title]}
+                         </div>
+                        <div  v-else class="img-title">&nbsp;</div>
+                        <span class="osr-date">
+                            <i class="fa fa-exclamation-circle"
+                               data-toggle="tooltip" title="{{_('版权归原作者所有,与本站无关.如果侵权,请联系本站删除!')}}" ></i>
+                            &nbsp;
+                            <a class="fa fa-eye osr-date" :href="'/photo/introduction?mid='+media._id" target="_blank" > {{_("瞄简介")}}</a> |
+                            {{_("上传于")}} {[media.time | formatDate]}
+                        </span>
+                         <hr>
+                    </div>
+                </div>
+
+                <!-- 页面导航-->
+                <div class="text-center visible-lg visible-md">
+                    <ul class="pagination">
+                        <li  v-if="pages.last < pages.current_page && pages.last>0">
+                            <a class="osr-pointer" v-on:click="get_global(pages.last, current_category)">«</a>
+                        </li>
+                        <li  v-else class="disabled">
+                            <a>«</a>
+                        </li>
+
+                        <li v-for="page in pages.last_show" >
+                            <a class="osr-pointer"  v-if="page!='...'" v-on:click="get_global(page, current_category)">{[page]}</a>
+                            <a  v-else href="#">...</a>
+                        </li>
+
+                        <li class="active">
+                            <a class="osr-pointer" v-on:click="get_global(pages.current_page, current_category)">{[pages.current_page]}</a>
+                        </li>
+
+                       <li v-for="page in pages.next_show" >
+                            <a class="osr-pointer"  v-if="page!='...'" v-on:click="get_global(page, current_category)" >{[page]}</a>
+                            <a  v-else href="#">...</a>
+                       </li>
+
+                       <li  v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                            <a class="osr-pointer" v-on:click="get_global(pages.next, current_category)">»</a>
+                        </li>
+                        <li  v-else class="disabled">
+                            <a>»</a>
+                        </li>
+                    </ul>
+               </div>
+                <!-- //页面导航-->
+
+                 <!-- m页面导航-->
+                <ul class="pager col-sm-12 visible-xs visible-sm">
+                    <li  v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                        <a v-on:click="get_global(pages.last, current_category)" class="osr-pointer">
+                            {{_("上一页")}}
+                        </a>
+                    </li>
+                     <span class="text-center osr-text">{{_('第{[photos.current_page]}页/共{[photos.page_total]}页')}}</span>
+                    <li  v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                        <a v-on:click="get_global(pages.next, current_category)" class="osr-pointer">
+                            {{_("下一页")}}
+                        </a>
+                    </li>
+                </ul>
+                <!-- //m页面导航-->
+        </div>
+    </div>
+</div>
+<script src="/theme/osr-style/static/js/image/viewer.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<script src="/theme/osr-style/static/js/image/jquery-viewer.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-style/static/css/image/viewer.min.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet" type="text/css" />
+
+<script src="/theme/osr-style/static/js/osr_page_js/photo/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

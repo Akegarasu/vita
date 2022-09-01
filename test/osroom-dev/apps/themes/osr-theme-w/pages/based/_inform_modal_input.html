@@ -1,0 +1,26 @@
+<!-- 举报内容的input-->
+<!--请放在vue 控制范围内, 并且使用规定的data变量名称-->
+ <div class="form-group form-inline">
+    <div class="radio radio-success">
+        <input id="inform_ad" class="form-radio-input" type="radio" name="category" v-model="inform.category"
+               value="ad" checked="checked">
+        <label class="form-radio-label" for="inform_ad"> {{_("广告")}} </label>
+    </div>
+    &nbsp;&nbsp;
+    <div class="radio radio-success">
+        <input id="inform_junk" class="form-radio-input" type="radio" name="category" v-model="inform.category" value="junk_info">
+        <label class="form-radio-label" for="inform_junk"> {{_("垃圾信息")}} </label>
+    </div>
+     &nbsp;&nbsp;
+    <div class="radio radio-success">
+        <input id="inform_plagiarize" class="form-radio-input" type="radio" name="category" v-model="inform.category" value="plagiarize">
+        <label class="form-radio-label" for="inform_plagiarize"> {{_("抄袭/侵权")}} </label>
+    </div>
+     &nbsp;&nbsp;
+     <div class="radio radio-success">
+        <input id="inform_other" class="form-radio-input" type="radio" name="category"
+               v-model="inform.category" value="other">
+        <label class="form-radio-label" for="inform_other"> {{_("其他")}} </label>
+    </div>
+</div>
+<textarea type="text" class="form-control osr-input" v-model="inform.details" placeholder='{{_("违规详情(选择\"其他\"类型时必填)")}}'></textarea>

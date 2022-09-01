@@ -1,0 +1,21 @@
+{% extends "based/based_no_head.html" %}
+{% block title %}{{_("主题预览")}}-{% endblock %}
+{% block content %}
+
+<div style="height: 50px;background-color: #283744">
+    <div style="color: white; padding-top: 15px;padding-left: 25px">
+        <i class="fa fa-laptop"></i>
+        {{_("主题预览")}}: {{data.theme}}
+        <span style="color:#f39c12;">
+            ({{_("部分开启新Tab链接已被修改")}})
+        </span>
+    </div>
+</div>
+
+<div id="iframe-div">
+    <iframe id="iframe-id" src="/theme/view/{{data.theme}}/index" width=100% height="640px">
+    </iframe>
+</div>
+<script src="/admin-pages/static/js/osr_page_js/theme_view.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

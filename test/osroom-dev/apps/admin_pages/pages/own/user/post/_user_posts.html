@@ -1,0 +1,94 @@
+
+<ul class="osr-list-group">
+    <li class="osr-list-group-item have-img" v-for="post in posts.datas">
+         <!-- 文章图片-->
+           <a class="wrap-img pull-right" target="_blank" :href="'/osr-admin/own/user/post/preview?id='+post._id">
+               <span class="osr-img-tag">
+                  <span  v-if="post.category_name" class="badge badge-info">
+                      {[post.category_name]}
+                  </span>
+                  <span  v-else class="badge badge-info">
+                      {{_('默认文集')}}
+                  </span>
+                </span>
+
+              <img v-if="post.cover_url"  style="height:100%;width:100%" v-bind:src="post.cover_url+img_w_h" alt="post cover">
+
+          </a>
+         <!-- //文章图片-->
+
+          <div class="item-content">
+              <div class="list-author">
+                  <img class="osr-img-circle-b" width="30px" height="30px" v-bind:src="user.avatar_url.url" alt="{{_('头像')}}">
+                  &nbsp;{[user.username]}
+                   <span v-if="user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                  <span v-if="user.gender=='f'" class="fa fa-venus osr-fa-gender-f"></span>
+                  <span class="osr-date">
+                       <span v-if="post.issue_time" >
+                          <i class="fa fa-clock-o"></i>&nbsp;{[post.issue_time | formatDate]}
+                      </span>
+                      <span v-else>
+                          <i class="fa fa-refresh" title="{{_('更新时间')}}"></i>
+                          <i class="fa fa-clock-o"></i>&nbsp;{[post.update_time | formatDate]}
+                      </span>
+                  </span>
+
+              </div>
+                <!--title-->
+              <a v-if="status!='is_issued'" class="osr-title" target="_blank" :href="'/osr-admin/own/user/post/preview?id='+post._id+'&s=private'">
+                {[post.title]}
+              </a>
+              <a v-else target="_blank" class="osr-title" :href="'/osr-admin/own/user/post/preview?id='+post._id">
+                  {[post.title]}
+              </a>
+                <!--title-->
+
+              <!--摘要-->
+              <div class="osr-text">
+                  <span v-html="post.brief_content"></span>...
+              </div>
+                <!--摘要-->
+
+              <div class="meta">
+                  <span class="osr-date">
+                      <i class="fa fa-eye"></i>&nbsp;{[post.pv]}
+                      &nbsp;·&nbsp;<i class="fa fa-commenting-o"></i>&nbsp;{[post.comment_num]}&nbsp;·&nbsp;
+                      <span v-if="is_myself" >
+                          <a class="osr-color-secondary" :href="'/osr-admin/own/content/writer?status='+ status +'&id='+post._id+'&editor='+post.editor">
+                                <i class="fa fa-edit"></i> {{_('编辑')}}
+                          </a>&nbsp;
+                        <a class="osr-color-danger osr-pointer" v-if="status !='recycle'" v-on:click="del_posts(post._id, 1)">
+                            <i class="fa fa-recycle"></i> {{_('移到回收站')}}
+                        </a>
+                        <a class="osr-color- osr-pointer" v-else v-on:click="restore_posts(post._id)">
+                            <i class="fa fa-repeat"></i> {{_('恢复')}}
+                        </a>
+                        <a class="osr-color-danger osr-pointer" v-if="status =='recycle'" v-on:click="warning_modal(null, 'del_posts', post._id, 0)">
+                            <i class="fa fa-trash"></i> {{_('删除')}}
+                        </a>
+                      </span>
+                 </span>
+            </div>
+
+          </div>
+
+        </li>
+</ul>
+
+ <!-- m页面导航-->
+<ul class="pager col-sm-12">
+    <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+        <a v-on:click="get_posts(status, pages.last, sort, keyword)" class="osr-pointer">
+            {{_("上一页")}}
+        </a>
+    </li>
+     <span class="text-center osr-text">{{_('第{[posts.current_page]}页/共{[posts.page_total]}页')}}</span>
+    <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+        <a v-on:click="get_posts(status, pages.next, sort,  keyword)" class="osr-pointer">
+            {{_("下一页")}}
+        </a>
+    </li>
+</ul>
+<!-- //m页面导航-->
+
+

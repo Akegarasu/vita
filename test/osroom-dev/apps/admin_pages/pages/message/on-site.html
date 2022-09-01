@@ -1,0 +1,207 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("站内消息管理")}}-{% endblock %}
+{% block content %}
+<data id="type" content="{{data.type}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="sys" content="{{data.sys}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                     <i class="fa fa-comment-o"></i>
+                    <strong>
+                         {{_("站内消息管理")}}(<span class="osr-color-success">{{_("结果")}}{[msgs.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                            <select id="status" name="status"  class="form-control osr-form-control input-sm m-b-10" @change="switch_type($event.target.value)">
+                                <option  v-for="t,k in type_list" v-if="type==t" selected = "selected" :value ="t" >
+                                   {[k]}
+                                </option>
+                                 <option  v-for="t,k in type_list" v-if="type!=t"  :value ="t" >
+                                    {[k]}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-group pull-right">
+                            <input type="text" v-on:keypress="get_msgs(1)" v-model="keyword" class="form-control osr-input input-sm " style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_msgs(1)"  class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th v-if="is_sys_msg" >
+                                    <div class="checkbox checkbox-danger">
+                                      <input id="check_all" v-on:click="osr_check_all(msgs.datas, checkAll, set)" type="checkbox"
+                                            v-model="checkAll" unchecked>
+                                      <label for="check_all"></label>
+                                    </div>
+                              </th>
+                              <th>{{_("类别")}}</th>
+                              <th>{{_("被通知")}}</th>
+                              <th>{{_("详情")}}</th>
+                              <th>{{_("状态")}}</th>
+                              <th>{{_("时间")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="msg,index in msgs.datas">
+                                  <td v-if="is_sys_msg" width="50px">
+                                      <div class="checkbox checkbox-danger">
+                                           <input :id="msg._id" type="checkbox"  v-bind:value="msg._id" unchecked>
+                                           <label :for="msg._id"></label>
+                                      </div>
+
+                                  </td>
+                                  <td width="100px" v-if="!is_sys_msg">
+
+                                      <span v-if="msg.type == 'notice'">
+                                          {{_("通知")}}
+                                      </span>
+                                      <span v-else-if="msg.type == 'audit'">
+                                          {{_("审核")}}
+                                      </span>
+                                      <span v-else-if="msg.type == 'msg'">
+                                          {{_("消息")}}
+                                      </span>
+                                      <span v-else>
+                                          {[msg.type | capitalize]}
+                                      </span>
+
+                                  </td>
+                                <td width="100px" v-else>{{_("系统通知")}}</td>
+                                <td width="100px">
+                                    {{_("用户")}}
+                                    <a :href="'/osr-admin/own/user?id='+msg.user_id" target="_blank">
+                                        {{_("(主页)")}}
+                                    </a>
+                                </td>
+                                <td  v-if="msg.type=='notice'">
+                                    <span v-if="msg.content && msg.content.length>20" :title="msg.content">
+                                        {[msg.content.slice(0,20)]}...
+                                         <a class="osr-pointer" v-on:click="put_msg_view(index)" data-toggle="modal" data-target="#msg-info">
+                                            {{_("详情")}}
+                                        </a>
+                                    </span>
+                                    <span v-else >
+                                        {[msg.content.text]}
+                                    </span>
+                                </td>
+                                <td  v-else-if="msg.type=='comment' || msg.type=='audit'">
+                                    <span v-if="msg.content.content && msg.content.content.length>20" :title="msg.content.content">
+                                        {[msg.content.content.slice(0,20)]}...
+                                        <a class="osr-pointer" v-on:click="put_msg_view(index)" data-modal="{target:'#msg-info', width:400}">
+                                            {{_("详情")}}
+                                        </a>
+                                    </span>
+                                    <span v-else >
+                                        {[msg.content.content]}
+                                    </span>
+                                </td>
+                                <td  v-else >
+                                </td>
+
+                                <td width="50px" v-if="msg.status">{[msg.status]}</td>
+                                <td v-else>unread</td>
+                                <td width="150px" class="hide-sm-only">{[msg.time | formatDate]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+            <div v-if="is_sys_msg" class="btn-group btn-group-sm">
+                <button v-on:click="warning_modal(null, 'del_msgs')" type="button" class="btn osr-btn btn-danger">
+                    <span class="fa fa-trash-o"></span> {{_("删除")}}
+                </button>
+            </div>
+            
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_msgs(pages.last)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_msgs(page)">{[page]}</a>
+                        <a v-else class="osr-pointer">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_msgs(pages.current_page)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_msgs(page)" >{[page]}</a>
+                        <a v-else class="osr-pointer">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_msgs(pages.next)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_msgs(pages.last)">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_msgs(pages.next)">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+        </div>
+    </div>
+
+       <!--模态-->
+    <div class="modal fade" id="msg-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_("详情")}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div v-if="msg_view.type=='notice'">
+                        <span v-html="msg_view.title"></span>
+                        <span v-html="msg_view.content"></span>
+                    </div>
+                    <div v-else-if="msg_view.type=='comment' || msg_view.type=='audit'">
+                        <span v-html="msg_view.content.content"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //模态-->
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/message/on-site.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

@@ -1,0 +1,77 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("权重设置")}}-{% endblock %}
+{% block content %}
+<data id="per_id" content="{{data.id}}" hidden></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/permission?page={{data.fp}}"><i class="fa fa-user-md"></i> {{_("权重管理")}}</a></li>
+                <li  v-if="per" class="active">{{_("编辑")}}</li>
+                <li  v-else class="active">{{_("添加")}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row osr-adm-edit-page">
+
+        <div class="col-md-12 osr-col-xs-12">
+            <section class="panel">
+              <header class="panel-heading">
+                <span v-if="per"><i class="fa fa-user-md"></i>  {{_("编辑")}}: {[per.name]}</span>
+                <span v-else ><i class="fa fa-plus"></i> {{_("添加")}}</span>
+              </header>
+              <div class="panel-body">
+                  <div>
+                      <span v-if="per">{{_("当前权重位为")}}: {[per.pos]}</span>
+                        <div class="form-group">
+                          <label>{{_("权限名")}}&nbsp;</label>
+                          <input name="name" type="text" class="form-control osr-input"  v-model="per.name" id="name"
+                                 minlength="3" placeholder="{{_('权限名称')}}"
+                                 data-bv-notempty-message="{{_('权限名不能为空')}}"
+                                 data-bv-stringLength-message="{{_('至少3个字')}}" required>
+                        </div>
+
+                      <div class="form-group">
+                        <label for="positions">{{_("可选权重位(二进制位)")}}</label>
+
+                        <select height=100 id="positions" name="positions" class="form-control">
+                            <option v-if="per"  v-bind:value =per.pos>
+                                {{_("位置")}}{[per.pos]}
+                            </option>
+                            <option v-for="pos in positions"  v-bind:value =pos>
+                                {{_("位置")}}{[pos]}
+                            </option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="checkbox checkbox-success">
+                               <input v-if="per.is_default" id="is_default" class="form-check-input" type="checkbox" value="on_site" checked>
+                               <input v-else id="is_default" class="form-check-input" type="checkbox" value="on_site" unchecked>
+                              <label for="is_default" class="form-check-label"></label>
+                              {{_("可作为缺省权限")}}
+                              <br>
+
+                              <span class="osr-color-warning">{{_("注:当api未设置任何权限限制时, 则需要符合缺省权限中的任何一个即可有权调用")}}</span>
+
+                          </div>
+                      </div>
+
+                    <div class="form-group">
+                      <label>{{_("备注")}}&nbsp;</label>
+                      <input type="text" class="form-control osr-input"  id="explain" placeholder="{{_('备注')}}" v-bind:value="per.explain" />
+                    </div>
+
+                    <button v-on:click="save()" class="btn osr-btn btn-info osr-submit-btn" >
+                       {{_("保存")}}
+                    </button>
+                  </div>
+              </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/permission/edit.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

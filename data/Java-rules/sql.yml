@@ -1,0 +1,16 @@
+﻿language: java
+
+rules:
+  - id: 10040
+    name: sql
+    description: sql注入可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    patterns:
+      - 'createQuery'
+      - 'executeQuery'
+      - 'createNativeQuery'
+      - 'doQuery'
+      - 'preparedStatement.execute'

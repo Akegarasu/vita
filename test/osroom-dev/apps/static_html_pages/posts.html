@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <title>
+        {{ gettext('文章|博客|内容地图') }}-
+        {{g.site_global.site_config.TITLE_SUFFIX}}
+    </title>
+    <meta name="description" content="{{g.site_global.site_config.DEFAULT_DESCRIPTION}}">
+    <meta name="keywords" content="{{g.site_global.site_config.DEFAULT_KEYWORDS}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="SHORTCUT ICON" href="{{g.site_global.site_config.FAVICON}}">
+    <link rel="apple-touch-icon-precomposed" href="{{g.site_global.site_config.FAVICON}}">
+    <meta name="apple-mobile-web-app-title" content="{{g.site_global.site_config.TITLE_SUFFIX}}">
+    <meta name="author" content=""/>
+    <meta name="viewport" content="width=drvice-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+</head>
+<body>
+<h1>{{ gettext('文章|博客|内容地图') }}</h1>
+{% for post in data.posts.datas %}
+    <div>
+        <span>{{ post.user.username }}</span>
+        <a style="color: #1483d8" href="/st-html/post/{{ post._id }}" target="_blank">
+            {{ post.title }}
+        </a>
+    </div>
+{% endfor %}
+<div>
+    {% if data.posts.current_page>1 %}
+    <a href="/st-html/posts/{{ data.posts.current_page-1 }}">{{ gettext('上一页')}}</a>&nbsp;
+    {% endif %}
+    <span>第{{ data.posts.current_page }}页/共{{ data.posts.page_total }}页</span>&nbsp;
+    {% if data.posts.current_page<data.posts.page_total %}
+    <a href="/st-html/posts/{{ data.posts.current_page+1 }}">{{ gettext('下一页')}}</a>
+    {% endif %}
+</div>
+<div>
+    {% for n in  data.posts.page_nums %}
+    <a href="/st-html/posts/{{ n }}">{{ n }}</a>&nbsp;
+    {% endfor %}
+</div>
+<footer >
+        <a href="/" target="_blank">{{ gettext('首页') }}</a>
+    </footer>
+</body>
+</html>

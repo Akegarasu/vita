@@ -1,0 +1,20 @@
+<div v-if="!keyword && current_project!='all'"  class="alert alert-info osr-alert osr-alert-warning">
+         <button data-dismiss="alert" class="close close-sm" type="button">
+             <i class="fa fa-times"></i>
+         </button>
+       <div class="osr-remind-alert">
+           <span v-html="config_info"></span>
+           <span v-if="must_restart">
+             <br>
+               <i class="fa fa-bell-o osr-color-warning" >{{_("提示")}}:</i>
+              {[config_name | formatKey]}{{_("配置修改后")}},
+            <span class="osr-color-danger" >{{_("重启网站生效")}}</span>
+            ({{_('对没有禁止"重启更新配置"的部署服务器有效')}}).
+            {{_('查看各服务器的"配置文件"情况')}}
+            <a class="osr-color-secondary" href="/osr-admin/setting/config-versions" >{{_("查看")}}
+                 <i class="fa fa-eye"></i>
+            </a>
+           </span>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+# OSROOM官方默认主题配置
+# 主题名必须和主题主目录一致
+theme_name: osr-style
+author: Allen Woo
+theme_uri: www.osroom.com/theme
+introduce: OSROOM官方Style主题
+cover_path: static/sys_imgs/cover.png
+version: v0.1
+license: BSD-2

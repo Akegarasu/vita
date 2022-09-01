@@ -1,0 +1,112 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("URL权限修改")}}-{% endblock %}
+{% block content %}
+<data id="id" content="{{data.id}}" hidden></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/permission/url?type={{data.ft}}&page={{data.fp}}"><i class="fa fa-shield"></i> {{_("权限控制")}}</a></li>
+                <li class="active">{{_("权限修改")}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row osr-adm-edit-page">
+         <div class="col-md-12 osr-col-xs-12">
+            <section class="panel">
+              <header class="panel-heading">
+                <span>
+                    <i class="fa fa-shield"></i> {{_("权限修改")}}
+                    <i v-on:click="switch_help_alert()" class="fa fa-question-circle osr-color-success" ></i>
+                </span>
+              </header>
+              <div class="panel-body">
+                    <div id="osr_help_alert" class="alert alert-info osr-alert osr-alert-warning" hidden>
+                         <button data-dismiss="alert" class="close close-sm" type="button">
+                             <i class="fa fa-times"></i>
+                         </button>
+                       <div class="osr-remind-alert">
+                        <i class="fa fa-bell-o osr-color-warning" >{{_("提示")}}:</i><br>
+                           <span v-if="url.type=='page'">
+                                <i class="osr-color-danger fa fa-circle"></i>
+                                {{_("自定义指定是否需要登录验证, 对系统代码中已强制需要登录验证的URL无效")}}.<br>
+                           </span>
+
+                           <i class="osr-color-danger fa fa-circle"></i>
+                        {{_("自定义指定权限, 则默认的权限(系统代码中指定的)则会失效")}}.<br>
+                           <i class="osr-color-danger fa fa-circle"></i>
+                        {{_("指定多个权限, 请求时用户只需要匹配其中任意一个权限则有权请求")}}.
+                        </div>
+                    </div>
+
+
+                      <div class="form-group">
+                          <a href="/osr-admin/permission/table" type="button" target="_blank" class="btn osr-btn btn-success">
+                              <i class="fa fa-table"></i> {{_("查看权限表")}}
+                          </a>
+                      </div>
+                      <div class="form-group">
+                            <label>{{_("URL(api/路由)")}}</label>
+                          <input type="text" :value="url.url" class="form-control osr-input" disabled/>
+                      </div>
+
+                    <div class="form-group">
+                        <label class="osr-color-success">{{_("请求方式")}}:</label>
+                         <select class="form-control osr-form-control input-sm" @change="switch_method($event.target.value)">
+                            <option  v-for="tmethod in url.methods"v-on:value ="tmethod">{[tmethod]}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="osr-color-success">
+                            {{_("访问权限:")}}
+                        </label>
+                        <a v-if="!url.custom_permission[current_method]">
+                            {{_("未自定义")}}
+                        </a>
+                        <a v-for="per in permissions" v-if="url.custom_permission[current_method] && url.custom_permission[current_method] & per[1]">
+                            {[per[0]]}&nbsp;&nbsp;
+                        </a>
+                    </div>
+
+                    <div v-if="url.type=='page'" class="form-group">
+                        <div class="checkbox checkbox-success">
+                           <input id="login_check" v-if="url.login_auth && url.login_auth[current_method]" type="checkbox" value="1" checked>
+                          <input id="login_check" v-else type="checkbox" value="1" unchecked>
+                           <label for="login_check" class="form-check-label"></label>
+                            {{_("登录验证")}}
+                       </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="osr-color-success">{{_("选择访问权限(可多选)")}}</label>
+                        <select :id="'permission_'+current_method" name="permission"  class="form-control" multiple="multiple">
+                            <option v-if="url.custom_permission[current_method] && url.custom_permission[current_method] & per[1]" v-for="per in permissions" selected = "selected" v-bind:value ="per[1]">
+                                {[per[0]]}
+                            </option>
+                            <option v-if="!url.custom_permission[current_method] || !(url.custom_permission[current_method] & per[1])" v-for="per in permissions"  v-bind:value ="per[1]">
+                                {[per[0]]}
+                            </option>
+                        </select>
+                    </div>
+
+                  <div class="btn-group-sm">
+                       <button v-on:click="update(current_method)" class="btn osr-btn btn-info" >
+                        {{_("保存修改")}}
+                       </button>
+
+                       <button v-if="url.custom_permission[current_method]" v-on:click="update(current_method, 'uncustom')" class="btn osr-btn btn-warning" >
+                        {{_("取消自定义")}}
+                       </button>
+                  </div>
+             </div>
+            </section>
+         </div>
+    </div>
+
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/permission/url/edit.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

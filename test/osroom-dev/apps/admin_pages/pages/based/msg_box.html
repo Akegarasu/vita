@@ -1,0 +1,64 @@
+<div hidden>
+    <div id="alert-success">
+
+        <div id="success-msg" class="alert alert-info osr-alert osr-msg-alert-success">
+            <button data-dismiss="alert" type="button" class="close close-sm">
+                <i class="fa fa-times"></i>
+            </button>
+            <div id="success-msg-content" class="osr-remind-alert" style="color:#ffffff">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="alert-warning">
+        <div id="warning-msg" class="alert alert-info osr-alert osr-msg-alert-warning">
+             <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+             </button>
+           <div id="warning-msg-content"  class="osr-remind-alert" style="color:#ffffff">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="alert-error">
+        <div id="error-msg" class="alert alert-info osr-alert osr-msg-alert-error">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+             </button>
+           <div id="error-msg-content"  class="osr-remind-alert"  style="color:#ffffff">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--危险操作警告模态框-默认确认删除-->
+    <div class="modal fade" id="osr-delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title osr-color-danger fa fa-exclamation-circle text-center">
+                        {{_('提示')}}
+                    </h4>
+                </div>
+                <div id="prompt_msg" style="font-size:16px;" class="modal-body text-center">
+                    {{_('确定删除')}}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="button" data-dismiss="modal" aria-hidden="true">
+                        {{_("取消")}}
+                    </button>
+                    <button id="confirm" class="btn btn-success" type="button" data-dismiss="modal" aria-hidden="true" >
+                        {{_("确定")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <data id="default_prompt_msg" hidden>{{_('确定删除')}}?</data>
+    </div>
+<!--危险操作警告弹出框-默认确认删除-->

@@ -1,0 +1,165 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <section class="panel">
+          <header class="panel-heading  osr-color-success">
+              <i class="fa fa-bar-chart"></i>
+               {{_("动态数据")}}
+          </header>
+             <canvas id="d-data"></canvas>
+{#            <div class="panel-body table-responsive">#}
+{#                <table class="table table-hover">#}
+{#                  <thead>#}
+{#                    <tr>#}
+{#                        <th>{{_("名称")}}</th>#}
+{#                        <th>{{_("7天")}}</th>#}
+{#                        <th>{{_("30天")}}</th>#}
+{#                        <th>{{_("总数")}}</th>#}
+{#                    </tr>#}
+{#                </thead>#}
+{#                  <tbody>#}
+{#                        <tr >#}
+{#                            <td>#}
+{#                               <span class="fa fa-file-text-o"> {{_("文章")}}</span>#}
+{#                            </td>#}
+{##}
+{#                            <td>{[datas.post["7_total"]]}</td>#}
+{#                            <td>{[datas.post["30_total"]]}</td>#}
+{#                            <td>{[datas.post["total"]]}</td>#}
+{#                        </tr>#}
+{#                        <tr >#}
+{#                            <td>#}
+{#                               <span class="fa fa-comment-o"> {{_("评论")}}</span>#}
+{#                            </td>#}
+{##}
+{#                            <td>{[datas.comment["7_total"]]}</td>#}
+{#                            <td>{[datas.comment["30_total"]]}</td>#}
+{#                            <td>{[datas.comment["total"]]}</td>#}
+{#                        </tr>#}
+{#                        <tr >#}
+{#                            <td>#}
+{#                               <span class="fa fa-play-circle"> {{_("多媒体库")}}</span>#}
+{#                            </td>#}
+{##}
+{#                            <td>{[datas.media["7_total"]]}</td>#}
+{#                            <td>{[datas.media["30_total"]]}</td>#}
+{#                            <td>#}
+{#                                {[datas.media.media_image + datas.media.media_text#}
+{#                                +datas.media.media_video +datas.media.media_audio#}
+{#                                +datas.media.media_other]}#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr >#}
+{#                            <td>#}
+{#                               <span class="fa fa-user"> {{_("用户")}}</span>#}
+{#                            </td>#}
+{#                            <td>{[datas.user["7_total"]]}</td>#}
+{#                            <td>{[datas.user["30_total"]]}</td>#}
+{#                            <td>{[datas.user["total"]]}</td>#}
+{#                        </tr>#}
+{##}
+{#                    </tbody>#}
+{#              </table>#}
+{#          </div>#}
+        </section>
+    </div>
+    <!--end col-6 -->
+
+    <div class="col-md-6 col-sm-12">
+        <section class="panel">
+          <header class="panel-heading osr-color-warning">
+              <i class="fa fa-calendar"></i>
+              {{_("待处理事件")}}
+          </header>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                         <th>{{_("名称")}}</th>
+                         <th>{{_("待处理")}}</th>
+                        <th>{{_("异常")}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr v-if="datas.post.unaudited">
+                            <td>
+                                <span class="fa fa-file-text-o"> {{_("文章")}}</span>
+                            </td>
+                            <td>
+                                <a class="osr-color-danger" href="/osr-admin/post?page=1&state=not_audit">
+                                    <i class="fa fa-link"></i>
+                                    {{_("待审核")}} {[datas.post.unaudited]}
+                                </a>
+                            </td>
+                            <td class="font-green bold"></td>
+                        </tr>
+
+                        <tr  v-if="datas.comment.unaudited">
+                            <td>
+                                <span class="fa fa-comment-o"> {{_("评论")}}</span>
+                            </td>
+                            <td>
+                                <a class="osr-color-danger" href="/osr-admin/comment?page=1&state=not_audit">
+                                    <i class="fa fa-link"></i>
+                                    {{_("待审核")}} {[datas.comment.unaudited]}
+                                </a>
+                            </td>
+                            <td class="font-green bold"></td>
+                        </tr>
+
+                        <tr v-if='datas.message["email_abnormal"] || datas.message["email_error"]'>
+                            <td>
+                                <span class="fa fa-at"> {{_("邮件发送")}}</span>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <a class="osr-color-warning" href="/osr-admin/message/email?page=1&state=abnormal">
+                                    <i class="fa fa-link"></i>
+                                    {{_("异常")}} {[ datas.message["email_abnormal"] ]}
+                                </a>
+                                <a class="osr-color-danger" href="/osr-admin/message/email?page=1&state=error">
+                                    <i class="fa fa-link"></i>
+                                    {{_("错误")}} {[ datas.message["email_error"] ]}
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr v-if='datas.message["sms_abnormal"] || datas.message["sms_error"]'>
+                            <td>
+                                <span class="fa fa-envelope-o"> {{_("短信发送")}}</span>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <a class="osr-color-warning" href="/osr-admin/message/sms?page=1&state=abnormal">
+                                    <i class="fa fa-link"></i>
+                                    {{_("异常")}} {[ datas.message["sms_abnormal"] ]}
+                                </a>
+                                <a class="osr-color-danger" href="/osr-admin/message/sms?page=1&state=error">
+                                    <i class="fa fa-link"></i>
+                                    {{_("错误")}} {[ datas.message["sms_error"] ]}
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr v-if='datas.plugin["plugin_error"]'>
+                            <td>
+                                <span class="fa fa-plug"> {{_("插件")}}</span>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <a class="osr-color-danger" href="/osr-admin/plugin">
+                                    <i class="fa fa-link"></i>
+                                    {{_("错误")}} {[ datas.plugin["plugin_error"] ]}
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+              </table>
+          </div>
+        </section>
+    </div>
+    <!--end col-6 -->
+</div>

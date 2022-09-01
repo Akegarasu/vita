@@ -1,0 +1,31 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block _title %}
+    <title>
+        {% block title %}{% endblock %}
+        {{g.site_global.site_config.TITLE_SUFFIX}}
+    </title>
+{% endblock %}
+
+{% block body %}
+<body class="skin-black" style="margin-bottom: 0px">
+    <!--移动端顶部bar会固定, 以下用于防止bar遮挡掉内容-->
+    <div class="visible-xs" style="padding-top:56px;"></div>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+         {% include "osr-theme-w/pages/based/_m_left_menu.html" %}
+        <!-- 页面的导航栏和内容 -->
+        <div>
+            <section class="osr-content">
+
+                <!--请求消息显示位置-->
+                <div class="text-center navbar-fixed-top osr-msg-box pull-right" style="right: 0" id="msg-box" >
+                </div>
+                <!--//消息显示位置-->
+                {% block content %}{% endblock %}
+            </section>
+        {% include "osr-theme-w/pages/based/footer.html" %}
+        </div>
+        <!-- //页面的导航栏和内容 -->
+    </div>
+    {% include "osr-theme-w/pages/based/footer-js.html" %}
+</body>
+{%  endblock %}

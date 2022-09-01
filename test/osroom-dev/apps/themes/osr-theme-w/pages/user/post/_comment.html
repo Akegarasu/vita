@@ -1,0 +1,165 @@
+<h4 >{{_('评论')}} ({[post.comment_num]})</h4>
+<!--导航-->
+ <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+    <ul class="nav nav-tabs">
+        <li id="head_li_sort_" class="active">
+            <a data-toggle="tab" class="osr-pointer" v-on:click="get_comment(null, 1)">
+                {{_("喜欢排序")}}
+            </a>
+        </li>
+        <li id="head_li_sort_t-asc">
+            <a data-toggle="tab" class="osr-pointer" v-on:click="get_comment('t-asc',1)">
+                {{_("时间升序")}}
+            </a>
+        </li>
+        <li id="head_li_sort_t-desc">
+            <a data-toggle="tab" class="osr-pointer" v-on:click="get_comment('t-desc',1)">
+                {{_("时间降序")}}
+            </a>
+        </li>
+    </ul>
+</header>
+
+<ul class="osr-list-group">
+    <li class="osr-list-group-item" v-for="(ct,index ) in comments.datas">
+      <div class="item-content">
+          <!--１级评论-->
+          <header>
+              <!--<figure class="comment&#45;&#45;userpic"><img src="" alt=""></figure>-->
+                <strong>
+                    <a :href="'/user?id='+ct.user_id">{[ct.username]}</a>
+                </strong>
+                <time  class="osr-date">{[ct.issue_time | formatDate]}</time>
+          </header>
+          <!--正文-->
+          <div class="osr-text">
+            <div :id="'#comment'+ct._id" >{[ct.content]}</div>
+          </div>
+          <br>
+          <div>
+              <div class="pull-left">
+                    <!--评论点赞-->
+                  <span class="osr-pointer"   v-if="ct.like_it_already" :id="ct._id" data-toggle="tooltip" title="{{_('预览页面, 不能点赞')}}">
+                     <i class="fa fa-thumbs-up osr-color-danger"></i> {[ct.like]}
+                  </span>
+                  <span class="osr-pointer" :id="ct._id"  v-else data-toggle="tooltip" title="{{_('预览页面, 不能点赞')}}">
+                     <i class="fa fa-thumbs-o-up osr-color-danger"></i> {[ct.like]}
+                  </span>
+              </div>
+
+              {% if current_user.is_authenticated %}
+              <!--登录用户才显示评论举报-->
+              <div class="pull-right osr-date">
+                    <span v-on:click="ready_inform_ct(ct)" class="osr-pointer" data-toggle="modal" data-target="#comment-inform">
+                        {{_("举报")}}
+                    </span>&nbsp;
+              </div>
+              {% endif %}
+              <br>
+
+          </div>
+            <!--２级评论-->
+            <ul class="osr-list-group-lv2">
+                <li v-for="(treply, tindex) in ct.reply" class="osr-list-group-item-lv2">
+                    <hr   v-if="tindex!=0" class="osr-hr">
+                    <header>
+                        <strong>
+                            <a :href="'/user?id='+treply.user_id">{[treply.username]}</a>
+                        </strong>
+                        <time class="osr-date">{[treply.issue_time | formatDate]}</time>
+                    </header>
+
+                    <div class="osr-text">
+                        {{_('回复')}}<a :href="'/user?id='+treply.reply_user_id">
+                            @{[treply.reply_username]}:
+                        </a>
+                        <div :id="'#comment'+treply._id" >{[treply.content]}</div>
+                    </div>
+                    <br>
+                    {% if current_user.is_authenticated %}
+                    <!--登录用户才显示评论举报-->
+                     <div class="pull-right osr-date">
+                        <span v-on:click="ready_inform_ct(treply)" class="osr-pointer" data-toggle="modal" data-target="#comment-inform">
+                            {{_("举报")}}
+                        </span>&nbsp;
+                        </div>
+                    {% endif %}
+                    <br>
+                </li>
+            </ul>
+            <!--２级评论//-->
+      </div>
+    </li>
+</ul>
+  <!--评论举报模态-->
+    <div class="modal fade" id="comment-inform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_('评论举报')}}</h4>
+                </div>
+                <div class="modal-body">
+                {% include "osr-theme-w/pages/based/_inform_modal_input.html" %}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn osr-btn btn-info" type="button" data-dismiss="modal" aria-hidden="true">
+                        {{_("取消")}}
+                    </button>
+                    <button v-on:click="content_inform(ready_comment._id, 'comment', inform.category, inform.details)" class="btn osr-btn btn-success" type="button" data-dismiss="modal" aria-hidden="true">
+                        {{_("提交")}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--评论举报模态框-->
+
+<!-- 页面导航-->
+<div class="text-center visible-lg visible-md">
+    <ul class="pagination">
+        <li   v-if="pages.last < pages.current_page && pages.last>0">
+            <a v-on:click="get_comment(sort, pages.last)">«</a>
+        </li>
+        <li  v-else class="disabled">
+            <a>«</a>
+        </li>
+
+        <li v-for="page in pages.last_show" >
+            <a   v-if="page!='...'" v-on:click="get_comment(sort, page)">{[page]}</a>
+            <a  v-else href="#">...</a>
+        </li>
+
+        <li class="active">
+            <a v-on:click="get_comment(sort, pages.current_page)">{[pages.current_page]}</a>
+        </li>
+
+       <li v-for="page in pages.next_show" >
+            <a   v-if="page!='...'" v-on:click="get_comment(sort, page)" >{[page]}</a>
+            <a  v-else href="#">...</a>
+       </li>
+
+       <li   v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+            <a v-on:click="get_comment(sort, pages.next)">»</a>
+        </li>
+        <li  v-else class="disabled">
+            <a>»</a>
+        </li>
+    </ul>
+</div>
+<!-- //页面导航-->
+<!-- m页面导航-->
+<ul class="pager visible-xs visible-sm">
+    <li   v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+        <a v-on:click="get_comment(sort, pages.last)">
+            {{_("上一页")}}
+        </a>
+    </li>
+    <li   v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+        <a v-on:click="get_comment(sort, pages.next)">{{_("下一页")}}</a>
+        </li>
+</ul>
+<!-- //m页面导航-->
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/user/post/_comment.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>

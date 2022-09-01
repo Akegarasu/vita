@@ -1,0 +1,28 @@
+
+<div class="author">
+    <a class="avatar" :href="'/osr-admin/own/user?id='+user._id">
+        <img width="48px" height="48px" class="osr-img-circle-b" v-bind:src="user.avatar_url.url" alt="{{_('头像')}}">
+    </a>
+    <div class="info">
+        <a class="name" :href="'/osr-admin/own/user?id='+user._id">
+            {[user.username]}
+        </a>
+        <span v-if="user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+        <span v-if="user.gender=='f'" class="fa fa-venus osr-fa-gender-f"></span>
+        <div class="meta">
+            <a :href="'/osr-admin/own/user/follow?t=followed_user&id='+user._id">
+                {[user.follow.follow_user_num]}{{_("关注")}} >&nbsp;|&nbsp;
+            </a>
+            <a :href="'/osr-admin/own/user/follow?t=fans&id='+user._id">
+                {[user.follow.fans_num]}{{_("粉丝")}} >
+            </a>
+        </div>
+    </div>
+    <button v-if="user.follow.current_following" v-on:click="unfollowed(user._id)"
+            class="btn btn-info osr-pointer pull-right">
+        {{_("取消关注")}}
+    </button>
+    <button v-else class="btn btn-success osr-pointer pull-right" v-on:click="follow(user._id)">
+        <i class="fa fa-plus "></i> {{_("关注")}}
+    </button>
+</div>

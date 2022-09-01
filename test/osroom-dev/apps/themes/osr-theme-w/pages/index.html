@@ -1,0 +1,31 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("首页")}}-{% endblock %}
+{% block content %}
+<div id="app" v-cloak>
+    <!--#####################################################################
+    说明:Home页面封面大图, 这是'home-display-cover-', image类型.
+     可在osroom管理端->主题展示设置->图文里添加或修改，删除
+    ######################################################################-->
+     <div v-if="home_display_cover" class="osr-bg-cover" :style="'background: url('+home_display_cover.url+') no-repeat center center fixed;'">
+     </div>
+    <div v-else class="osr-bg-cover">
+     </div>
+    <div v-if="home_display_cover" class="col-xs-12 osr-white-text" style="text-align:center;position:absolute;height:auto;z-indent:2;top:180px;">
+        <h1 v-if="home_display_cover.title">{[home_display_cover.title]}</h1>
+        <div v-if="home_display_cover.text" v-html="home_display_cover.text_html"></div>
+        <div v-if="home_display_cover.code" v-html="home_display_cover.code"></div>
+    </div>
+
+    <div class="osr-content-wt ">
+        {% include 'osr-theme-w/pages/_index_s2.html' %}
+    </div>
+    <div id="content" class="row osr-page">
+
+        {% include 'osr-theme-w/pages/_index_s3.html' %}
+    </div>
+</div>
+<!--<script src="/theme/osr-theme-w/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>-->
+<!--<link href="/theme/osr-theme-w/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">-->
+<!--<script src="/theme/osr-theme-w/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>-->
+<script src="/theme/osr-theme-w/static/js/osr_page_js/home.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+{% endblock %}

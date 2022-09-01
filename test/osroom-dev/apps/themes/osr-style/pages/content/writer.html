@@ -1,0 +1,115 @@
+{% extends "osr-style/pages/based/based.html" %}
+{% block title %}{{_('写点什么')}}-{% endblock %}
+{% block content %}
+<data id="post_id" content="{{data.id}}"></data>
+<data id="status" content="{{data.status}}"></data>
+<div class="row osr-edit-page">
+    <section class="osr-panel">
+        <div id="app" v-cloak>
+            <div class="form-inline">
+                <div class="pull-left input-group">
+                    <select id="category" class="form-control osr-form-control" name="category" @change="switch_category($event.target.value)">
+                      <option  v-if="!category" :value="category" selected>{{_('默认文集')}} </option>
+                      <option  v-if="category===cg._id" v-for="cg in categorys" v-bind:value =cg._id selected>{[cg.name]} </option>
+                      <option  v-if="category!==cg._id" v-for="cg in categorys" v-bind:value =cg._id>{[cg.name]} </option>
+                      <option  v-if="category" >{{_('默认文集')}} </option>
+                    </select>
+                    <a class="btn osr-btn-link" href="/content/category?type=post&ps={{data.status}}&peditor={{data.editor}}&pid={{data.id}}">
+                      <i class="fa fa-cog"></i>
+                    </a>
+                </div>
+                <div class="pull-right input-group">
+                    <div class="btn-group-md">
+                        <button onclick="save(0)" v-model="save_name" class="btn osr-btn btn-info osr-submit-btn">
+                            <i class="fa fa-save"></i> {{_('存为草稿')}}
+                        </button>
+                        <button onclick="save('issue')" id="confirm" class="btn osr-btn btn-success osr-submit-btn" type="button" >
+                            {[issue_name]}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+            <div class="form-group">
+              <input name="title" type="text" class="form-control osr-input" v-model="title"
+                     placeholder="{{_('取个好标题吧')}}"
+                     data-bv-notempty-message="{{_('标题不能为空')}}" required/>
+            </div>
+
+
+            <!-- tags 模拟框-->
+             <div class="modal fade" id="tags" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">{{_('添加标签')}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control osr-input" v-model="tag" placeholder="{{_('可以在这里添加标签哦')}}" maxlength="10">
+                            <br>
+                            <div class="btn-group">
+                                <button onclick="add_tag()" class="btn-sm btn osr-btn btn-info">
+                                    {{_('添加')}}
+                                </button>
+                            </div>
+                            <br>
+
+                            <span v-for="t in tags" class="osr-tags">
+                                <span class="label label-default">
+                                     {[t]}
+                                     <a v-on:click="del_tag(t)" class="osr-color-danger">
+                                         <i class="fa fa-close"></i>
+                                     </a>
+                                </span>
+                                &nbsp;
+                            </span>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn osr-btn btn-info" type="button" data-dismiss="modal" aria-hidden="true">
+                                {{_("完成")}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--模态框-->
+        </div>
+        {% if data.editor == "markdown" %}
+            {% include 'osr-style/pages/module/editor/markdown.html' %}
+        {% elif data.editor == "rich_text" %}
+            {% include 'osr-style/pages/module/editor/richtext_atc_edit.html' %}
+        {% elif current_user.editor == "rich_text" %}
+            {% include 'osr-style/pages/module/editor/richtext_atc_edit.html' %}
+        {% else %}
+            {% include 'osr-style/pages/module/editor/markdown.html' %}
+        {% endif %}
+        <br>
+        <div id="app-2" style="width:100%">
+            <button type="button" class="btn-sm btn osr-btn btn-success" data-toggle="modal" data-target="#tags">
+               <i class="fa fa-tag"></i> {{_("添加标签")}}
+            </button>
+            <br>
+            <span v-for="t in tags">
+                <span class="label label-default osr-tags">
+                     {[t]}
+                     <a v-on:click="del_tag(t)" class="osr-color-danger">
+                         <i class="fa fa-close"></i>
+                     </a>
+                </span>
+                &nbsp;
+            </span>
+        </div>
+
+    </section>
+</div>
+
+<script src="/theme/osr-style/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-style/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+<script src="/theme/osr-style/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+
+<script src="/theme/osr-style/static/js/osr_page_js/content/writer.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

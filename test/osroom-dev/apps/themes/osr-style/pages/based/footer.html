@@ -1,0 +1,24 @@
+<footer class="osr-footer">
+    <a href="#top" data-toggle="tooltip" title="{{_('回到顶部')}}" class="osr-footer-totop back-to-top pull-right btn btn-sm btn-success">
+          <i class="fa  fa-arrow-up"></i>
+    </a>
+  <div class="text-center">
+       <!--友情链接-->
+      <ul>
+          {%for k,v in g.site_global.site_config.FRIEND_LINK.items() %}
+            <li style="display:inline;">
+                <a href="{{v.url}}" target="_blank">
+                    {{k}}
+                </a>
+            </li>&nbsp;
+          {% endfor %}
+      </ul>
+      <!--//友情链接-->
+
+  <div>
+      {{ g.site_global.site_config.FOOTER_CONTENT | safe }}
+  </div>
+
+  </div>
+
+</footer>

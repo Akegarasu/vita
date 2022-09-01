@@ -1,0 +1,90 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("文本内容编辑")}}-{% endblock %}
+{% block content %}
+
+<data id="cid" content="{{data.cid}}"></data>
+<data id="id" content="{{data.id}}"></data>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="/osr-admin/media/text?cid={{data.cid}}&page={{data.fp}}"><i class="fa fa-file-text"></i> {{_("文本库")}}</a></li>
+            {% if data.id %}
+            <li class="active">{{_("编辑")}}</li>
+            {% else %}
+            <li class="active">{{_("添加")}}</li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+
+<div class="row osr-adm-edit-page">
+    <div class="col-lg-12 osr-col-xs-12">
+        <section class="panel">
+          <header class="panel-heading">
+             <i class="fa fa-file-text"></i> {{_("文本")}}
+          </header>
+          <div class="panel-body">
+              <div v-cloak id="app" >
+
+                <div class="form-group">
+                      <select id="status" name="status"  class="form-control osr-form-control input-sm" @change="switch_category($event.target.value)">
+                       <option v-for="ct in media_categorys" v-if="ct._id==media.category_id"  :value="ct._id" selected>
+                                {[ct.name]}
+                        </option>
+
+                        <option v-if="media.category_id !='default'" value="default" >{{_("默认")}}</option>
+                        <option v-else  value="default___默认" selected>{{_("默认")}}</option>
+
+                        <option v-for="ct in media_categorys" v-if="ct._id!=media.category_id"  :value="ct._id" >
+                            {[ct.name]}
+                        </option>
+                    </select>
+                </div>
+
+                  <div class="form-group">
+                    <label>{{_("名称")}}</label>
+                    <input name="name" type="text" class="form-control osr-input" v-model="media.name"
+                           placeholder="{{_('名称')}}" data-bv-notempty-message="{{_('名称不能为空')}}" required/>
+                </div>
+                <div class="form-group">
+                    <label>{{_("标题")}}</label>
+                    <input type="text" class="form-control osr-input" v-model="media.title" placeholder="{{_('标题')}}" />
+                </div>
+                <div class="form-group">
+                    <label>{{_("链接")}}</label>
+                    <input type="text" class="form-control osr-input" v-model="media.link" placeholder="{{_('链接')}}" />
+                </div>
+                <div class="form-group form-inline">
+                  <label>{{_("链接打开方式")}}</label>
+                    &nbsp;
+                    <div class="checkbox checkbox-success">
+                        <input id="new_tab" type="radio" class="form-check-input"  v-model="media.link_open_new_tab" value="1" />
+                       <label for="new_tab" class="form-check-label"></label>
+                       {{_("新标签")}}
+                    </div>
+                    &nbsp;
+                    <div class="checkbox checkbox-success">
+                        <input id="current_tab" type="radio" class="form-check-input" v-model="media.link_open_new_tab" value="0" />
+                       <label for="current_tab" class="form-check-label"></label>
+                       {{_("当前标签")}}
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                 <label >{{_("文本内容")}}</label>
+                 {% include 'module/editor/richtext.html' %}
+              </div>
+              <button id="save-btn" class="btn osr-btn btn-info osr-submit-btn" onclick="save()">
+                {{_("保存")}}
+              </button>
+          </div>
+        </section>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/media/text-edit.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% include 'media/_edit_script.html' %}
+
+{% endblock %}

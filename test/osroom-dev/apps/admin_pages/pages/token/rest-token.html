@@ -1,0 +1,88 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("Rest Api Token管理")}}-{% endblock %}
+{% block content %}
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/setting/host"><i class="fa fa-server"></i> {{_("密钥Token与权限")}}</a></li>
+                <li class="active">{{_("密钥Token")}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row osr-adm-edit-page">
+
+        <div class="col-md-12 osr-col-xs-12">
+
+            <section class="panel">
+              <header class="panel-heading">
+                <span><i class="fa fa-credit-card"></i>  {{_("密钥Token")}}</span>
+              </header>
+              <div class="panel-body">
+                    
+                  <div v-for="(token, index) in tokens" >
+                      <div class="form-group">
+                         <span class="osr-color-success">SecretToken</span>
+                         <span class="osr-date">创建时间:{[token.time | formatDate]}</span>
+                      </div>
+                    <div class="form-group">
+                        <input style="padding-right:15px;" class="form-control osr-input" type="text" v-model="token.show_token" />
+                        <span v-on:click="toggle_newly(index)" :id="'toggle_newly_'+index" class="fa fa-eye-slash osr-pointer pull-right osr-form-control-feedback">
+                            {{_("显示")}}
+                        </span>
+                    </div>
+                    <div class="btn-group-sm">
+                        <button v-if="!token.is_active" v-on:click="activation_token(token._id)" class="btn osr-btn btn-info">
+                            {{_("启用")}}
+                        </button>
+                        <button v-else class="btn osr-btn btn-warning"
+                           v-on:click="warning_modal({msg:'{{_('停用后, 使用此token的请求则无法通过服务端验证,确定停用?')}}'}, 'disable_token', token._id)" >
+                            {{_("停用")}}
+                        </button>
+
+                        <button v-if="!token.is_active && token_cnt > 1"  class="btn osr-btn btn-danger"
+                            v-on:click="warning_modal(null, 'delete_token', token._id)">
+                            <i class="fa fa-trash"></i>{{_("删除")}}
+                        </button>
+        
+                        <button v-if="token_cnt < 2" v-on:click="created_new_token()" class="btn osr-btn btn-info">
+                            {{_("创建Token")}}
+                        </button>
+                    </div>
+                      <br>
+                 </div>
+              </div>
+            </section>
+            <div class="alert alert-info osr-alert osr-alert-warning">
+                 <button data-dismiss="alert" class="close close-sm" type="button">
+                     <i class="fa fa-times"></i>
+                 </button>
+                   <div class="osr-remind-alert">
+                    <i class="fa fa-bell-o osr-color-warning" >{{_("重要提示")}}:</i><br>
+                       <i class="osr-color-danger fa fa-circle"></i>
+                       {{_('SecretToken与AccessToken用于在无CsrfToken时调用API请求的一个客户端令牌, 以验证客户端是否为伪造的')}}.
+                       {{_('而SecretToken是长期可用验证令牌(除非你停用或者删除了它), 需要保存在客户端使用')}}.<br>
+                         <i class="osr-color-danger fa fa-circle"></i>
+                       {{_('使用令牌时, 可以使用SecretToken做令牌或者OSR-ClientId与AccessToken组合做令牌(见使用方式)')}}.<br>
+                         <i class="osr-color-danger fa fa-circle"></i>
+                       {{_('为了减少SecretToken的暴露风险, Restful api发送请求时, 尽量使用OSR-ClientId和AccessToken作为客户端验证令牌')}}.<br>
+                       <i class="osr-color-danger fa fa-circle"></i>
+                       {{_('当没有获取过AccessToken或者AccessToken失效时, 请通过/api/token/access-token获取新的AccessToken(具体请查看/api/token/access-token文档)')}}.
+                       <br>{{_('这个时候只能使用SecretToken作为客户端令牌验证')}}.<br>
+                         <i class="osr-color-danger fa fa-circle"></i>
+                       {{_('使用SecretToken时, 尽量使用https')}}<br>
+                       <b>{{_('使用方式')}}:</b><br>
+                       {{_('在http请求中设置请求头')}}<br>
+                       {{_('OSR-RestToken:"SecretToken xxxxx"')}} <br>
+                       或 <br>
+                       {{_('OSR-RestToken:"AccessToken xxxxx" 和 OSR-ClientId:"xxxxx"')}}
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/token/rest-token.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

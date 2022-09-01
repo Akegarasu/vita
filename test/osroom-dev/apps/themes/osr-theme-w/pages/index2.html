@@ -1,0 +1,64 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("首页")}}-{% endblock %}
+{% block content %}
+<div id="app" v-cloak>
+    <div class="row osr-page">
+        <section class="osr-panel">
+            <div class="col-md-8">
+                <div id="myCarousel" class="osr-carousel carousel slide" data-interval="4000">
+                    <!-- 轮播（Carousel）指标 -->
+                    <!--<ol class="carousel-indicators">-->
+                        <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+                        <!--<li v-for="(show_img,index) in carousel.slice(1)" data-target="#myCarousel" :data-slide-to="index+1"></li>-->
+                    <!--</ol>-->
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <a  v-if="index==0" class="item active" :href="show_img.link" v-for="(show_img,index) in carousel">
+                            <img class="osr-carousel-img" :src="show_img.url" alt="show_img.title">
+                            <div class="osr-carousel-caption carousel-caption" v-html="show_img.text_html"></div>
+                            <div  v-if="show_img.title" class="img-title">{[show_img.title]}</div>
+                        </a>
+
+                        <a  v-if="index!=0" class="item" :href="show_img.link" v-for="(show_img,index) in carousel">
+                            <img class="osr-carousel-img" :src="show_img.url" alt="show_img.title">
+                            <div class="osr-carousel-caption carousel-caption" v-html="show_img.text_html"></div>
+                            <div  v-if="show_img.title" class="img-title">{[show_img.title]}</div>
+                        </a>
+
+
+                    </div>
+                    <!-- 轮播（Carousel）导航 -->
+                    <a class="pull-left left osr-carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="pull-right right osr-carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <!--推荐位１-->
+            <div class="col-md-4 visible-md visible-lg">
+                <div v-for="rec in rec_1">
+                    <a :href="rec.link" target="_blank">
+                        <img class="osr-carousel-img" :src="rec.url"  alt="rec.title">
+                        <div v-if="rec.title && rec.title!=null" class="img-title">{[rec.title]}</div>
+                        <div v-else style="padding: 7px"></div>
+                    </a>
+                </div>
+            </div>
+            <!--推荐位1-->
+            {% include 'osr-theme-w/pages/_index2_s2.html' %}
+        </section>
+    </div>
+
+
+</div>
+<script src="/theme/osr-theme-w/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-theme-w/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+<script src="/theme/osr-theme-w/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

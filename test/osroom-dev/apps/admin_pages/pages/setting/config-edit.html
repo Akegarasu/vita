@@ -1,0 +1,53 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("参数配置")}}-{% endblock %}
+{% block content %}
+<data id="project" content="{{data.project}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<div v-cloak id="app" class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="/osr-admin/setting/configs?page={{data.from_page}}"><i class="fa fa-cogs"></i> {{_("配置管理")}}</a></li>
+            <li class="active">{[config_name | formatKey]}{{_("配置")}}</li>
+        </ul>
+    </div>
+    <div class="col-md-12">
+        <section class="panel">
+          <header class="panel-heading">
+             <i class="fa fa-cog"></i> {[config_name | formatKey]}{{_("配置")}}
+          </header>
+
+            <div class="panel-body table-responsive">
+                <div class="box-tools form-inline">
+                    <div class="input-group pull-left">
+                        <select v-if="!is_search_results" name="status"  class="form-control osr-form-control input-sm" @change="get_confs([$event.target.value])">
+                             <option  v-if="current_project=='all'" value ="all">{{_("All")}}</option>
+                            <option  v-if="v.project==current_project" v-for="v in projects" v-on:value ="v.project" selected>{[v.project]}</option>
+                            <option  v-if="v.project!=current_project" v-for="v in projects" v-on:value ="v.project">{[v.project]}</option>
+                            <option  value ="all">{{_("All")}}</option>
+                        </select>
+                         <div v-else class="form-group">
+                            {{_("搜索结果")}}
+                        </div>
+                    </div>
+                    <div class="input-group pull-right">
+                        <input type="text" v-on:keypress="get_confs('all')" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                        <div class="btn-group">
+                            <button v-on:click="get_confs('all')" class="btn btn-sm btn-default osr-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+
+                 {% include "setting/_config_warning_info.html" %}
+                {% include "setting/_config_edit.html" %}
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/setting/config-edit.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

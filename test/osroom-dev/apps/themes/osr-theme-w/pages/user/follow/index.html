@@ -1,0 +1,93 @@
+{% extends "osr-theme-w/pages/based/based.html" %}
+{% block title %}{{_("关注")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-page" v-cloak>
+    <section class="osr-panel">
+        <div class="col-sm-9">
+            {% include 'osr-theme-w/pages/user/_user_info.html' %}
+            <header class="panel-heading tab-bg-dark-navy-blue osr-panel-heading">
+                <ul class="nav nav-tabs">
+                    <li id="head_li_followed_user">
+                        <a data-toggle="tab" class="osr-pointer" v-on:click="get_related_users('followed_user',1,'')">
+                            <span   v-if="!is_myself">{{_("Ta的关注")}}</span>
+                            <span  v-else>{{_("关注")}}</span>
+                        </a>
+                    </li>
+                    <li id="head_li_fans">
+                        <a data-toggle="tab" class="osr-pointer" v-on:click="get_related_users('fans',1,'')">
+                            <span   v-if="!is_myself">{{_("Ta的粉丝")}}</span>
+                            <span  v-else>{{_("粉丝")}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </header>
+
+            <!--用户列表-->
+            <ul class="osr-users-list">
+                <li class="osr-users-list-item" v-for="follow_user in user_related_users.datas">
+                    <div class="author">
+                        <a class="avatar" :href="'/user?id='+follow_user._id">
+                            <img width="48px" height="48px" class="osr-img-circle-b" v-bind:src="follow_user.avatar_url.url" alt="{{_('头像')}}">
+                        </a>
+                        <div class="info">
+                            <a class="name" :href="'/user?id='+follow_user._id">
+                                {[follow_user.username]}
+                            </a>
+                            <span   v-if="follow_user.gender=='m'" class="fa fa-mars osr-fa-gender-m" ></span>
+                            <span   v-if="follow_user.gender=='f'" class="fa fa-venus osr-fa-gender-f"></span>
+                            <div class="meta">
+                                <a :href="'/user/follow?t=followed_user&id='+follow_user._id">
+                                    {[follow_user.follow.follow_user_num]}{{_("关注")}} >&nbsp;|&nbsp;
+                                </a>
+                                <a :href="'/user/follow?t=fans&id='+follow_user._id">
+                                    {[follow_user.follow.fans_num]}{{_("粉丝")}} >
+                                </a>
+                            </div>
+                        </div>
+                        <button   v-if="type!='fans' || follow_user.follow.current_following" v-on:click="unfollowed(follow_user._id)"
+                                class="btn btn-info osr-pointer pull-right">
+                            {{_("取消关注")}}
+                        </button>
+                        <button  v-else class="btn btn-success osr-pointer pull-right" v-on:click="follow(follow_user._id)">
+                            <i class="fa fa-plus "></i> {{_("关注")}}
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            <!--用户列表-->
+
+             <!-- m页面导航-->
+            <ul class="pager col-sm-12">
+                <li   v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_related_users(type, pages.last, keyword)" class="osr-pointer">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                 <span class="text-center osr-text">{{_('第{[user_related_users.current_page]}页/共{[user_related_users.page_total]}页')}}</span>
+                <li   v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_related_users(type, pages.next, keyword)" class="osr-pointer">
+                        {{_("下一页")}}
+                    </a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+
+        </div>
+        <div class="col-sm-3">
+            <label>{{_("作者简介")}}</label>
+            <br>
+            <a class="avatar" :href="'/user?id='+user._id">
+                <img width="35px" height="35px" class="osr-img-circle-b" v-bind:src="user.avatar_url.url" alt="{{_('头像')}}">
+                &nbsp;
+                <span class="text-success">{[user.username]}</span>
+            </a>
+
+            <div class="osr-text">
+                {[user.introduction]}
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="/theme/osr-theme-w/static/js/osr_page_js/user/follow/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

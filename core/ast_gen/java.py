@@ -66,7 +66,7 @@ class JavaAst(AstImpl, ABC):
 
     def do_match(self, rule: Rule) -> List[MatchResult]:
         pattern = rule.complied
-        print(rule.complied)
+        # print(rule.complied)
         result = []
         for i in self.result:
             for position, value in i.items():
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     test = JavaAst(f.read())
     test.parse()
     ruletest = RuleManager()
-    ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\rules\\java_rules.yml")
+    ruletest.load_yaml_rules("C:\\Users\\86130\\Desktop\\vita-KKfine\\data\\Python-rules\\java_rules.yml")
 
     print(test.do_match(ruletest).match_rule)
     print(test.do_match(ruletest).context.code[0][1])

@@ -1,0 +1,33 @@
+{% extends "osr-style/pages/based/based.html" %}
+{% block title %}{{_("标签文集")}}-{% endblock %}
+{% block content %}
+<div id="app" class="row osr-page" v-cloak>
+    <section class="osr-panel">
+        <div class="col-sm-9">
+            <div class="osr-category">
+                <div class="info">
+                    <span class="name">
+                        <span class="text-success fa fa-tag "> {{_("标签")}}:</span> {[tag]}
+                    </span>
+                </div>
+            </div>
+            <p>
+                <strong class="osr-color-success">
+                    <i class="fa fa-bar-chart-o"></i> {[posts.data_total]}{{_("篇")}}
+                </strong>
+            </p>
+
+            {% include 'osr-style/pages/post/_posts.html' %}
+
+        </div>
+    </section>
+
+</div>
+<script src="/theme/osr-style/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/theme/osr-style/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+<script src="/theme/osr-style/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+
+<script src="/theme/osr-style/static/js/osr_page_js/corpus/tag.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

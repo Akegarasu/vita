@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    {% block _title %}
+    <title>
+        {% block title %}{% endblock %}
+        {{g.site_global.site_config.TITLE_SUFFIX}}
+    </title>
+    {% endblock %}
+    <meta name="description" content="{{g.site_global.site_config.DEFAULT_DESCRIPTION}}">
+    <meta name="keywords" content="{{g.site_global.site_config.DEFAULT_KEYWORDS}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="SHORTCUT ICON" href="{{g.site_global.site_config.FAVICON}}">
+    <link rel="apple-touch-icon-precomposed" href="{{g.site_global.site_config.FAVICON}}">
+    <meta name="apple-mobile-web-app-title" content="{{g.site_global.site_config.TITLE_SUFFIX}}">
+    <meta name="author" content="Allen Woo"/>
+    <meta name="viewport" content="width=drvice-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+
+    {% include "osr-theme-w/pages/based/css.html" %}
+    {% include "osr-theme-w/pages/based/top-js.html" %}
+
+    <!--后端设置嵌入代码-->
+    {{g.site_global.site_config.HEAD_CODE | safe }}
+    <!--后端设置嵌入代码-->
+
+</head>
+
+{% block body %}
+<body id="t" class="skin-black">
+
+    {% include "osr-theme-w/pages/based/header_bar.html" %}
+    <!--移动端顶部bar会固定, 以下用于防止bar遮挡掉内容-->
+    <div style="padding-top:56px;"></div>
+
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        {% include "osr-theme-w/pages/based/_m_left_menu.html" %}
+        <!-- 右侧, 包含页面的导航栏和内容 -->
+        <div>
+            <section class="osr-content">
+                <!--请求消息显示位置-->
+                <div class="text-center navbar-fixed-top osr-msg-box pull-right" style="right: 0" id="msg-box" >
+                </div>
+                <!--//消息显示位置-->
+                
+                {% block content %}{% endblock %}
+            </section>
+            {% include "osr-theme-w/pages/based/footer.html" %}
+        </div>
+        <!-- //右侧, 包含页面的导航栏和内容 -->
+    </div>
+
+    {% include "osr-theme-w/pages/based/footer-js.html" %}
+    <!--后端设置嵌入代码-->
+    {{g.site_global.site_config.FOOTER_CODE | safe }}
+    <!--后端设置嵌入代码-->
+</body>
+{% endblock %}
+
+{% include 'osr-theme-w/pages/based/msg_box.html' %}
+</html>

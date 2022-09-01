@@ -1,0 +1,24 @@
+    <!-- 举报详细信息模态-->
+    <div class="modal fade" id="inform-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{_("举报信息")}}</h4>
+                </div>
+                <div class="modal-body" >
+                     <div v-if="inform">
+                         <strong>{{_("举报总数")}}: </strong>{[inform.total]}<br>
+                         <strong>{{_("最后举报")}}: </strong>{[inform.update_time | formatDate]}<br>
+                         <span  v-if="k!='total' && k!='update_time'" v-for="(v,k) in inform">
+                            <strong>{[k]}: </strong>{[v.cnt]}<br>
+                         </span>
+                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="button" data-dismiss="modal" aria-hidden="true"> {{_("关闭")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //举报详细信息模态-->

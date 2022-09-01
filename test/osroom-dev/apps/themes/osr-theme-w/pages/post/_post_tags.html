@@ -1,0 +1,21 @@
+
+<br>
+<hr>
+<label v-if="tags" class="text-success">{{_("标签")}}</label>
+<br>
+<div>
+    <div>
+                                <a  v-for="(tag, index) in post.tags" :href="'/corpus/tag?tag='+tag">
+                                    <button style="color:#ffffff;" class="osr-date btn osr-btn osr-btn-radius osr-btn-xs osr-btn-blue">
+                                        {[tag]}
+                                    </button>&nbsp;
+                                </a>
+                            </div>
+    <a v-for="(tag, index) in tags" :href="'/corpus/tag?tag='+tag.tag" style="color:#ffffff">
+        <button  :style="'background-color:'+tag.color"
+        class="btn osr-btn btn-xs">
+            {[tag["tag"]]}
+        </button>&nbsp;
+    </a>
+
+</div>

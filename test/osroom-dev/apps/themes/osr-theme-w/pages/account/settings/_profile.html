@@ -1,0 +1,62 @@
+<div id="user-profile" class="col-md-12 osr-col-xs-12">
+    <section>
+         <div class="form-group form-inline">
+            <label class="control-label">{{_('性别')}}&nbsp;</label>
+            <div class="radio radio-success">
+                <input  v-if="user_profile.gender=='m'" id="m" class="form-radio-input" type="radio" name="gender"
+                       v-model="user_profile.gender" value="m" checked>
+                <input  v-else id="m" class="form-radio-input" type="radio" name="gender"
+                       v-model="user_profile.gender" value="m">
+                <label class="form-radio-label" for="m"> {{_("男")}} </label>
+            </div>
+            &nbsp;&nbsp;
+            <div class="radio radio-success">
+                <input  v-if="user_profile.gender=='f'" id="f" class="form-radio-input" type="radio" name="gender"
+                       v-model="user_profile.gender" value="f" checked>
+                <input  v-else id="f" class="form-radio-input" type="radio" name="gender"
+                       v-model="user_profile.gender" value="f">
+                <label class="form-radio-label" for="f"> {{_("女")}} </label>
+            </div>
+             &nbsp;&nbsp;
+            <div class="radio radio-success">
+                <input  v-if="user_profile.gender!='f' && user_profile.gender!='m'" id="secret" class="form-radio-input" type="radio" name="gender"
+                       v-model="user_profile.gender" value="secret" checked>
+                <input  v-else id="secret" class="form-radio-input" type="radio" name="gender"
+                       v-model="user_profile.gender" value="secret">
+                <label class="form-radio-label" for="secret"> {{_("保密")}} </label>
+            </div>
+
+        </div>
+
+        <div class='form-group date' >
+            <label>{{_('出生日期')}}</label>
+
+            <input name="birthday" :value="birthday" id='birthday' type='text' class="form-control osr-input"
+            data-bv-date="true" data-bv-date-format="YYYY-MM-DD"
+            data-bv-date-message="格式应该为:YYYY-MM-DD" />
+            <span class="fa fa-calendar osr-color-success osr-form-control-feedback pull-right">
+            </span>
+
+        </div>
+        <div class="form-group">
+            <label >{{_('个人主页')}}</label>
+            <input name="homepage" class="form-control osr-input" placeholder="{{_('带上http://或https://')}}"
+                   v-model="user_profile.homepage" :value="user_profile.homepage"
+                   data-bv-uri="true" data-bv-uri-message="{{_('格式不合法')}}"
+            >
+        </div>
+
+        <div class="form-group">
+            <label >{{_('简介')}}</label>
+            <textarea class="form-control" style="height:100px"  minlength="0" maxlength="100"
+                    placeholder="{{_('介绍下你自己吧!')}}" v-model="user_profile.introduction" :value="user_profile.introduction">
+
+            </textarea>
+        </div>
+        <div class="btn-group">
+            <button v-on:click="save_profile()" class="btn osr-btn btn-info osr-submit-btn">
+                {{_('保存')}}
+            </button>
+        </div>
+    </section>
+</div>

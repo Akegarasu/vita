@@ -1,0 +1,142 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("文本")}}-{% endblock %}
+{% block content %}
+<data id="category" content="{{data.category}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="sort" content="{{data.sort}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+<data id="cid" content="{{data.cid}}"></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-file-text-o"></i>
+                    <strong>
+                        {{_("文本")}}(<span class="osr-color-success">{{_("结果")}}{[medias.data_total]}</span>)
+                    </strong>
+                </header>
+                <div class="panel-body table-responsive">
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                            <select id="status" name="status"  class="form-control osr-form-control input-sm" @change="switch_category($event.target.value)">
+                               <option v-if="ct._id==curren_category" v-for="ct in media_categorys" :value="ct._id+'___'+ct.name" selected>
+                                    {[ct.name]}
+                                </option>
+
+                               <option v-if="curren_category" value="___全部" >{{_("全部")}}</option>
+                               <option v-else value="___全部" selected>{{_("全部")}}</option>
+                               <option v-if="curren_category !='default'" value="default___默认" >{{_("默认")}}</option>
+                               <option v-else  value="default___默认" selected>{{_("默认")}}</option>
+
+                                <option v-if="ct._id!=curren_category" v-for="ct in media_categorys" :value="ct._id+'___'+ct.name" >
+                                    {[ct.name]}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-group pull-right">
+                            <input v-on:keypress="get_media(1,keyword)" type="text" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_media(1,keyword)" class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="btn-group-sm">
+                       <a v-bind:href="'/osr-admin/category?type='+media_type+'&fp='+page+'&fs=media/text'" class="btn osr-btn btn-info">
+                           <i class="fa fa-cog"></i>  {{_("分类设置")}}
+                       </a>
+
+                      <button v-on:click="get_media()" id="refresh-btn" type="button"
+                              class="btn-sm btn osr-btn btn-default">
+                           <i class="fa fa-refresh"></i>
+                      </button>
+
+                      <button v-on:click="get_media(page, keyword, 'time')"  type="button"
+                              class="btn-sm btn osr-btn btn-success">
+                           {{_("时间排序")}}<i class="fa fa-sort"></i>
+                      </button>
+                      <a v-bind:href="'/osr-admin/media/text-edit?cid='+curren_category" type="button" class="btn-sm btn osr-btn btn-info">
+                          <i class="fa fa-plus"></i> {{_("添加")}}
+                      </a>
+
+                      <button v-on:click="warning_modal(null, 'del_media')" id="delete-btn" type="button"
+                              class="btn-sm btn osr-btn btn-danger">
+                           <i class="fa fa-trash"></i>{{_("删除")}}
+                      </button>
+                    </div>
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th >
+                                <div class="checkbox checkbox-success">
+                                  <input id="check_all" v-on:click="osr_check_all(medias.datas, checkAll, set)" type="checkbox"
+                                        v-model="checkAll" unchecked>
+                                  <label for="check_all"></label>
+                                </div>
+                              </th>
+                              <th>{{_("名称")}}</th>
+                              <th>{{_("标题")}}</th>
+                              <th>{{_("链接")}}</th>
+                              <th>{{_("文本内容")}}</th>
+                              <th>{{_("创建时间")}}</th>
+                              <th>{{_("操作")}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="media in medias.datas">
+                              <td width="50px">
+                                  <div class="checkbox checkbox-success">
+                                       <input :id="media._id" type="checkbox"  v-bind:value="media._id" unchecked>
+                                       <label :for="media._id"></label>
+                                  </div>
+
+                              </td>
+                           <td width="150px">
+                                 {[media.name]}
+                            </td>
+                            <td >
+                                <span v-if="media.title.length>15" :id="'title'+media._id" data-toggle="tooltip" :title="media.title">
+                                    {[media.title.slice(0,15)]}...
+                                </span>
+                                <span v-else >{[media.title]}</span>
+                            </td>
+                            <td>
+                                <span v-if="media.link.length>15" class="text-secondary"
+                                v-on:mouseover="osr_popover('link'+media._id, media.link, 'open');"
+                               v-on:mouseout="osr_popover('link'+media._id, media.link, 'close');" :id="'link'+media._id">
+                                    {[media.link.slice(7,15)]}...
+                                </span>
+                                <span v-else >{[media.link]}</span>
+                            </td>
+                            <td width="150px">
+                                <span>
+                                    {[media.text.slice(0,10)]}...
+                                    <a v-bind:href="'/osr-admin/media/text-edit?cid='+curren_category+'&id='+media._id+'&fp='+page">
+                                        {{_("查看")}}
+                                    </a>
+                                </span>
+                            </td>
+                            <td width="150px">{[media.time | formatDate]}</td>
+                            <td width="150px">
+                                <a v-bind:href="'/osr-admin/media/text-edit?cid='+curren_category+'&id='+media._id+'&fp='+page" class="btn-sm btn osr-btn btn-info">
+                                    <span class="fa fa-pencil-square-o"></span> {{_("详情|编辑")}}
+                                </a>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% include 'media/_paging.html' %}
+        </div>
+    </div>
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/media/text.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

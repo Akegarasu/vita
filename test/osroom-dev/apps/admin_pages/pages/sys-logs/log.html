@@ -1,0 +1,71 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("日志")}}-{% endblock %}
+{% block content %}
+<data id="name"  content="{{data.name}}"></data>
+<data id="ip" content="{{data.ip}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<div v-cloak id="app" >
+    <div class="row osr-adm-edit-page">
+        <div class="col-md-12 osr-col-xs-12">
+
+            <section class="panel">
+              <header class="panel-heading">
+                <span><i class="fa fa-file-text-o"></i> {{data.name}}[{{data.ip}}]</span>
+              </header>
+              <div class="panel-body">
+                  <div v-html="logs.datas"></div>
+              </div>
+            </section>
+            <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                    <li v-if="pages.last < pages.current_page && pages.last>0">
+                    <a v-on:click="get_logs(pages.last)">«</a>
+                </li>
+                <li v-else class="disabled">
+                    <a>«</a>
+                </li>
+
+                <li v-for="page in pages.last_show" >
+                    <a v-if="page!='...'" v-on:click="get_logs(page)">{[page]}</a>
+                    <a v-else href="#">...</a>
+                </li>
+
+                <li class="active">
+                    <a v-on:click="get_logs(pages.current_page)">{[pages.current_page]}</a>
+                </li>
+
+               <li v-for="page in pages.next_show" >
+                    <a v-if="page!='...'" v-on:click="get_logs(page)" >{[page]}</a>
+                    <a v-else href="#">...</a>
+               </li>
+
+               <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                    <a v-on:click="get_logs(pages.next)">»</a>
+                </li>
+                <li v-else class="disabled">
+                    <a>»</a>
+                </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_logs(pages.last)" class="osr-pointer" >
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_logs(pages.next)" class="osr-pointer">{{_("下一页")}}</a>
+                </li>
+            </ul>
+            <!-- //m页面导航-->
+
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/sys-logs/log.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

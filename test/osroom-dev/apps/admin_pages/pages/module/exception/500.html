@@ -1,0 +1,42 @@
+{% extends "based/based_no_head.html" %}
+{% block title %}{{_("500Server Error")}}-{% endblock %}
+{% block content %}
+<style>
+    *{
+        margin:0;
+        font-weight:lighter;
+        text-decoration:none;
+        text-align:center;
+        line-height:2.2em;
+    }
+    html,body{background:#fff};
+    .osr-h1{
+        font-size:100px;
+        line-height:1em;
+        }
+    .osr-table{
+        width:100%;
+        height:100%;
+        border:0;
+    }
+</style>
+
+<table class="osr-table" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table class="osr-table" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                    <h1 style="font-size:100px;line-height:1em;">404</h1>
+                    <h3>{{_("错误ID")}} 错误代码:{{data.request_id}}<a href="/"> {{_("回到首页")}}</a></h3>
+                    <p>请联系管理员</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}
+
+

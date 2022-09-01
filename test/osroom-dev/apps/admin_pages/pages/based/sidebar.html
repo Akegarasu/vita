@@ -1,0 +1,365 @@
+<!-- 左侧栏,包含徽标和侧边栏 -->
+<aside id="sidebar-left" class="left-side sidebar-offcanvas">
+    {% if current_user.is_authenticated %}
+    <!-- 侧边栏：style可以在sidebar.less中找到 -->
+    <section class="sidebar osr-sidebar" >
+        <!-- 边栏用户面板 -->
+        <div class="user-panel text-center">
+             <a href="/" target="_blank" class="float-md-left" data-toggle="tooltip"
+                title="{{g.site_global.site_config.APP_NAME}}">
+                {% if g.site_global.site_config.LOGO_IMG_URL%}
+                    <img class="osr-sidebar-sm-logo"src="{{g.site_global.site_config.LOGO_IMG_URL}}" alt="Logo"/>
+                {% else %}
+                    {{g.site_global.site_config.APP_NAME}}
+                {% endif %}
+            </a>
+
+        </div>
+        <!-- 侧边栏菜单：：样式可以在sidebar.less中找到 -->
+
+        <ul id="sidebar_menu" class="sidebar-menu">
+            {% if current_user.page_permission_check(["/osr-admin"])%}
+            <li>
+                <a href="/osr-admin">
+                    <i class="fa fa-dashboard"></i> <span>{{_("仪表盘")}}</span>
+                </a>
+            </li>
+
+            {% endif %}
+
+            {% if current_user.page_permission_check(["/osr-admin/post","/osr-admin/comment"])%}
+              <li>
+                <a href="javascript:;" data-target="#content" data-toggle="collapse">
+                    <i class="fa fa-archive"></i>
+                    <span>{{_("内容")}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right osr-sidebar-fa-right"></i>
+                </a>
+                <ul id="content" class="osr-sidebar-menu-lv2 collapse">
+                    {% if current_user.page_permission_check(["/osr-admin/post"])%}
+                    <li>
+                        <a href="/osr-admin/post">
+                            <i class="fa fa-file-text-o"></i>
+                            <span>{{_("文章管理")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/comment"])%}
+                    <li>
+                        <a href="/osr-admin/comment">
+                            <i class="fa fa-comments-o"></i>
+                            <span>{{_("评论管理")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+              </li>
+            {% endif %}
+            
+            {% if current_user.page_permission_check(["/osr-admin/media/text", "/osr-admin/media/image",
+            "/osr-admin/media/audio", "/osr-admin/media/video", "/osr-admin/media/other" ])%}
+              <li>
+                <a href="javascript:;" data-target="#media" data-toggle="collapse">
+                    <i class="fa fa-play-circle-o"></i>
+                    <span>{{_("多媒体")}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right"></i>
+        
+                </a>
+                <ul id="media" class="osr-sidebar-menu-lv2 panel-collapse collapse" >
+                    {% if current_user.page_permission_check(["/osr-admin/media/image"])%}
+                    <li>
+                        <a href="/osr-admin/media/image">
+                            <i class="fa fa-image"></i>
+                            <span>{{_("图文|图库")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if current_user.page_permission_check(["/osr-admin/media/text"])%}
+                    <li>
+                        <a href="/osr-admin/media/text">
+                            <i class="fa fa-file-text-o"></i>
+                            <span>{{_("文本内容")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if current_user.page_permission_check(["/osr-admin/media/audio"])%}
+                    <li>
+                        <a href="/osr-admin/media/audio">
+                            <i class="fa fa-volume-up"></i>
+                            <span>{{_("音频库")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/media/video"])%}
+                    <li>
+                        <a href="/osr-admin/media/video">
+                            <i class="fa fa-youtube-play"></i>
+                            <span>{{_("视频库")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/media/other"])%}
+                    <li>
+                        <a href="/osr-admin/media/other">
+                            <i class="fa fa-file-zip-o"></i>
+                            <span>{{_("其他类型")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% endif %}
+        
+            {% if current_user.page_permission_check(["/osr-admin/message/on-site",
+                    "/osr-admin/message/email","/osr-admin/message/send", "/osr-admin/message/sms"])%}
+             <li>
+                <a href="javascript:;" data-target="#message" data-toggle="collapse">
+                    <i class="fa fa-comments-o"></i>
+                    <span>{{_("消息管理")}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right"></i>
+        
+                </a>
+                <ul id="message" class="osr-sidebar-menu-lv2 collapse" >
+                    {% if current_user.page_permission_check(["/osr-admin/message/on-site"])%}
+                    <li>
+                        <a href="/osr-admin/message/on-site">
+                            <i class="fa fa-comment-o"></i>
+                            <span>{{_("站内消息")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/message/email"])%}
+                    <li>
+                        <a href="/osr-admin/message/email">
+                            <i class="fa fa-at"></i>
+                            <span>{{_("系统邮件")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/message/sms"])%}
+                    <li>
+                        <a href="/osr-admin/message/sms">
+                            <i class="fa fa-envelope-o"></i>
+                            <span>{{_("系统短信")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/message/send"])%}
+                    <li>
+                        <a href="/osr-admin/message/send">
+                            <i class="fa fa-send-o"></i>
+                            <span>{{_("发送消息")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% endif %}
+        
+            {% if current_user.page_permission_check(["/osr-admin/role","/osr-admin/user"])%}
+            <li>
+                <a href="javascript:;" data-target="#user" data-toggle="collapse">
+                    <i class="fa fa-user-o"></i>
+                    <span>{{_("用户")}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right"></i>
+                </a>
+                <ul id="user" class="osr-sidebar-menu-lv2 collapse" >
+                    {% if current_user.page_permission_check(["/osr-admin/user"])%}
+                    <li>
+                        <a href="/osr-admin/user">
+                            <i class="fa fa-users"></i>
+                            <span>{{_("用户管理")}}</span>
+        
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/role"])%}
+                    <li>
+                        <a href="/osr-admin/role">
+                            <i class="fa fa-user-md"></i>
+                            <span>{{_("角色管理")}}</span>
+        
+                        </a>
+                    </li>
+                    {% endif %}
+        
+                </ul>
+            </li>
+            {% endif %}
+
+            {% if current_user.page_permission_check(["/osr-admin/token/rest-token",
+                                                "/osr-admin/permission/url","/osr-admin/permission"])%}
+            <li>
+                <a href="javascript:;" data-target="#token_per" data-toggle="collapse">
+                    <i class="fa fa-credit-card"></i>
+                    <span>{{_("权限与Token")}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right"></i>
+                </a>
+                <ul id="token_per" class="osr-sidebar-menu-lv2 collapse" >
+                    {% if current_user.page_permission_check(["/osr-admin/permission"])%}
+                    <li>
+                        <a href="/osr-admin/permission">
+                            <i class="fa fa-shield"></i>
+                            <span>{{_("权重管理")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/permission/url"])%}
+                    <li>
+                        <a href="/osr-admin/permission/url">
+                            <i class="fa fa-shield"></i>
+                            <span>{{_("API权限")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/token/rest-token"])%}
+                     <li>
+                        <a href="/osr-admin/token/rest-token">
+                            <i class="fa fa-credit-card"></i>
+                            <span>{{_("Rest Token")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+            </li>
+            {% endif %}
+
+            {% if current_user.page_permission_check(["/osr-admin/theme-setting/themes","/osr-admin/theme-setting/file",
+            "/osr-admin/theme-setting/display/text", "/osr-admin/theme-setting/display/image",
+            "/osr-admin/theme-setting/display/audio", "/osr-admin/theme-setting/display/video", "/osr-admin/theme-setting/display/other" ])%}
+              <li>
+                <a href="javascript:;" data-target="#theme-display" data-toggle="collapse">
+                    <i class="fa fa-laptop"></i>
+                    <span>{{_("主题")}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right"></i>
+
+                </a>
+                <ul id="theme-display" class="osr-sidebar-menu-lv2 panel-collapse collapse" >
+                    {% if current_user.page_permission_check(["/osr-admin/theme-setting/themes"])%}
+                    <li>
+                        <a href="/osr-admin/theme-setting/themes">
+                            <i class="fa fa-html5"></i>
+                            <span>{{_("主题安装")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/theme-setting/display/image"])%}
+                    <li>
+                        <a href="/osr-admin/theme-setting/display/image">
+                            <i class="fa fa-image"></i>
+                            <span>{{_("图片展示")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/theme-setting/display/text"])%}
+                    <li>
+                        <a href="/osr-admin/theme-setting/display/text">
+                            <i class="fa fa-file-text-o"></i>
+                            <span>{{_("文本展示")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if current_user.page_permission_check(["/osr-admin/theme-setting/display/audio"])%}
+                    <li>
+                        <a href="/osr-admin/theme-setting/display/audio">
+                            <i class="fa fa-volume-up"></i>
+                            <span>{{_("音频设置")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/theme-setting/display/video"])%}
+                    <li>
+                        <a href="/osr-admin/theme-setting/display/video">
+                            <i class="fa fa-youtube-play"></i>
+                            <span>{{_("视频设置")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if current_user.page_permission_check(["/osr-admin/theme-setting/display/other"])%}
+                    <li>
+                        <a href="/osr-admin/theme-setting/display/other">
+                            <i class="fa fa-file-zip-o"></i>
+                            <span>{{_("其他媒体")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if current_user.page_permission_check(["/osr-admin/theme-setting/file"])%}
+                    <li>
+                        <a href="/osr-admin/theme-setting/file">
+                            <i class="fa fa-paste"></i>
+                            <span>{{_("页面管理")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% endif %}
+
+            {% if current_user.page_permission_check(["/osr-admin/plugin"])%}
+            <li >
+                <a href="/osr-admin/plugin">
+                    <i class="fa fa-plug"></i>
+                    <span>{{_("插件")}}</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% if current_user.page_permission_check(["/osr-admin/audit/rule",
+                  "/osr-admin/setting/configs", "/osr-admin/setting/config-versions"])%}
+            <li>
+                <a href="javascript:;" data-target="#setting" data-toggle="collapse">
+                    <i class="fa fa-cogs"></i>
+                    <span>{{_("设置")}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right"></i>
+                </a>
+                <ul id="setting" class="osr-sidebar-menu-lv2 collapse" >
+                    {% if current_user.page_permission_check(["/osr-admin/setting/configs"])%}
+                    <li>
+                        <a href="/osr-admin/setting/configs">
+                            <i class="fa fa-cog"></i>
+                            <span>{{_("站点配置")}}</span>
+        
+                        </a>
+                    </li>
+                    {% endif %}
+        
+                    {% if current_user.page_permission_check(["/osr-admin/audit/rule"])%}
+                     <li>
+                        <a href="/osr-admin/audit/rule">
+                            <i class="fa fa-legal"></i>
+                            <span>{{_("审核规则")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+        
+                    {% if current_user.page_permission_check(["/osr-admin/setting/config-versions"])%}
+                    <li>
+                        <a href="/osr-admin/setting/config-versions">
+                            <i class="fa fa-history"></i>
+                            <span>{{_("配置版本")}}</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% endif %}
+        
+            {% if current_user.page_permission_check(["/osr-admin/setting/host"])%}
+            <li>
+                <a href="/osr-admin/setting/host">
+                    <i class="fa fa-server"></i>
+                    <span>{{_("服务器")}}</span>
+                </a>
+            </li>
+            {% endif %}
+
+            
+        </ul>
+    </section>
+    <!-- /.侧边栏 -->
+    {% endif %}
+</aside>

@@ -1,0 +1,24 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("插件设置")}}{{data.plugin}}-{% endblock %}
+{% block content %}
+<data id="plugin" content="{{data.plugin}}"></data>
+<div v-cloak id="app" class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="/osr-admin/plugin?page={{data.from_page}}"><i class="fa fa-plug"></i> {{_("插件管理")}}</a></li>
+            <li class="active">{{_("设置")}}</li>
+        </ul>
+    </div>
+    <div class="col-md-12">
+        <section class="panel">
+          <header class="panel-heading">
+             <i class="fa fa-cog"></i> {[plugin]}{{_("设置")}}
+          </header>
+           {% include "plugin/_edit.html" %}
+        </section>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/plugin/setting.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!-- 左侧栏,包含徽标和侧边栏 -->
+<aside id="sidebar-left" class="left-side sidebar-offcanvas visible-xs">
+    <!-- 侧边栏：style可以在sidebar.less中找到 -->
+    <section class="sidebar osr-sidebar">
+
+        <!-- 侧边栏菜单：：样式可以在sidebar.less中找到 -->
+        <ul id="sidebar_menu" class="sidebar-menu">
+            <li>
+                <a class="lv1-a" href="/search">
+                    {{_("搜索")}}
+                </a>
+            </li>
+
+            {% for nav in g.site_global.theme_config.navs%}
+                {% if nav.json_data.next_lev %}
+                    <li >
+                    <a class="lv1-a" href="javascript:;" data-target="#{{nav.display_name}}" data-toggle="collapse">
+                        <span>{{nav.display_name}}</span>
+                        <i class="fa fa-angle-right osr-sidebar-fa-right osr-sidebar-fa-right"></i>
+                    </a>
+
+                    <ul id="{{nav.display_name}}" class="osr-sidebar-menu-lv2 collapse">
+                        {% for nav2 in nav.json_data.next_lev %}
+                        <li>
+                            <a href="{{nav2.link}}">
+                                {{nav2.display_name}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                   </ul>
+                    </li>
+                {% else %}
+                    <li >
+                        <a class="lv1-a" href="{{nav.json_data.link}}">
+                            {{nav.display_name}}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                <a class="lv1-a" href="javascript:;" data-target="#switch-lan" data-toggle="collapse">
+                    <span>{{g.site_global.language.all_language[g.site_global.language.current]["alias"]}}</span>
+                    <i class="fa fa-angle-right osr-sidebar-fa-right osr-sidebar-fa-right"></i>
+                </a>
+                <ul id="switch-lan" class="osr-sidebar-menu-lv2 collapse">
+
+                    {% for k,v in g.site_global.language.all_language.items() %}
+                    <li>
+                        <a onclick="set_language('{{k}}')">
+                            <span>{{v.name}}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.侧边栏 -->
+</aside>

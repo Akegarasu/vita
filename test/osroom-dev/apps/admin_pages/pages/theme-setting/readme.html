@@ -1,0 +1,28 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("主题配置文档")}}-{% endblock %}
+{% block content %}
+<div v-cloak id="app" class="row">
+    <div class="col-xs-12">
+        <div class="panel">
+            <div class="panel-body table-responsive">
+                <!-- 文章头-->
+                <h3>
+                    {[name]}{{_("主题配置文档")}}
+                </h3>
+                <br>
+                <article>
+                    <!-- 正文-->
+                    <div v-html="readme" v-highlight></div>
+                    <!-- //正文-->
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src=/admin-pages/static/js/markdown/marked.min.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+<link href="/admin-pages/static/css/highlight-style-github.css?v={{g.site_global.site_config.STATIC_FILE_VERSION}}" rel="stylesheet">
+<script src="/admin-pages/static/js/highlight.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}"></script>
+
+<script src="/admin-pages/static/js/osr_page_js/theme-setting/readme.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

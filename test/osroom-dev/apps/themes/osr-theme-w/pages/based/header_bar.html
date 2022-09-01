@@ -1,0 +1,17 @@
+    <!-- 头部logo: header.less -->
+ <header id="top" class="header navbar-static-top">
+    <!-- 头部 Navbar: header.less -->
+     <!--移动端-->
+     <nav class="navbar navbar-fixed-top visible-xs" role="navigation">
+     {% include 'osr-theme-w/pages/based/_mb_header_bar.html' %}
+     </nav>
+     <!--移动端-->
+     <!--PC端-->
+    <nav id="top-nav" class="navbar hidden-xs osr-navbar navbar-fixed-top osr-top-navbar" role="navigation">
+        <div class="osr-navbar-son">
+        {% include 'osr-theme-w/pages/based/_header_bar_menu_left.html' %}
+        {% include 'osr-theme-w/pages/based/_header_bar_menu_user.html' %}
+        </div>
+    </nav>
+     <!--PC端-->
+</header>

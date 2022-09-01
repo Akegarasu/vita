@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <title>
+        {{ data.post.title }}-
+        {{g.site_global.site_config.TITLE_SUFFIX}}
+    </title>
+    <meta name="description" content="{{g.site_global.site_config.DEFAULT_DESCRIPTION}}">
+    <meta name="keywords" content="{{g.site_global.site_config.DEFAULT_KEYWORDS}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="SHORTCUT ICON" href="{{g.site_global.site_config.FAVICON}}">
+    <link rel="apple-touch-icon-precomposed" href="{{g.site_global.site_config.FAVICON}}">
+    <meta name="apple-mobile-web-app-title" content="{{g.site_global.site_config.TITLE_SUFFIX}}">
+    <meta name="author" content=""/>
+    <meta name="viewport" content="width=drvice-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+</head>
+<body>
+    <h1>{{ data.post.title }}</h1>
+    <div>
+        <span>{{ gettext('发布时间') }}: {{ (data.post.issue_time| int)}}</span>&nbsp;&nbsp;
+        <span>{{ gettext('更新时间') }}: {{ (data.post.update_time| int)}}</span>
+        <br>
+        <span>{{ gettext('文集') }}: {{ data.post.category_name }}</span>
+        <br>
+        {{ gettext('标签') }}:
+        {% for tag in data.post.tags %}
+            <span style="color:dodgerblue">{{ tag }}</span>&nbsp;
+        {% endfor %}
+        <br>
+        <span>{{ gettext('浏览量') }}: {{ data.post.pv }}</span>&nbsp;
+        <span>{{ gettext('评论') }}: {{ data.post.comment_num }}</span>&nbsp;
+        <span>{{ gettext('赞') }}: {{ data.post.like }}</span>
+    </div>
+    <div>
+        <img src="{{ data.post.user.avatar_url.url }}" width="60px" height="60px">
+        <span>{{ data.post.user.username }}</span>
+    </div>
+    <article>
+        {{ data.post.content|safe }}
+    </article>
+    <div>
+
+    </div>
+    <footer >
+        <a href="/" target="_blank">{{ gettext('首页') }}</a>
+    </footer>
+</body>
+</html>

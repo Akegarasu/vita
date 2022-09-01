@@ -1,0 +1,132 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("主题静态文件")}}-{% endblock %}
+{% block content %}
+<data id="type" content="{{data.type}}"></data>
+<data id="page" content="{{data.page}}"></data>
+<data id="keyword" content="{{data.keyword}}"></data>
+
+<div v-cloak id="app">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <header class="panel-heading">
+                    <i class="fa fa-html5"></i>
+                    <strong>
+                        {{_("页面编辑")}}(<span class="osr-color-success">{{_("结果")}}{[files.data_total]}</span>)
+                        <span class="osr-color-secondary">[{{_("当前设置主题")}}: {[current_theme_name]}]</span>
+                    </strong>
+                </header>
+                    <div class="box-tools form-inline">
+                        <div class="input-group pull-left">
+                             <select id="theme_name" name="theme_name"  class="form-control osr-form-control input-sm"
+                                    @change="switch_theme_name($event.target.value)">
+                               <option v-if="name==current_theme_name" v-for="name in theme_names" :value="name" selected>
+                                        {[name]}
+                                </option>
+                                <option v-if="name!=current_theme_name" v-for="name in theme_names" :value="name">
+                                        {[name]}
+                                </option>
+                            </select>
+
+                            <select class="form-control osr-form-control input-sm" @change="switch_type($event.target.value)">
+                                 <option  v-for="t,k in type_list" v-if="t==type" selected = "selected" :value ="t">{[k]}</option>
+                                <option v-for="t,k in type_list" v-if="t!=type" :value ="t">{[k]}</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group pull-right">
+
+                            <input type="text" v-model="keyword" class="form-control osr-input input-sm" style="width: 150px;" placeholder="{{_('搜索')}}">
+                            <div class="btn-group">
+                                <button v-on:click="get_files(1,keyword)" class="btn btn-sm btn-default osr-btn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="btn-group-sm">
+
+                         <a :href="'/osr-admin/theme-setting/file/add-page?theme='+current_theme_name+'&from_type='+type+'&from_page='+page" type="button"
+                             class="btn osr-btn btn-sm btn-info">
+                              <i class="fa fa-plus"></i> {{_("添加页面")}}
+                          </a>
+                    </div>
+                    <br>
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="file in files.datas">
+                        <p>
+                            <i class="fa fa-file-code-o"></i> {[file.name]}
+                            <span v-if="file.is_custom_page" style="color:#f37b1d">({{_("自添加页面)")}}</span>
+                        </p>
+
+                         <p style="color:#8e9294">
+                             <i class="fa fa-folder-o"></i> {[file.relative_path]}
+                         </p>
+
+                        <div class="btn-group-sm">
+                            <a class="btn osr-btn btn-info" :href="'/osr-admin/theme-setting/file/edit?theme='+current_theme_name+'&filename='+file.name+'&path='+file.relative_path+'&from_type='+type+'&from_page='+page" >
+                                <i class="fa fa-edit"></i> {{_("编辑")}}
+                            </a>
+                             <a  class="btn osr-btn btn-danger" v-on:click="warning_modal(null, 'del_file', file.relative_path, file.name)"
+                                 v-if="file.is_custom_page">
+                                <i class="fa fa-trash-o"></i> {{_("删除")}}
+                             </a>
+
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 页面导航-->
+            <div class="text-center hidden-md-down">
+                <ul class="pagination">
+                <li v-if="pages.last < pages.current_page && pages.last>0">
+                        <a v-on:click="get_files(pages.last, keyword)">«</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>«</a>
+                    </li>
+
+                    <li v-for="page in pages.last_show" >
+                        <a v-if="page!='...'" v-on:click="get_files(page, keyword)">{[page]}</a>
+                        <a v-else href="#">...</a>
+                    </li>
+
+                    <li class="active">
+                        <a v-on:click="get_files(pages.current_page, keyword)">{[pages.current_page]}</a>
+                    </li>
+
+                   <li v-for="page in pages.next_show" >
+                        <a v-if="page!='...'" v-on:click="get_files(page, keyword)" >{[page]}</a>
+                        <a v-else href="#">...</a>
+                   </li>
+
+                   <li v-if="pages.next > pages.current_page && pages.next<=pages.page_total">
+                        <a v-on:click="get_files(pages.next, keyword)">»</a>
+                    </li>
+                    <li v-else class="disabled">
+                        <a>»</a>
+                    </li>
+                </ul>
+           </div>
+            <!-- //页面导航-->
+            <!-- m页面导航-->
+            <ul class="pager visible-xs visible-sm">
+                <li v-if="pages.last < pages.current_page && pages.last>0" class="previous">
+                    <a v-on:click="get_files(pages.last, keyword)" class="osr-pointer">
+                        {{_("上一页")}}
+                    </a>
+                </li>
+                <li v-if="pages.next > pages.current_page  && pages.next<=pages.page_total" class="next">
+                    <a v-on:click="get_files(pages.next, keyword)" class="osr-pointer">{{_("下一页")}}</a>
+                </li>
+
+            </ul>
+            <!-- //m页面导航-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/theme-setting/file/index.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}

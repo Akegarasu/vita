@@ -97,5 +97,5 @@ if __name__ == "__main__":
     # ))
     # goast.parse()
     # ruletest = RuleManager()
-    # ruletest.load_yaml_rules("../../data/rules/go_rules.yml")
+    # ruletest.load_yaml_rules("../../data/Python-rules/go_rules.yml")
     # goast.do_match(ruletest)

@@ -1,0 +1,3404 @@
+# Translations template for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-03-22 13:50+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: apps/admin_pages/pages/_index_chd1.html:11
+msgid "文章总数"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd1.html:15
+#: apps/admin_pages/pages/_index_chd1.html:32
+#: apps/admin_pages/pages/_index_chd1.html:50
+#: apps/admin_pages/pages/_index_chd3.html:31
+#: apps/admin_pages/pages/_index_chd3.html:46
+#: apps/admin_pages/pages/_index_chd3.html:61
+#: apps/admin_pages/pages/_index_chd3.html:74
+#: apps/admin_pages/pages/comment/index.html:87
+#: apps/admin_pages/pages/media/other.html:61
+#: apps/admin_pages/pages/media/text.html:119
+#: apps/admin_pages/pages/plugin/index.html:115
+#: apps/admin_pages/pages/setting/_config_warning_info.html:14
+#: apps/admin_pages/pages/setting/host/index.html:36
+#: apps/admin_pages/pages/theme-setting/display/other.html:62
+#: apps/admin_pages/pages/theme-setting/display/text.html:130
+msgid "查看"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd1.html:28
+msgid "评论总数"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd1.html:46
+msgid "用户总数"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd1.html:66
+#: apps/admin_pages/pages/_index_chd3.html:52
+msgid "多媒体库"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:6
+msgid "动态数据"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:71
+msgid "待处理事件"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:77
+#: apps/admin_pages/pages/_index_chd3.html:12
+#: apps/admin_pages/pages/media/audio-edit.html:47
+#: apps/admin_pages/pages/media/audio-edit.html:49
+#: apps/admin_pages/pages/media/audio.html:33
+#: apps/admin_pages/pages/media/image-edit.html:63
+#: apps/admin_pages/pages/media/image-edit.html:65
+#: apps/admin_pages/pages/media/other-edit.html:47
+#: apps/admin_pages/pages/media/other-edit.html:49
+#: apps/admin_pages/pages/media/other.html:33
+#: apps/admin_pages/pages/media/text-edit.html:46
+#: apps/admin_pages/pages/media/text-edit.html:48
+#: apps/admin_pages/pages/media/text.html:81
+#: apps/admin_pages/pages/media/video-edit.html:47
+#: apps/admin_pages/pages/media/video-edit.html:49
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:47
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:49
+#: apps/admin_pages/pages/theme-setting/display/audio.html:34
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:63
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:65
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:47
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:49
+#: apps/admin_pages/pages/theme-setting/display/other.html:34
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:46
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:48
+#: apps/admin_pages/pages/theme-setting/display/text.html:92
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:47
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:49
+msgid "名称"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:78
+#: apps/admin_pages/pages/own/user/index.html:16
+msgid "待处理"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:79
+#: apps/admin_pages/pages/_index_chd2.html:118
+#: apps/admin_pages/pages/_index_chd2.html:136
+#: apps/admin_pages/static/js/osr_page_js/message/email.js:10
+#: apps/admin_pages/static/js/osr_page_js/message/sms.js:10
+msgid "异常"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:85
+#: apps/admin_pages/pages/_index_chd3.html:23
+#: apps/admin_pages/pages/own/corpus/index.html:25
+#: apps/admin_pages/pages/own/user/index.html:24
+#: apps/admin_pages/pages/post/index.html:15
+#: apps/admin_pages/static/js/osr_page_js/home.js:53
+msgid "文章"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:90
+#: apps/admin_pages/pages/_index_chd2.html:103
+#: apps/admin_pages/pages/own/user/post/pending.html:27
+msgid "待审核"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:98
+#: apps/admin_pages/pages/_index_chd3.html:37
+#: apps/admin_pages/pages/comment/index.html:15
+#: apps/admin_pages/pages/comment/index.html:201
+#: apps/admin_pages/pages/own/user/message/_comment.html:7
+#: apps/admin_pages/pages/own/user/message/index.html:21
+#: apps/admin_pages/pages/own/user/post/_comment.html:17
+#: apps/admin_pages/pages/own/user/post/preview.html:34
+#: apps/admin_pages/pages/post/index.html:51
+#: apps/admin_pages/pages/post/index.html:216
+#: apps/admin_pages/static/js/osr_page_js/home.js:53
+msgid "评论"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:111
+msgid "邮件发送"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:122
+#: apps/admin_pages/pages/_index_chd2.html:140
+#: apps/admin_pages/pages/_index_chd2.html:154
+#: apps/admin_pages/static/js/osr_page_js/message/email.js:11
+#: apps/admin_pages/static/js/osr_page_js/message/sms.js:11
+msgid "错误"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:129
+msgid "短信发送"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd2.html:147
+#: apps/admin_pages/pages/based/sidebar.html:306
+msgid "插件"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd3.html:6
+msgid "举报状态"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd3.html:13
+msgid "3小时"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd3.html:14
+msgid "8小时"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd3.html:15
+msgid "1天"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd3.html:16
+#: apps/admin_pages/static/js/osr_page_js/home.js:56
+msgid "7天"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd3.html:17
+#: apps/admin_pages/pages/based/_inform_modal_input.html:23
+#: apps/admin_pages/pages/post/index.html:67
+#: apps/admin_pages/pages/user/index.html:59
+#: apps/admin_pages/static/js/osr_page_js/message/email.js:18
+#: apps/admin_pages/static/js/osr_page_js/message/on-site.js:13
+msgid "其他"
+msgstr ""
+
+#: apps/admin_pages/pages/_index_chd3.html:67
+#: apps/admin_pages/pages/based/sidebar.html:164
+#: apps/admin_pages/pages/message/on-site.html:83
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:32
+#: apps/admin_pages/pages/user/index.html:14
+#: apps/admin_pages/static/js/osr_page_js/home.js:53
+msgid "用户"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:24
+#: apps/admin_pages/pages/index.html:2
+msgid "仪表盘"
+msgstr ""
+
+#: apps/admin_pages/pages/index.html:12
+msgid "欢迎使用OSROOM"
+msgstr ""
+
+#: apps/admin_pages/pages/based/footer_adm.html:12
+#: apps/admin_pages/pages/index.html:13
+#: apps/admin_pages/pages/setting/config-versions.html:36
+msgid "版本"
+msgstr ""
+
+#: apps/admin_pages/pages/index.html:16
+msgid "查看最新版本"
+msgstr ""
+
+#: apps/admin_pages/pages/index.html:29
+msgid "查看更多"
+msgstr ""
+
+#: apps/admin_pages/pages/link-unaudited.html:2
+#: apps/admin_pages/pages/link-unaudited.html:9
+msgid "跳转确认"
+msgstr ""
+
+#: apps/admin_pages/pages/link-unaudited.html:14
+msgid "以下网站链接安全性未知，是否继续前往？"
+msgstr ""
+
+#: apps/admin_pages/pages/link-unaudited.html:23
+msgid "继续"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:180
+#: apps/admin_pages/pages/comment/index.html:234
+#: apps/admin_pages/pages/link-unaudited.html:26
+#: apps/admin_pages/pages/media/_inform_modal.html:19
+#: apps/admin_pages/pages/message/email.html:171
+#: apps/admin_pages/pages/message/on-site.html:195
+#: apps/admin_pages/pages/message/send.html:64
+#: apps/admin_pages/pages/module/_send_code.html:43
+#: apps/admin_pages/pages/module/editor/markdown.html:29
+#: apps/admin_pages/pages/own/account/settings/_send_code.html:34
+#: apps/admin_pages/pages/post/index.html:266
+#: apps/admin_pages/pages/theme-setting/display/_inform_modal.html:19
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:68
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:84
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:68
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:67
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:68
+#: apps/admin_pages/pages/user/index.html:333
+msgid "关闭"
+msgstr ""
+
+#: apps/admin_pages/pages/recover-password.html:2
+msgid "找回密码"
+msgstr ""
+
+#: apps/admin_pages/pages/recover-password.html:12
+#: apps/admin_pages/pages/recover-password.html:15
+#: apps/admin_pages/pages/user/edit-user.html:26
+msgid "电子邮箱"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:26
+#: apps/admin_pages/pages/recover-password.html:13
+#: apps/admin_pages/pages/sign-up.html:18
+#: apps/admin_pages/pages/user/add-user.html:29
+#: apps/admin_pages/pages/user/edit-user.html:28
+msgid "邮箱地址不合法"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:27
+#: apps/admin_pages/pages/recover-password.html:14
+#: apps/admin_pages/pages/sign-up.html:19
+msgid "邮箱地址不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/recover-password.html:19
+#: apps/admin_pages/pages/sign-in.html:21
+#: apps/admin_pages/pages/sign-up.html:24
+#: apps/admin_pages/pages/user/add-user.html:34
+msgid "输入密码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:25
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:26
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:32
+#: apps/admin_pages/pages/recover-password.html:20
+#: apps/admin_pages/pages/recover-password.html:21
+#: apps/admin_pages/pages/recover-password.html:27
+#: apps/admin_pages/pages/sign-up.html:25
+#: apps/admin_pages/pages/sign-up.html:26
+#: apps/admin_pages/pages/sign-up.html:32
+#: apps/admin_pages/pages/user/add-user.html:35
+#: apps/admin_pages/pages/user/add-user.html:36
+#: apps/admin_pages/pages/user/add-user.html:42
+#: apps/admin_pages/pages/user/edit-user.html:39
+#: apps/admin_pages/pages/user/edit-user.html:40
+msgid "至少8个字符"
+msgstr ""
+
+#: apps/admin_pages/pages/recover-password.html:25
+#: apps/admin_pages/pages/sign-up.html:30
+#: apps/admin_pages/pages/user/add-user.html:40
+msgid "再次输入密码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:33
+#: apps/admin_pages/pages/recover-password.html:28
+#: apps/admin_pages/pages/sign-up.html:33
+#: apps/admin_pages/pages/user/add-user.html:43
+msgid "前后密码不一致"
+msgstr ""
+
+#: apps/admin_pages/pages/recover-password.html:36
+msgid "重设密码"
+msgstr ""
+
+#: apps/admin_pages/pages/recover-password.html:42
+msgid "回到登录"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-in.html:2 apps/admin_pages/pages/sign-in.html:46
+msgid "登录"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-in.html:15
+msgid "用户名或电子邮箱"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-in.html:16
+#: apps/admin_pages/pages/sign-in.html:17
+msgid "用户名或电子邮箱错误"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:18
+#: apps/admin_pages/pages/own/account/settings/email.html:19
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:18
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:19
+#: apps/admin_pages/pages/sign-in.html:22
+#: apps/admin_pages/pages/sign-in.html:23
+msgid "密码错误"
+msgstr ""
+
+#: apps/admin_pages/pages/module/_send_code.html:33
+#: apps/admin_pages/pages/own/account/settings/_send_code.html:24
+#: apps/admin_pages/pages/sign-in.html:28
+msgid "图片验证码"
+msgstr ""
+
+#: apps/admin_pages/pages/module/_send_code.html:6
+#: apps/admin_pages/pages/module/_send_code.html:7
+#: apps/admin_pages/pages/module/_send_code.html:34
+#: apps/admin_pages/pages/own/account/settings/_send_code.html:25
+#: apps/admin_pages/pages/own/account/settings/email.html:35
+#: apps/admin_pages/pages/own/account/settings/email.html:36
+#: apps/admin_pages/pages/own/account/settings/email.html:41
+#: apps/admin_pages/pages/own/account/settings/email.html:42
+#: apps/admin_pages/pages/sign-in.html:29
+msgid "验证码错误"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-in.html:40
+msgid "记住登录"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-in.html:41
+msgid "忘记密码"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-in.html:51 apps/admin_pages/pages/sign-up.html:2
+#: apps/admin_pages/pages/sign-up.html:41
+msgid "注册"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:43
+#: apps/admin_pages/pages/own/account/settings/_basis.html:17
+#: apps/admin_pages/pages/setting/host/edit.html:32
+#: apps/admin_pages/pages/sign-up.html:12
+#: apps/admin_pages/pages/user/add-user.html:23
+#: apps/admin_pages/pages/user/edit-user.html:23
+msgid "用户名"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:20
+#: apps/admin_pages/pages/own/account/settings/_basis.html:33
+#: apps/admin_pages/pages/sign-up.html:13
+#: apps/admin_pages/pages/user/add-user.html:24
+msgid "用户名不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-up.html:14
+#: apps/admin_pages/pages/user/add-user.html:25
+msgid "用户名至少3个字符"
+msgstr ""
+
+#: apps/admin_pages/pages/sign-up.html:46
+msgid "已有账户"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-view.html:2
+#: apps/admin_pages/pages/theme-view.html:8
+msgid "主题预览"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-view.html:10
+msgid "部分开启新Tab链接已被修改"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:2
+#: apps/admin_pages/pages/audit/rule/index.html:14
+#: apps/admin_pages/pages/based/sidebar.html:334
+msgid "审核规则"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:14
+#: apps/admin_pages/pages/comment/index.html:15
+#: apps/admin_pages/pages/media/audio.html:12
+#: apps/admin_pages/pages/media/image.html:13
+#: apps/admin_pages/pages/media/other.html:12
+#: apps/admin_pages/pages/media/text.html:16
+#: apps/admin_pages/pages/media/video.html:12
+#: apps/admin_pages/pages/message/email.html:15
+#: apps/admin_pages/pages/message/on-site.html:15
+#: apps/admin_pages/pages/message/sms.html:14
+#: apps/admin_pages/pages/permission/index.html:13
+#: apps/admin_pages/pages/permission/url/index.html:14
+#: apps/admin_pages/pages/plugin/index.html:13
+#: apps/admin_pages/pages/post/index.html:15
+#: apps/admin_pages/pages/role/index.html:13
+#: apps/admin_pages/pages/setting/configs.html:13
+#: apps/admin_pages/pages/theme-setting/display/audio.html:12
+#: apps/admin_pages/pages/theme-setting/display/image.html:13
+#: apps/admin_pages/pages/theme-setting/display/other.html:12
+#: apps/admin_pages/pages/theme-setting/display/text.html:16
+#: apps/admin_pages/pages/theme-setting/display/video.html:12
+#: apps/admin_pages/pages/theme-setting/file/index.html:15
+#: apps/admin_pages/pages/user/index.html:14
+msgid "结果"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:26
+#: apps/admin_pages/pages/comment/index.html:27
+#: apps/admin_pages/pages/media/_bar.html:20
+#: apps/admin_pages/pages/media/text.html:38
+#: apps/admin_pages/pages/message/email.html:34
+#: apps/admin_pages/pages/message/on-site.html:31
+#: apps/admin_pages/pages/message/sms.html:26
+#: apps/admin_pages/pages/permission/url/index.html:30
+#: apps/admin_pages/pages/plugin/index.html:31
+#: apps/admin_pages/pages/post/index.html:29
+#: apps/admin_pages/pages/setting/config-edit.html:33
+#: apps/admin_pages/pages/setting/configs.html:19
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:32
+#: apps/admin_pages/pages/theme-setting/display/text.html:49
+#: apps/admin_pages/pages/theme-setting/file/index.html:39
+#: apps/admin_pages/pages/user/index.html:33
+msgid "搜索"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:37
+msgid "添加规则"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:46
+#: apps/admin_pages/pages/based/msg_box.html:46
+#: apps/admin_pages/pages/permission/index.html:114
+#: apps/admin_pages/pages/permission/url/edit.html:29
+#: apps/admin_pages/pages/permission/url/index.html:56
+#: apps/admin_pages/pages/plugin/_edit.html:7
+#: apps/admin_pages/pages/plugin/_edit.html:16
+#: apps/admin_pages/pages/plugin/index.html:48
+#: apps/admin_pages/pages/setting/_config_warning_info.html:9
+#: apps/admin_pages/pages/setting/config-versions.html:22
+#: apps/admin_pages/pages/setting/configs.html:34
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:28
+#: apps/admin_pages/pages/theme-setting/file/edit.html:29
+#: apps/admin_pages/pages/theme-setting/themes.html:36
+#: apps/admin_pages/pages/user/index.html:282
+msgid "提示"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:49
+msgid "审核规则配置主要用于预留部分网站使用名称, 如预留用户名称\"管理员\",不能给普通用户注册使用"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:53
+msgid "添加规则后,用户则无法在相关项目的内容输入中使用符合规则的字词"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:54
+msgid "规则支持正则表达式"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:55
+msgid "规则只对非网站工作人员账号有效"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:71
+#: apps/admin_pages/pages/audit/rule/index.html:167
+msgid "项目"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:72
+msgid "规则"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:96
+#: apps/admin_pages/pages/category/index.html:47
+#: apps/admin_pages/pages/category/index.html:55
+#: apps/admin_pages/pages/media/_bar.html:69
+#: apps/admin_pages/pages/media/text.html:67
+#: apps/admin_pages/pages/message/email.html:101
+#: apps/admin_pages/pages/message/on-site.html:124
+#: apps/admin_pages/pages/message/sms.html:82
+#: apps/admin_pages/pages/own/content/category/index.html:27
+#: apps/admin_pages/pages/own/content/category/index.html:36
+#: apps/admin_pages/pages/own/user/message/_comment.html:44
+#: apps/admin_pages/pages/own/user/message/_notice.html:28
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:67
+#: apps/admin_pages/pages/permission/index.html:53
+#: apps/admin_pages/pages/permission/url/index.html:127
+#: apps/admin_pages/pages/plugin/index.html:90
+#: apps/admin_pages/pages/role/index.html:58
+#: apps/admin_pages/pages/setting/host/index.html:49
+#: apps/admin_pages/pages/theme-setting/category.html:47
+#: apps/admin_pages/pages/theme-setting/category.html:55
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:81
+#: apps/admin_pages/pages/theme-setting/display/text.html:78
+#: apps/admin_pages/pages/theme-setting/file/index.html:73
+#: apps/admin_pages/pages/theme-setting/nav.html:53
+#: apps/admin_pages/pages/theme-setting/nav.html:66
+#: apps/admin_pages/pages/theme-setting/themes.html:107
+#: apps/admin_pages/pages/token/rest-token.html:45
+#: apps/admin_pages/static/js/upload/osr-upload.js:234
+msgid "删除"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:107
+msgid "删除选择"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:149
+#: apps/admin_pages/pages/comment/index.html:184
+#: apps/admin_pages/pages/media/_paging.html:38
+#: apps/admin_pages/pages/message/email.html:143
+#: apps/admin_pages/pages/message/on-site.html:165
+#: apps/admin_pages/pages/message/sms.html:123
+#: apps/admin_pages/pages/own/user/follow/index.html:63
+#: apps/admin_pages/pages/own/user/message/index.html:84
+#: apps/admin_pages/pages/own/user/post/_comment.html:227
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:82
+#: apps/admin_pages/pages/permission/index.html:101
+#: apps/admin_pages/pages/permission/url/index.html:172
+#: apps/admin_pages/pages/plugin/index.html:165
+#: apps/admin_pages/pages/post/index.html:199
+#: apps/admin_pages/pages/role/index.html:106
+#: apps/admin_pages/pages/setting/configs.html:117
+#: apps/admin_pages/pages/sys-logs/log.html:56
+#: apps/admin_pages/pages/theme-setting/display/_paging.html:38
+#: apps/admin_pages/pages/theme-setting/file/index.html:117
+#: apps/admin_pages/pages/user/index.html:177
+msgid "上一页"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:153
+#: apps/admin_pages/pages/comment/index.html:188
+#: apps/admin_pages/pages/media/_paging.html:42
+#: apps/admin_pages/pages/message/email.html:147
+#: apps/admin_pages/pages/message/on-site.html:170
+#: apps/admin_pages/pages/message/sms.html:127
+#: apps/admin_pages/pages/own/user/follow/index.html:69
+#: apps/admin_pages/pages/own/user/message/index.html:88
+#: apps/admin_pages/pages/own/user/post/_comment.html:231
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:88
+#: apps/admin_pages/pages/permission/index.html:105
+#: apps/admin_pages/pages/permission/url/index.html:176
+#: apps/admin_pages/pages/plugin/index.html:169
+#: apps/admin_pages/pages/post/index.html:203
+#: apps/admin_pages/pages/role/index.html:110
+#: apps/admin_pages/pages/setting/configs.html:121
+#: apps/admin_pages/pages/sys-logs/log.html:60
+#: apps/admin_pages/pages/theme-setting/display/_paging.html:42
+#: apps/admin_pages/pages/theme-setting/file/index.html:121
+#: apps/admin_pages/pages/user/index.html:181
+msgid "下一页"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:171
+msgid "填入规则"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:172
+#: apps/admin_pages/pages/own/content/category/index.html:24
+#: apps/admin_pages/pages/own/content/category/index.html:33
+msgid "不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/audit/rule/index.html:175
+#: apps/admin_pages/pages/category/index.html:54
+#: apps/admin_pages/pages/media/audio-edit.html:15
+#: apps/admin_pages/pages/media/image-edit.html:15
+#: apps/admin_pages/pages/media/other-edit.html:15
+#: apps/admin_pages/pages/media/text-edit.html:14
+#: apps/admin_pages/pages/media/text.html:62
+#: apps/admin_pages/pages/media/video-edit.html:15
+#: apps/admin_pages/pages/own/account/settings/_basis.html:29
+#: apps/admin_pages/pages/own/account/settings/_basis.html:74
+#: apps/admin_pages/pages/own/content/category/index.html:35
+#: apps/admin_pages/pages/own/content/writer.html:57
+#: apps/admin_pages/pages/permission/edit.html:11
+#: apps/admin_pages/pages/permission/edit.html:21
+#: apps/admin_pages/pages/permission/index.html:19
+#: apps/admin_pages/pages/permission/url/add.html:30
+#: apps/admin_pages/pages/role/edit-role.html:11
+#: apps/admin_pages/pages/role/edit-role.html:21
+#: apps/admin_pages/pages/theme-setting/category.html:54
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:15
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:15
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:15
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:14
+#: apps/admin_pages/pages/theme-setting/display/text.html:73
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:15
+#: apps/admin_pages/pages/theme-setting/nav.html:52
+#: apps/admin_pages/pages/user/add-user.html:48
+msgid "添加"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_header_bar_menu.html:16
+#: apps/admin_pages/pages/based/_user_dropdown.html:19
+#: apps/admin_pages/pages/message/on-site.html:74
+#: apps/admin_pages/pages/own/user/message/index.html:2
+msgid "消息"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_header_bar_menu.html:37
+msgid "新评论"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_header_bar_menu.html:41
+#: apps/admin_pages/pages/own/user/message/_notice.html:7
+msgid "审核未通过"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_header_bar_menu.html:45
+#: apps/admin_pages/pages/message/on-site.html:68
+#: apps/admin_pages/pages/own/user/message/_notice.html:10
+#: apps/admin_pages/pages/own/user/message/index.html:12
+#: apps/admin_pages/static/js/osr_page_js/message/email.js:17
+msgid "通知"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_header_bar_menu.html:50
+#: apps/admin_pages/pages/own/user/message/index.html:29
+msgid "私信"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_header_bar_menu.html:67
+msgid "查看所有消息"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_header_bar_menu.html:78
+#: apps/admin_pages/pages/own/account/settings/_avatar.html:24
+#: apps/admin_pages/pages/own/user/_self_introduction.html:5
+#: apps/admin_pages/pages/own/user/_user_info.html:4
+#: apps/admin_pages/pages/own/user/follow/index.html:30
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:22
+#: apps/admin_pages/pages/own/user/post/preview.html:15
+#: apps/admin_pages/pages/own/user/post/preview.html:90
+#: apps/admin_pages/pages/user/index.html:51
+#: apps/admin_pages/pages/user/index.html:73
+msgid "头像"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_inform_modal_input.html:7
+msgid "广告"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_inform_modal_input.html:12
+msgid "垃圾信息"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_inform_modal_input.html:17
+msgid "抄袭/侵权"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_inform_modal_input.html:26
+msgid "违规详情(选择\"其他\"类型时必填)"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_user_dropdown.html:8
+msgid "站点首页"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_user_dropdown.html:14
+#: apps/admin_pages/static/js/osr_page_js/own/content/writer.js:8
+msgid "发布"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_user_dropdown.html:23
+msgid "我的主页"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_user_dropdown.html:27
+#: apps/admin_pages/pages/based/sidebar.html:316
+#: apps/admin_pages/pages/plugin/index.html:87
+#: apps/admin_pages/pages/plugin/setting.html:9
+#: apps/admin_pages/pages/plugin/setting.html:15
+msgid "设置"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_user_dropdown.html:31
+#: apps/admin_pages/pages/own/account/settings.html:18
+#: apps/admin_pages/static/js/osr_page_js/own/account/setting.js:62
+#: apps/admin_pages/static/js/osr_page_js/own/account/settings.js:62
+msgid "个人资料"
+msgstr ""
+
+#: apps/admin_pages/pages/based/_user_dropdown.html:40
+msgid "退出"
+msgstr ""
+
+#: apps/admin_pages/pages/based/footer.html:4
+#: apps/admin_pages/pages/based/header_bar.html:23
+msgid "当前页面为OSROOM自带页面(属管理端), 需公开相关页面访问,建议使用主题"
+msgstr ""
+
+#: apps/admin_pages/pages/based/footer.html:8
+#: apps/admin_pages/pages/based/footer_adm.html:2
+msgid "回到顶部"
+msgstr ""
+
+#: apps/admin_pages/pages/based/footer_adm.html:6
+msgid "欢迎使用"
+msgstr ""
+
+#: apps/admin_pages/pages/based/footer_adm.html:25
+msgid "提供"
+msgstr ""
+
+#: apps/admin_pages/pages/based/header_bar.html:8
+msgid "回到管理台"
+msgstr ""
+
+#: apps/admin_pages/pages/based/header_bar.html:9
+msgid "管理台"
+msgstr ""
+
+#: apps/admin_pages/pages/based/header_bar.html:12
+msgid "进入站点首页(需主题支持)"
+msgstr ""
+
+#: apps/admin_pages/pages/based/header_bar_adm.html:13
+msgid "菜单"
+msgstr ""
+
+#: apps/admin_pages/pages/based/msg_box.html:50
+#: apps/admin_pages/pages/based/msg_box.html:62
+msgid "确定删除"
+msgstr ""
+
+#: apps/admin_pages/pages/based/msg_box.html:54
+#: apps/admin_pages/pages/own/account/settings/_basis.html:30
+#: apps/admin_pages/pages/own/user/post/_comment.html:179
+#: apps/admin_pages/pages/own/user/post/preview.html:149
+msgid "取消"
+msgstr ""
+
+#: apps/admin_pages/pages/based/msg_box.html:57
+msgid "确定"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:34
+#: apps/admin_pages/pages/comment/index.html:207
+#: apps/admin_pages/pages/message/email.html:53
+#: apps/admin_pages/pages/message/sms.html:44
+msgid "内容"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:42
+#: apps/admin_pages/pages/post/index.html:2
+msgid "文章管理"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:50
+#: apps/admin_pages/pages/comment/index.html:2
+msgid "评论管理"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:63
+#: apps/admin_pages/static/js/osr_page_js/home.js:53
+msgid "多媒体"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:72
+#: apps/admin_pages/pages/media/image.html:2
+#: apps/admin_pages/pages/media/image.html:13
+#: apps/admin_pages/pages/theme-setting/display/image.html:13
+msgid "图文|图库"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:81
+#: apps/admin_pages/pages/media/audio-edit.html:57
+#: apps/admin_pages/pages/media/audio.html:35
+#: apps/admin_pages/pages/media/image-edit.html:92
+#: apps/admin_pages/pages/media/other-edit.html:57
+#: apps/admin_pages/pages/media/other.html:35
+#: apps/admin_pages/pages/media/text-edit.html:75
+#: apps/admin_pages/pages/media/text.html:84
+#: apps/admin_pages/pages/media/video-edit.html:57
+#: apps/admin_pages/pages/message/send.html:74
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:73
+#: apps/admin_pages/pages/theme-setting/display/audio.html:36
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:135
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:72
+#: apps/admin_pages/pages/theme-setting/display/other.html:36
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:117
+#: apps/admin_pages/pages/theme-setting/display/text.html:95
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:72
+msgid "文本内容"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:90
+#: apps/admin_pages/pages/media/audio.html:2
+#: apps/admin_pages/pages/media/audio.html:12
+#: apps/admin_pages/pages/theme-setting/display/audio.html:12
+msgid "音频库"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:98
+#: apps/admin_pages/pages/media/video-edit.html:11
+#: apps/admin_pages/pages/media/video.html:2
+#: apps/admin_pages/pages/media/video.html:12
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:11
+#: apps/admin_pages/pages/theme-setting/display/video.html:12
+msgid "视频库"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:106
+msgid "其他类型"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:119
+msgid "消息管理"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:128
+msgid "站内消息"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:136
+#: apps/admin_pages/pages/message/email.html:2
+#: apps/admin_pages/pages/message/email.html:15
+msgid "系统邮件"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:144
+#: apps/admin_pages/pages/message/sms.html:2
+#: apps/admin_pages/pages/message/sms.html:14
+msgid "系统短信"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:152
+#: apps/admin_pages/pages/message/send.html:2
+msgid "发送消息"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:172
+#: apps/admin_pages/pages/user/add-user.html:9
+#: apps/admin_pages/pages/user/edit-user.html:9
+#: apps/admin_pages/pages/user/index.html:2
+msgid "用户管理"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:181
+#: apps/admin_pages/pages/role/edit-role.html:9
+#: apps/admin_pages/pages/role/index.html:2
+msgid "角色管理"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:196
+msgid "权限与Token"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:204
+#: apps/admin_pages/pages/permission/edit.html:9
+#: apps/admin_pages/pages/permission/index.html:13
+msgid "权重管理"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:212
+msgid "API权限"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:220
+msgid "Rest Token"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:235
+#: apps/admin_pages/pages/theme-setting/category.html:13
+#: apps/admin_pages/pages/theme-setting/themes.html:2
+#: apps/admin_pages/pages/theme-setting/themes.html:11
+msgid "主题"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:244
+#: apps/admin_pages/pages/theme-setting/nav.html:9
+msgid "主题安装"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:252
+#: apps/admin_pages/pages/theme-setting/display/image.html:2
+msgid "图片展示"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:260
+#: apps/admin_pages/pages/theme-setting/display/text.html:2
+msgid "文本展示"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:269
+msgid "音频设置"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:277
+msgid "视频设置"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:285
+#: apps/admin_pages/pages/theme-setting/display/other.html:2
+msgid "其他媒体"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:294
+msgid "页面管理"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:324
+msgid "站点配置"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:343
+#: apps/admin_pages/pages/setting/config-versions.html:8
+#: apps/admin_pages/pages/setting/config-versions.html:14
+msgid "配置版本"
+msgstr ""
+
+#: apps/admin_pages/pages/based/sidebar.html:355
+#: apps/admin_pages/pages/setting/host/index.html:2
+#: apps/admin_pages/pages/setting/host/index.html:14
+msgid "服务器"
+msgstr ""
+
+#: apps/admin_pages/pages/category/index.html:2
+#: apps/admin_pages/pages/own/content/category/index.html:2
+msgid "内容分类管理"
+msgstr ""
+
+#: apps/admin_pages/pages/category/index.html:22
+#: apps/admin_pages/pages/theme-setting/category.html:23
+msgid "内容分类"
+msgstr ""
+
+#: apps/admin_pages/pages/category/index.html:27
+#: apps/admin_pages/pages/own/account/settings/_basis.html:8
+#: apps/admin_pages/pages/own/account/settings/email.html:10
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:10
+#: apps/admin_pages/pages/own/content/category/index.html:14
+#: apps/admin_pages/pages/theme-setting/category.html:27
+msgid "返回"
+msgstr ""
+
+#: apps/admin_pages/pages/category/index.html:44
+#: apps/admin_pages/pages/category/index.html:52
+#: apps/admin_pages/pages/own/content/category/index.html:24
+#: apps/admin_pages/pages/own/content/category/index.html:33
+#: apps/admin_pages/pages/theme-setting/category.html:44
+#: apps/admin_pages/pages/theme-setting/category.html:52
+msgid "分类名称"
+msgstr ""
+
+#: apps/admin_pages/pages/category/index.html:46
+#: apps/admin_pages/pages/media/audio-edit.html:61
+#: apps/admin_pages/pages/media/image-edit.html:96
+#: apps/admin_pages/pages/media/other-edit.html:61
+#: apps/admin_pages/pages/media/text-edit.html:79
+#: apps/admin_pages/pages/media/video-edit.html:61
+#: apps/admin_pages/pages/own/account/settings/_basis.html:86
+#: apps/admin_pages/pages/own/account/settings/_profile.html:58
+#: apps/admin_pages/pages/own/content/category/index.html:26
+#: apps/admin_pages/pages/permission/edit.html:66
+#: apps/admin_pages/pages/role/edit-role.html:56
+#: apps/admin_pages/pages/setting/host/edit.html:51
+#: apps/admin_pages/pages/theme-setting/category.html:46
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:77
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:140
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:76
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:121
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:76
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:45
+#: apps/admin_pages/pages/user/edit-user.html:65
+#: apps/admin_pages/static/js/osr_page_js/own/content/writer.js:9
+msgid "保存"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:45
+#: apps/admin_pages/pages/message/on-site.html:49
+msgid "类别"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:46
+#: apps/admin_pages/pages/post/index.html:47
+#: apps/admin_pages/pages/theme-setting/themes.html:71
+msgid "作者"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:47
+#: apps/admin_pages/pages/message/email.html:75
+#: apps/admin_pages/pages/message/on-site.html:51
+#: apps/admin_pages/pages/message/on-site.html:92
+#: apps/admin_pages/pages/message/on-site.html:103
+#: apps/admin_pages/pages/message/on-site.html:183
+msgid "详情"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:48
+msgid "阶级"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:50
+msgid "赞"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:55
+#: apps/admin_pages/pages/message/email.html:58
+#: apps/admin_pages/pages/message/on-site.html:53
+#: apps/admin_pages/pages/message/sms.html:48
+#: apps/admin_pages/pages/plugin/_edit.html:137
+#: apps/admin_pages/pages/user/index.html:247
+#: apps/admin_pages/pages/user/index.html:279
+msgid "时间"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:59
+#: apps/admin_pages/pages/own/user/post/_comment.html:77
+#: apps/admin_pages/pages/own/user/post/_comment.html:134
+#: apps/admin_pages/pages/own/user/post/preview.html:70
+#: apps/admin_pages/pages/own/user/post/preview.html:142
+#: apps/admin_pages/pages/post/index.html:59
+msgid "举报"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:63
+#: apps/admin_pages/pages/post/index.html:63
+msgid "鉴定(分)"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:66
+#: apps/admin_pages/pages/permission/edit.html:61
+#: apps/admin_pages/pages/permission/edit.html:62
+#: apps/admin_pages/pages/post/index.html:69
+#: apps/admin_pages/pages/role/edit-role.html:51
+#: apps/admin_pages/pages/role/edit-role.html:52
+msgid "备注"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:66
+#: apps/admin_pages/pages/post/index.html:69
+msgid "鉴定类别"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:91
+msgid "评论回复"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:92
+msgid "级评论"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:105
+#: apps/admin_pages/pages/post/index.html:119
+msgid "用户删除"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:108
+#: apps/admin_pages/pages/post/index.html:122
+msgid "管理员删除"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:112
+#: apps/admin_pages/pages/post/index.html:127
+#: apps/admin_pages/static/js/osr_page_js/comment/index.js:9
+#: apps/admin_pages/static/js/osr_page_js/post/index.js:11
+msgid "未审核"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:114
+#: apps/admin_pages/pages/post/index.html:129
+msgid "人工审核"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:115
+#: apps/admin_pages/pages/post/index.html:130
+msgid "自动审核"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:119
+#: apps/admin_pages/pages/post/index.html:134
+msgid "人工鉴定"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:130
+#: apps/admin_pages/pages/post/index.html:145
+msgid "通过"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:133
+#: apps/admin_pages/pages/post/index.html:148
+msgid "不通过"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:135
+#: apps/admin_pages/pages/post/index.html:150
+msgid "确定移入待删区?"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:136
+#: apps/admin_pages/pages/post/index.html:151
+msgid "移入待删除"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:139
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:64
+#: apps/admin_pages/pages/post/index.html:154
+#: apps/admin_pages/pages/user/index.html:133
+msgid "恢复"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:142
+#: apps/admin_pages/pages/post/index.html:157
+#: apps/admin_pages/pages/user/index.html:136
+msgid "永久删除"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:210
+#: apps/admin_pages/pages/post/index.html:225
+#: apps/admin_pages/pages/user/index.html:209
+msgid "被举报"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:217
+#: apps/admin_pages/pages/post/index.html:248
+msgid "字数"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:222
+#: apps/admin_pages/pages/media/_inform_modal.html:11
+#: apps/admin_pages/pages/post/index.html:254
+#: apps/admin_pages/pages/theme-setting/display/_inform_modal.html:11
+#: apps/admin_pages/pages/user/index.html:307
+msgid "举报总数"
+msgstr ""
+
+#: apps/admin_pages/pages/comment/index.html:223
+#: apps/admin_pages/pages/media/_inform_modal.html:12
+#: apps/admin_pages/pages/post/index.html:255
+#: apps/admin_pages/pages/theme-setting/display/_inform_modal.html:12
+#: apps/admin_pages/pages/user/index.html:308
+msgid "最后举报"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:8
+#: apps/admin_pages/pages/media/_bar.html:9
+#: apps/admin_pages/pages/media/text.html:27
+#: apps/admin_pages/pages/media/text.html:28
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:19
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:20
+#: apps/admin_pages/pages/theme-setting/display/text.html:38
+#: apps/admin_pages/pages/theme-setting/display/text.html:39
+msgid "全部"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:11
+#: apps/admin_pages/pages/media/_bar.html:12
+#: apps/admin_pages/pages/media/audio-edit.html:37
+#: apps/admin_pages/pages/media/audio-edit.html:38
+#: apps/admin_pages/pages/media/image-edit.html:53
+#: apps/admin_pages/pages/media/image-edit.html:54
+#: apps/admin_pages/pages/media/other-edit.html:37
+#: apps/admin_pages/pages/media/other-edit.html:38
+#: apps/admin_pages/pages/media/text-edit.html:36
+#: apps/admin_pages/pages/media/text-edit.html:37
+#: apps/admin_pages/pages/media/text.html:29
+#: apps/admin_pages/pages/media/text.html:30
+#: apps/admin_pages/pages/media/video-edit.html:37
+#: apps/admin_pages/pages/media/video-edit.html:38
+#: apps/admin_pages/pages/post/index.html:237
+#: apps/admin_pages/pages/role/index.html:31
+#: apps/admin_pages/pages/setting/host/edit.html:43
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:22
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:23
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:37
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:38
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:53
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:54
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:37
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:38
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:36
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:37
+#: apps/admin_pages/pages/theme-setting/display/text.html:40
+#: apps/admin_pages/pages/theme-setting/display/text.html:41
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:37
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:38
+#: apps/admin_pages/static/js/osr_page_js/media/index.js:5
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/_script.js:7
+msgid "默认"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:31
+#: apps/admin_pages/pages/media/text.html:49
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:43
+#: apps/admin_pages/pages/theme-setting/display/text.html:60
+msgid "分类设置"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:41
+#: apps/admin_pages/pages/media/text.html:59
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:53
+#: apps/admin_pages/pages/theme-setting/display/text.html:70
+msgid "时间排序"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:45
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:57
+msgid "举报排序"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:51
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:63
+msgid "选"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:55
+#: apps/admin_pages/pages/media/_bar.html:60
+#: apps/admin_pages/pages/media/image.html:61
+#: apps/admin_pages/pages/media/video.html:59
+#: apps/admin_pages/pages/module/editor/markdown.html:28
+#: apps/admin_pages/pages/plugin/index.html:26
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:67
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:72
+#: apps/admin_pages/pages/theme-setting/display/image.html:62
+#: apps/admin_pages/pages/theme-setting/display/video.html:60
+#: apps/admin_pages/pages/theme-setting/themes.html:24
+#: apps/admin_pages/static/js/osr_page_js/media/index.js:32
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/_script.js:36
+msgid "上传"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_bar.html:64
+#: apps/admin_pages/pages/theme-setting/display/_bar.html:76
+#: apps/admin_pages/static/js/osr_page_js/media/index.js:119
+#: apps/admin_pages/static/js/osr_page_js/media/text.js:88
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/_script.js:150
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/text.js:112
+msgid "全选"
+msgstr ""
+
+#: apps/admin_pages/pages/media/_inform_modal.html:7
+#: apps/admin_pages/pages/theme-setting/display/_inform_modal.html:7
+msgid "举报信息"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio-edit.html:2
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:2
+msgid "音频文本编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio-edit.html:11
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:11
+#: apps/admin_pages/pages/theme-setting/display/audio.html:2
+msgid "音频"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio-edit.html:13
+#: apps/admin_pages/pages/media/image-edit.html:13
+#: apps/admin_pages/pages/media/other-edit.html:13
+#: apps/admin_pages/pages/media/text-edit.html:12
+#: apps/admin_pages/pages/media/video-edit.html:13
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:58
+#: apps/admin_pages/pages/permission/edit.html:10
+#: apps/admin_pages/pages/permission/edit.html:20
+#: apps/admin_pages/pages/permission/index.html:47
+#: apps/admin_pages/pages/permission/url/index.html:124
+#: apps/admin_pages/pages/role/edit-role.html:10
+#: apps/admin_pages/pages/role/edit-role.html:20
+#: apps/admin_pages/pages/role/index.html:55
+#: apps/admin_pages/pages/setting/host/edit.html:21
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:13
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:13
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:13
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:12
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:13
+#: apps/admin_pages/pages/theme-setting/file/index.html:69
+#: apps/admin_pages/pages/user/edit-user.html:10
+#: apps/admin_pages/pages/user/index.html:111
+msgid "编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio-edit.html:26
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:26
+msgid "音频文本"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio-edit.html:49
+#: apps/admin_pages/pages/media/image-edit.html:65
+#: apps/admin_pages/pages/media/other-edit.html:49
+#: apps/admin_pages/pages/media/text-edit.html:48
+#: apps/admin_pages/pages/media/video-edit.html:49
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:49
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:65
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:49
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:48
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:49
+msgid "名称不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio-edit.html:52
+#: apps/admin_pages/pages/media/audio-edit.html:53
+#: apps/admin_pages/pages/media/audio.html:34
+#: apps/admin_pages/pages/media/image-edit.html:68
+#: apps/admin_pages/pages/media/image-edit.html:69
+#: apps/admin_pages/pages/media/other-edit.html:52
+#: apps/admin_pages/pages/media/other-edit.html:53
+#: apps/admin_pages/pages/media/other.html:34
+#: apps/admin_pages/pages/media/text-edit.html:51
+#: apps/admin_pages/pages/media/text-edit.html:52
+#: apps/admin_pages/pages/media/text.html:82
+#: apps/admin_pages/pages/media/video-edit.html:52
+#: apps/admin_pages/pages/media/video-edit.html:53
+#: apps/admin_pages/pages/message/email.html:52
+#: apps/admin_pages/pages/message/send.html:14
+#: apps/admin_pages/pages/message/send.html:17
+#: apps/admin_pages/pages/post/index.html:46
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:52
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:53
+#: apps/admin_pages/pages/theme-setting/display/audio.html:35
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:68
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:69
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:52
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:53
+#: apps/admin_pages/pages/theme-setting/display/other.html:35
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:51
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:52
+#: apps/admin_pages/pages/theme-setting/display/text.html:93
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:52
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:53
+msgid "标题"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio.html:36
+#: apps/admin_pages/pages/media/other.html:36
+#: apps/admin_pages/pages/theme-setting/display/audio.html:37
+#: apps/admin_pages/pages/theme-setting/display/other.html:37
+msgid "上传时间"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio.html:37
+#: apps/admin_pages/pages/media/other.html:37
+#: apps/admin_pages/pages/media/text.html:86
+#: apps/admin_pages/pages/permission/index.html:29
+#: apps/admin_pages/pages/permission/url/index.html:72
+#: apps/admin_pages/pages/role/index.html:33
+#: apps/admin_pages/pages/theme-setting/display/audio.html:38
+#: apps/admin_pages/pages/theme-setting/display/other.html:38
+#: apps/admin_pages/pages/theme-setting/display/text.html:97
+#: apps/admin_pages/pages/user/index.html:60
+msgid "操作"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio.html:65
+#: apps/admin_pages/pages/theme-setting/display/audio.html:66
+msgid "播放"
+msgstr ""
+
+#: apps/admin_pages/pages/media/audio.html:68
+#: apps/admin_pages/pages/media/other.html:68
+#: apps/admin_pages/pages/media/text.html:126
+#: apps/admin_pages/pages/theme-setting/display/audio.html:69
+#: apps/admin_pages/pages/theme-setting/display/other.html:69
+#: apps/admin_pages/pages/theme-setting/display/text.html:137
+msgid "详情|编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:2
+msgid "图文|图库文本编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:11
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:11
+msgid "图文图库"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:27
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:27
+msgid "图片文本"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:38
+#: apps/admin_pages/pages/module/editor/markdown.html:22
+#: apps/admin_pages/pages/own/account/settings/_avatar.html:35
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:38
+msgid "选择图片"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:42
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:42
+msgid "上传更新"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:72
+#: apps/admin_pages/pages/media/image-edit.html:73
+#: apps/admin_pages/pages/media/text-edit.html:55
+#: apps/admin_pages/pages/media/text-edit.html:56
+#: apps/admin_pages/pages/media/text.html:83
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:89
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:90
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:72
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:73
+#: apps/admin_pages/pages/theme-setting/display/text.html:94
+msgid "链接"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:76
+#: apps/admin_pages/pages/media/text-edit.html:59
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:93
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:76
+msgid "链接打开方式"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:81
+#: apps/admin_pages/pages/media/text-edit.html:64
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:98
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:81
+msgid "新标签"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image-edit.html:87
+#: apps/admin_pages/pages/media/text-edit.html:70
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:104
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:87
+msgid "当前标签"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image.html:31
+#: apps/admin_pages/pages/media/video.html:29
+#: apps/admin_pages/pages/theme-setting/display/image.html:32
+#: apps/admin_pages/pages/theme-setting/display/video.html:30
+msgid "未分类"
+msgstr ""
+
+#: apps/admin_pages/pages/media/image.html:51
+#: apps/admin_pages/pages/media/video.html:50
+#: apps/admin_pages/pages/theme-setting/display/image.html:52
+#: apps/admin_pages/pages/theme-setting/display/video.html:51
+msgid "编辑|详情"
+msgstr ""
+
+#: apps/admin_pages/pages/media/other-edit.html:2
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:2
+msgid "其他库文本编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/media/other-edit.html:11
+#: apps/admin_pages/pages/media/other.html:12
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:11
+#: apps/admin_pages/pages/theme-setting/display/other.html:12
+msgid "其他类型库"
+msgstr ""
+
+#: apps/admin_pages/pages/media/other-edit.html:26
+#: apps/admin_pages/pages/media/text-edit.html:25
+#: apps/admin_pages/pages/media/text.html:2
+#: apps/admin_pages/pages/media/text.html:16
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:26
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:25
+#: apps/admin_pages/pages/theme-setting/display/text.html:16
+msgid "文本"
+msgstr ""
+
+#: apps/admin_pages/pages/media/other.html:2
+msgid "其他文件库"
+msgstr ""
+
+#: apps/admin_pages/pages/media/text-edit.html:2
+msgid "文本内容编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/media/text-edit.html:10
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:10
+msgid "文本库"
+msgstr ""
+
+#: apps/admin_pages/pages/media/text.html:85
+#: apps/admin_pages/pages/theme-setting/display/text.html:96
+msgid "创建时间"
+msgstr ""
+
+#: apps/admin_pages/pages/media/video-edit.html:2
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:2
+msgid "视频文本编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/media/video-edit.html:26
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:26
+msgid "视频文本"
+msgstr ""
+
+#: apps/admin_pages/pages/media/video-play.html:11
+#: apps/admin_pages/pages/theme-setting/display/video-play.html:11
+msgid "视频播放"
+msgstr ""
+
+#: apps/admin_pages/pages/message/email.html:54
+#: apps/admin_pages/pages/message/sms.html:45
+msgid "收件人"
+msgstr ""
+
+#: apps/admin_pages/pages/message/email.html:55
+#: apps/admin_pages/pages/permission/url/index.html:65
+#: apps/admin_pages/pages/plugin/_edit.html:33
+#: apps/admin_pages/pages/setting/_config_edit.html:6
+#: apps/admin_pages/pages/user/index.html:280
+#: apps/admin_pages/pages/user/index.html:312
+msgid "类型"
+msgstr ""
+
+#: apps/admin_pages/pages/message/email.html:56
+#: apps/admin_pages/pages/message/on-site.html:52
+#: apps/admin_pages/pages/message/sms.html:46
+#: apps/admin_pages/pages/user/index.html:281
+msgid "状态"
+msgstr ""
+
+#: apps/admin_pages/pages/message/email.html:57
+#: apps/admin_pages/pages/message/sms.html:47
+msgid "异常|错误信息"
+msgstr ""
+
+#: apps/admin_pages/pages/message/email.html:161
+msgid "发件人"
+msgstr ""
+
+#: apps/admin_pages/pages/message/on-site.html:2
+#: apps/admin_pages/pages/message/on-site.html:15
+msgid "站内消息管理"
+msgstr ""
+
+#: apps/admin_pages/pages/message/on-site.html:50
+msgid "被通知"
+msgstr ""
+
+#: apps/admin_pages/pages/message/on-site.html:71
+msgid "审核"
+msgstr ""
+
+#: apps/admin_pages/pages/message/on-site.html:81
+#: apps/admin_pages/static/js/osr_page_js/message/on-site.js:12
+msgid "系统通知"
+msgstr ""
+
+#: apps/admin_pages/pages/message/on-site.html:85
+msgid "(主页)"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:17
+#: apps/admin_pages/pages/own/content/writer.html:40
+msgid "标题不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:21
+msgid "发送类型"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:25
+msgid "站内"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:31
+msgid "邮件"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:37
+msgid "短信"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:39
+msgid "邮件和短信发送后无法撤回, 站内消息发送后可以在消息管理删除"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:44
+msgid "必须是本站正常用户名(多个用 ; 隔开)"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:45
+msgid "发送给所有用户请填\"All\""
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:54
+msgid "确认发送"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:57
+msgid "输入字符Send确认发送"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:60
+msgid "输入Send确认"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:60
+msgid "输入确认字符"
+msgstr ""
+
+#: apps/admin_pages/pages/message/send.html:65
+#: apps/admin_pages/pages/message/send.html:78
+msgid "发送"
+msgstr ""
+
+#: apps/admin_pages/pages/module/_send_code.html:3
+#: apps/admin_pages/pages/own/account/settings/email.html:32
+msgid "验证码"
+msgstr ""
+
+#: apps/admin_pages/pages/module/_send_code.html:5
+msgid "邮箱验证码"
+msgstr ""
+
+#: apps/admin_pages/pages/module/_send_code.html:14
+#: apps/admin_pages/pages/module/_send_code.html:19
+#: apps/admin_pages/pages/module/_send_code.html:28
+#: apps/admin_pages/pages/module/_send_code.html:44
+#: apps/admin_pages/pages/own/account/settings/_send_code.html:19
+#: apps/admin_pages/pages/own/account/settings/_send_code.html:35
+#: apps/admin_pages/static/js/osr_page_js/module/_send_code.js:44
+#: apps/admin_pages/static/js/osr_page_js/module/send_code.js:43
+#: apps/admin_pages/static/js/osr_page_js/own/account/send_code.js:74
+#: apps/admin_pages/static/js/osr_page_js/own/account/settings/_send_code.js:75
+msgid "发送验证码"
+msgstr ""
+
+#: apps/admin_pages/pages/module/upload.html:12
+msgid "或将文件拖到这里"
+msgstr ""
+
+#: apps/admin_pages/pages/module/upload.html:24
+#: apps/admin_pages/static/js/upload/osr-upload.js:502
+msgid "开始上传"
+msgstr ""
+
+#: apps/admin_pages/pages/module/editor/markdown.html:15
+msgid "插入图片"
+msgstr ""
+
+#: apps/admin_pages/pages/module/editor/richtext_atc_edit.html:58
+#: apps/admin_pages/static/js/osr_page_js/module/richtext_act_edit.js:86
+msgid "您当前使用的是富文本编辑器"
+msgstr ""
+
+#: apps/admin_pages/pages/module/email/_based.html:71
+msgid "你好! "
+msgstr ""
+
+#: apps/admin_pages/pages/module/email/_based.html:82
+msgid "谢谢!"
+msgstr ""
+
+#: apps/admin_pages/pages/module/email/_based.html:84
+msgid "团队"
+msgstr ""
+
+#: apps/admin_pages/pages/module/email/_based.html:93
+msgid "系统邮件, 请勿回复"
+msgstr ""
+
+#: apps/admin_pages/pages/module/exception/401.html:2
+msgid "401无权访问"
+msgstr ""
+
+#: apps/admin_pages/pages/module/exception/401.html:32
+msgid "无权访问该页面"
+msgstr ""
+
+#: apps/admin_pages/pages/module/exception/401.html:32
+#: apps/admin_pages/pages/module/exception/404.html:32
+#: apps/admin_pages/pages/module/exception/500.html:31
+msgid "回到首页"
+msgstr ""
+
+#: apps/admin_pages/pages/module/exception/404.html:2
+msgid "404页面不存在"
+msgstr ""
+
+#: apps/admin_pages/pages/module/exception/404.html:32
+msgid "该页面不存在"
+msgstr ""
+
+#: apps/admin_pages/pages/module/exception/500.html:2
+msgid "500Server Error"
+msgstr ""
+
+#: apps/admin_pages/pages/module/exception/500.html:31
+msgid "错误ID"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings.html:2
+msgid "个人设置"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings.html:13
+#: apps/admin_pages/pages/own/account/settings/_basis.html:5
+#: apps/admin_pages/static/js/osr_page_js/own/account/setting.js:65
+#: apps/admin_pages/static/js/osr_page_js/own/account/settings.js:65
+msgid "基础设置"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_avatar.html:19
+msgid "头像修改"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_avatar.html:53
+msgid "保存头像"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:19
+msgid "用户名不能使用特殊符号"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:21
+#: apps/admin_pages/pages/permission/edit.html:31
+#: apps/admin_pages/pages/role/edit-role.html:30
+msgid "至少3个字"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:26
+msgid "个性域"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:32
+msgid "保存后不能修改"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:35
+msgid "只能是字母或数字"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:36
+msgid "至少4个字"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:40
+#: apps/admin_pages/pages/user/index.html:226
+msgid "编辑器"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:46
+msgid "Markdown"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:54
+msgid "富文本"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:59
+msgid "邮&nbsp;&nbsp;&nbsp;&nbsp;箱"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:63
+#: apps/admin_pages/pages/own/account/settings/_basis.html:73
+msgid "修改"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:66
+msgid "手&nbsp;&nbsp;&nbsp;&nbsp;机"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:70
+#: apps/admin_pages/pages/setting/config-versions.html:71
+#: apps/admin_pages/pages/user/index.html:90
+#: apps/admin_pages/pages/user/index.html:94
+msgid "无"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:79
+msgid "密&nbsp;&nbsp;&nbsp;&nbsp;码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_basis.html:82
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:38
+msgid "重设"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:4
+#: apps/admin_pages/pages/user/index.html:53
+msgid "性别"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:10
+#: apps/admin_pages/pages/user/index.html:81
+msgid "男"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:18
+#: apps/admin_pages/pages/user/index.html:82
+msgid "女"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:26
+#: apps/admin_pages/pages/user/index.html:83
+msgid "保密"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:32
+#: apps/admin_pages/pages/user/index.html:230
+msgid "出生日期"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:42
+msgid "个人主页"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:43
+msgid "带上http://或https://"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:45
+msgid "格式不合法"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:50
+#: apps/admin_pages/pages/plugin/index.html:66
+msgid "简介"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_profile.html:52
+msgid "介绍下你自己吧!"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/_send_code.html:5
+#: apps/admin_pages/pages/own/account/settings/_send_code.html:10
+msgid "发送邮件验证码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:2
+#: apps/admin_pages/pages/own/account/settings/email.html:7
+msgid "邮箱修改"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:15
+#: apps/admin_pages/pages/setting/host/edit.html:38
+msgid "密码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:23
+#: apps/admin_pages/pages/own/account/settings/email.html:25
+msgid "新邮箱"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:34
+msgid "当前邮箱收到的验证码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:40
+msgid "新邮箱收到的验证码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/email.html:47
+msgid "绑定新邮箱"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:2
+msgid "密码安全"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:7
+#: apps/admin_pages/pages/user/edit-user.html:35
+msgid "密码修改"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:15
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:17
+msgid "当前密码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:22
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:24
+msgid "新密码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:29
+#: apps/admin_pages/pages/own/account/settings/reset-password.html:31
+msgid "确认密码"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/writer.html:2
+msgid "写点什么"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/writer.html:12
+#: apps/admin_pages/pages/own/content/writer.html:15
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:11
+#: apps/admin_pages/pages/own/user/post/preview.html:64
+#: apps/admin_pages/static/js/osr_page_js/own/corpus/_script_js.js:14
+msgid "默认文集"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/writer.html:27
+#: apps/admin_pages/static/js/osr_page_js/own/content/writer.js:69
+msgid "存为草稿"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/writer.html:39
+msgid "取个好标题吧"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/writer.html:50
+#: apps/admin_pages/pages/own/content/writer.html:95
+msgid "添加标签"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/writer.html:53
+msgid "可以在这里添加标签哦"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/writer.html:75
+msgid "完成"
+msgstr ""
+
+#: apps/admin_pages/pages/own/content/category/index.html:10
+#: apps/admin_pages/pages/own/corpus/index.html:2
+#: apps/admin_pages/pages/own/user/_self_introduction.html:15
+msgid "文集"
+msgstr ""
+
+#: apps/admin_pages/pages/own/corpus/index.html:17
+#: apps/admin_pages/pages/own/user/index.html:11
+#: apps/admin_pages/pages/own/user/post/pending.html:11
+msgid "篇"
+msgstr ""
+
+#: apps/admin_pages/pages/own/corpus/index.html:30
+#: apps/admin_pages/pages/own/user/index.html:29
+msgid "热门"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/_self_introduction.html:2
+msgid "作者简介"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/_self_introduction.html:20
+msgid "全部文章"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/_user_info.html:14
+#: apps/admin_pages/pages/own/user/_user_info.html:26
+#: apps/admin_pages/pages/own/user/follow/index.html:2
+#: apps/admin_pages/pages/own/user/follow/index.html:13
+#: apps/admin_pages/pages/own/user/follow/index.html:40
+#: apps/admin_pages/pages/own/user/follow/index.html:52
+#: apps/admin_pages/pages/own/user/post/preview.html:101
+#: apps/admin_pages/pages/own/user/post/preview.html:112
+msgid "关注"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/_user_info.html:17
+#: apps/admin_pages/pages/own/user/follow/index.html:19
+#: apps/admin_pages/pages/own/user/follow/index.html:43
+#: apps/admin_pages/pages/own/user/post/preview.html:104
+msgid "粉丝"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/_user_info.html:23
+#: apps/admin_pages/pages/own/user/follow/index.html:49
+#: apps/admin_pages/pages/own/user/post/preview.html:109
+msgid "取消关注"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/index.html:2
+#: apps/admin_pages/pages/own/user/post/pending.html:2
+msgid "主页"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/index.html:34
+#: apps/admin_pages/static/js/osr_page_js/post/index.js:10
+msgid "草稿"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/follow/index.html:12
+msgid "Ta的关注"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/follow/index.html:18
+msgid "Ta的粉丝"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/follow/index.html:66
+msgid "第{[user_related_users.current_page]}页/共{[user_related_users.page_total]}页"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/message/_comment.html:13
+msgid "回复了评论"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/message/_comment.html:21
+msgid "评论了"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/message/_comment.html:41
+#: apps/admin_pages/pages/own/user/post/_comment.html:68
+#: apps/admin_pages/pages/own/user/post/_comment.html:116
+#: apps/admin_pages/pages/own/user/post/_comment.html:126
+msgid "回复"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/message/_comment.html:55
+#: apps/admin_pages/pages/own/user/post/_comment.html:182
+#: apps/admin_pages/pages/own/user/post/preview.html:152
+msgid "提交"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:3
+#: apps/admin_pages/pages/own/user/post/_comment.html:86
+#: apps/admin_pages/pages/own/user/post/_comment.html:144
+msgid "写点你的评论"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:4
+#: apps/admin_pages/pages/own/user/post/_comment.html:87
+#: apps/admin_pages/pages/own/user/post/_comment.html:145
+msgid "最多300个字符"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:9
+#: apps/admin_pages/pages/own/user/post/_comment.html:92
+#: apps/admin_pages/pages/own/user/post/_comment.html:150
+msgid "请使用文明用语"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:12
+msgid "提交评论"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:23
+msgid "喜欢排序"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:28
+msgid "时间升序"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:33
+msgid "时间降序"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:95
+#: apps/admin_pages/pages/own/user/post/_comment.html:153
+msgid "回复评论"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_comment.html:172
+msgid "评论举报"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:31
+#: apps/admin_pages/pages/own/user/post/preview.html:28
+#: apps/admin_pages/pages/plugin/_edit.html:36
+#: apps/admin_pages/pages/setting/_config_edit.html:8
+msgid "更新时间"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:61
+msgid "移到回收站"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/_user_posts.html:85
+msgid "第{[posts.current_page]}页/共{[posts.page_total]}页"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/pending.html:14
+msgid "回到主页"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/pending.html:22
+#: apps/admin_pages/static/js/osr_page_js/post/index.js:13
+msgid "回收站"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/pending.html:32
+msgid "违规内容"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/preview.html:2
+#: apps/admin_pages/pages/own/user/post/preview.html:10
+msgid "预览"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/preview.html:32
+msgid "浏览"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/preview.html:72
+msgid "转载请联系作者获取授权"
+msgstr ""
+
+#: apps/admin_pages/pages/own/user/post/preview.html:73
+msgid "著作权归作者所有"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:2
+#: apps/admin_pages/pages/permission/index.html:2
+msgid "权重设置"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:25
+msgid "当前权重位为"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:27
+msgid "权限名"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:29
+msgid "权限名称"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:30
+msgid "权限名不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:35
+msgid "可选权重位(二进制位)"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:39
+#: apps/admin_pages/pages/permission/edit.html:42
+msgid "位置"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:52
+msgid "可作为缺省权限"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/edit.html:55
+msgid "注:当api未设置任何权限限制时, 则需要符合缺省权限中的任何一个即可有权调用"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/index.html:24
+msgid "权重名称"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/index.html:25
+msgid "权重位"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/index.html:26
+msgid "权重值"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/index.html:27
+msgid "缺省权限"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/index.html:28
+#: apps/admin_pages/pages/role/edit-role.html:74
+#: apps/admin_pages/pages/role/index.html:32
+#: apps/admin_pages/pages/setting/configs.html:45
+msgid "说明"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/index.html:116
+msgid "\"缺省权重\"作用,对于没有设置\"自定义权限\",并且代码中指定可以使用\"缺省权重\"的API生效(只需符合其中一个缺省权限即可)."
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/add.html:2
+#: apps/admin_pages/pages/permission/url/add.html:20
+msgid "添加页面路由"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/add.html:11
+#: apps/admin_pages/pages/permission/url/edit.html:9
+msgid "权限控制"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/add.html:12
+#: apps/admin_pages/pages/permission/url/add.html:24
+#: apps/admin_pages/static/js/osr_page_js/permission/url/index.js:11
+msgid "页面路由"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/add.html:26
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:37
+msgid "路由不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:2
+msgid "URL权限修改"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:10
+#: apps/admin_pages/pages/permission/url/edit.html:19
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:20
+#: apps/admin_pages/pages/theme-setting/file/edit.html:21
+msgid "权限修改"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:32
+msgid "自定义指定是否需要登录验证, 对系统代码中已强制需要登录验证的URL无效"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:36
+msgid "自定义指定权限, 则默认的权限(系统代码中指定的)则会失效"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:38
+msgid "指定多个权限, 请求时用户只需要匹配其中任意一个权限则有权请求"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:45
+msgid "查看权限表"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:49
+msgid "URL(api/路由)"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:54
+#: apps/admin_pages/pages/permission/url/index.html:66
+msgid "请求方式"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:62
+msgid "访问权限:"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:65
+#: apps/admin_pages/pages/permission/url/index.html:107
+#: apps/admin_pages/pages/permission/url/index.html:115
+msgid "未自定义"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:77
+#: apps/admin_pages/pages/permission/url/index.html:67
+#: apps/admin_pages/pages/permission/url/index.html:90
+msgid "登录验证"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:82
+msgid "选择访问权限(可多选)"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:95
+#: apps/admin_pages/pages/plugin/_edit.html:117
+#: apps/admin_pages/pages/setting/_config_edit.html:85
+#: apps/admin_pages/pages/setting/config-versions.html:91
+#: apps/admin_pages/pages/theme-setting/file/edit.html:41
+msgid "保存修改"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/edit.html:99
+msgid "取消自定义"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:2
+msgid "URL权限管理"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:14
+msgid "URL&API权限控制"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:42
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:2
+#: apps/admin_pages/pages/theme-setting/file/index.html:52
+msgid "添加页面"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:46
+#: apps/admin_pages/pages/role/edit-role.html:34
+#: apps/admin_pages/pages/role/edit-role.html:65
+#: apps/admin_pages/pages/role/index.html:22
+msgid "权限表"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:58
+msgid "\"未自定义\"权限,　并且代码中指定可以使用\"缺省权重\"的API将自动使用缺省权限验证(只需符合其中一个缺省权限即可)."
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:64
+msgid "API/路由"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:69
+msgid "权限验证"
+msgstr ""
+
+#: apps/admin_pages/pages/permission/url/index.html:92
+#: apps/admin_pages/pages/plugin/_edit.html:53
+#: apps/admin_pages/pages/plugin/_edit.html:54
+#: apps/admin_pages/pages/setting/_config_edit.html:28
+#: apps/admin_pages/pages/setting/_config_edit.html:29
+#: apps/admin_pages/pages/setting/config-versions.html:74
+#: apps/admin_pages/pages/setting/config-versions.html:75
+msgid "否"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:9
+msgid "请了解插件各设置项作用后, 再做更改, 错误的设置可能导致本插件功能不起作用!"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:11
+msgid "如果插件包配置代码有做修改, 请刷新配置后, 插件包中的新设置项才会生效, 并在此设置页面显示"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:12
+msgid "修改后需要重新激活插件生效"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:13
+#: apps/admin_pages/pages/setting/configs.html:37
+msgid "修改后直接生效"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:18
+msgid "本插件无配置项!"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:24
+msgid "刷新配置"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:31
+#: apps/admin_pages/pages/setting/_config_edit.html:4
+msgid "变量(key)"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:32
+#: apps/admin_pages/pages/setting/_config_edit.html:5
+msgid "当前值"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:34
+msgid "重新激活"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:35
+#: apps/admin_pages/pages/setting/_config_edit.html:7
+msgid "作用&说明"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:50
+#: apps/admin_pages/pages/plugin/_edit.html:51
+#: apps/admin_pages/pages/setting/_config_edit.html:25
+#: apps/admin_pages/pages/setting/_config_edit.html:26
+#: apps/admin_pages/pages/setting/config-versions.html:77
+#: apps/admin_pages/pages/setting/config-versions.html:78
+msgid "是"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:65
+#: apps/admin_pages/pages/plugin/_edit.html:80
+#: apps/admin_pages/pages/setting/_config_edit.html:40
+#: apps/admin_pages/pages/setting/_config_edit.html:56
+msgid "添加元素"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:116
+#: apps/admin_pages/pages/setting/_config_edit.html:84
+msgid "确认配置无误?"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:127
+msgid "确定执行安装依赖包?"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:128
+msgid "安装或更新插件依赖包"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:135
+#: apps/admin_pages/pages/setting/config-versions.html:35
+#: apps/admin_pages/pages/setting/host/edit.html:28
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:26
+#: apps/admin_pages/pages/setting/host/index.html:22
+msgid "主机IP"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:136
+#: apps/admin_pages/pages/plugin/index.html:67
+msgid "插件依赖包安装状态"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:149
+msgid "连接服务器错误"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/_edit.html:160
+msgid "没有成功安装需求依赖包"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:2
+#: apps/admin_pages/pages/plugin/index.html:13
+#: apps/admin_pages/pages/plugin/setting.html:8
+msgid "插件管理"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:22
+msgid "选择插件"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:49
+msgid "插件上传支持zip压缩包"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:51
+msgid "[上传]功能只对单点部署有效: 集群部署的站点, 请把非压缩的\"插件包\"直接放于各台服务器Osroom系统目录的apps/plugins下"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:54
+msgid "[删除]功能只对单点部署有效: 集群部署的站点, 请直接把各台服务器Osroom系统目录的apps/plugins下的插件目录删除"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:57
+msgid "插件安装成功后, 1.请检查是否需要安装依赖包. 如果需要， 请安装请进入设置检查依赖包安装情况."
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:58
+msgid "2.检测插件是否需要配置, 部分插件需要激活后才会出现配置项"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:65
+msgid "名称(别名)"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:68
+msgid "安装时间"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:78
+msgid "确定停止使用此插件?"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:80
+msgid "停止"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:84
+#: apps/admin_pages/pages/user/edit-user.html:60
+#: apps/admin_pages/pages/user/index.html:57
+#: apps/admin_pages/pages/user/index.html:123
+msgid "激活"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:99
+msgid "插件设置有误或缺少插件需求包，请进入设置检查，然后重新激活插件"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:100
+msgid "如果以上操作无效，可能是插件程序出现致命的错误，请删除，重新安装"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:109
+msgid "查看详情"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/index.html:118
+msgid "不需要"
+msgstr ""
+
+#: apps/admin_pages/pages/plugin/setting.html:2
+msgid "插件设置"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:48
+msgid "喜欢"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:55
+msgid "发布时间"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:112
+#: apps/admin_pages/pages/user/index.html:105
+msgid "更多"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:222
+#: apps/admin_pages/pages/user/index.html:194
+msgid "更多信息"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:228
+msgid "正文"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:235
+msgid "文集分类"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:239
+msgid "编辑格式"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:240
+msgid "最近更新"
+msgstr ""
+
+#: apps/admin_pages/pages/post/index.html:241
+msgid "标签"
+msgstr ""
+
+#: apps/admin_pages/pages/role/edit-role.html:2
+msgid "角色编辑|添加"
+msgstr ""
+
+#: apps/admin_pages/pages/role/edit-role.html:26
+msgid "角色名"
+msgstr ""
+
+#: apps/admin_pages/pages/role/edit-role.html:28
+msgid "角色名称"
+msgstr ""
+
+#: apps/admin_pages/pages/role/edit-role.html:29
+msgid "角色名不能为空"
+msgstr ""
+
+#: apps/admin_pages/pages/role/edit-role.html:34
+#: apps/admin_pages/pages/role/edit-role.html:73
+#: apps/admin_pages/pages/role/index.html:30
+msgid "权重"
+msgstr ""
+
+#: apps/admin_pages/pages/role/edit-role.html:46
+msgid "默认角色"
+msgstr ""
+
+#: apps/admin_pages/pages/role/edit-role.html:72
+msgid "权限名(Key)"
+msgstr ""
+
+#: apps/admin_pages/pages/role/index.html:13
+#: apps/admin_pages/pages/user/edit-user.html:48
+msgid "用户角色"
+msgstr ""
+
+#: apps/admin_pages/pages/role/index.html:19
+msgid "添加角色"
+msgstr ""
+
+#: apps/admin_pages/pages/role/index.html:28
+#: apps/admin_pages/pages/user/index.html:58
+msgid "角色"
+msgstr ""
+
+#: apps/admin_pages/pages/role/index.html:29
+msgid "权限"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/_config_warning_info.html:10
+#: apps/admin_pages/pages/setting/config-versions.html:24
+msgid "配置修改后"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/_config_warning_info.html:11
+#: apps/admin_pages/pages/setting/config-versions.html:25
+msgid "重启网站生效"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/_config_warning_info.html:12
+msgid "对没有禁止\"重启更新配置\"的部署服务器有效"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/_config_warning_info.html:13
+msgid "查看各服务器的\"配置文件\"情况"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-edit.html:2
+#: apps/admin_pages/pages/setting/configs.html:2
+#: apps/admin_pages/pages/setting/configs.html:13
+msgid "参数配置"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-edit.html:9
+#: apps/admin_pages/pages/setting/config-versions.html:7
+msgid "配置管理"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-edit.html:10
+#: apps/admin_pages/pages/setting/config-edit.html:16
+msgid "配置"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-edit.html:23
+#: apps/admin_pages/pages/setting/config-edit.html:26
+msgid "All"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-edit.html:29
+msgid "搜索结果"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:2
+msgid "配置版本设置"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:26
+msgid "未禁止\"重启更新\"与未选择\"切换版本\"的主机则自动更新到最新版配置"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:34
+#: apps/admin_pages/pages/setting/host/index.html:21
+msgid "主机名"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:37
+msgid "需要切换到"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:38
+msgid "切换状态"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:39
+msgid "重启更新"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:41
+msgid "重启日志"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:53
+msgid "最新"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:69
+msgid "需重启网站"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:70
+msgid "切换版本请先打开\"重启更新\""
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:82
+msgid "警"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/config-versions.html:86
+msgid "查看全部"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/configs.html:35
+msgid "系统可修改配置，修改配置前请了解配置的作用"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/configs.html:36
+msgid "修改后需要重启系统生效"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/configs.html:44
+msgid "配置项"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/configs.html:46
+msgid "修改需要重启"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/configs.html:47
+msgid "最后更新"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/configs.html:72
+msgid "修改配置"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:2
+#: apps/admin_pages/pages/setting/host/edit.html:11
+msgid "服务器编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:10
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:10
+msgid "服务器管理"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:26
+#: apps/admin_pages/pages/user/index.html:248
+msgid "IP"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:34
+msgid "主机用户名"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:40
+msgid "主机密码"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:43
+msgid "主机端口"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:44
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:29
+msgid "端口"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:47
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:35
+msgid "命令(注释#开头)"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:48
+msgid "保存一个需要常用的Linux shell 命令"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/edit.html:54
+msgid "测试连接"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:2
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:11
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:21
+msgid "命令执行"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:36
+msgid "Linux shell 命令"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/exec-cmd.html:40
+#: apps/admin_pages/pages/setting/host/index.html:46
+msgid "执行命令"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/index.html:23
+msgid "网站已运行"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/index.html:24
+msgid "启动日志"
+msgstr ""
+
+#: apps/admin_pages/pages/setting/host/index.html:42
+msgid "编辑连接"
+msgstr ""
+
+#: apps/admin_pages/pages/sys-logs/log.html:2
+msgid "日志"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/category.html:2
+msgid "主题设置分类管理"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/category.html:12
+msgid "分类"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/nav.html:2
+#: apps/admin_pages/pages/theme-setting/nav.html:10
+#: apps/admin_pages/pages/theme-setting/themes.html:93
+msgid "菜单设置"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/audio.html:13
+#: apps/admin_pages/pages/theme-setting/display/image.html:14
+#: apps/admin_pages/pages/theme-setting/display/other.html:13
+#: apps/admin_pages/pages/theme-setting/display/text.html:17
+#: apps/admin_pages/pages/theme-setting/display/video.html:13
+#: apps/admin_pages/pages/theme-setting/file/index.html:16
+#: apps/admin_pages/pages/theme-setting/nav.html:23
+msgid "当前设置主题"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/nav.html:44
+#: apps/admin_pages/pages/theme-setting/nav.html:57
+msgid "排序"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/nav.html:46
+#: apps/admin_pages/pages/theme-setting/nav.html:59
+msgid "显示名称"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/nav.html:48
+#: apps/admin_pages/pages/theme-setting/nav.html:61
+msgid "Json数据, 每个主题需要的格式可能不一样，根据主题要求设置"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/nav.html:65
+msgid "更新"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/readme.html:2
+#: apps/admin_pages/pages/theme-setting/readme.html:10
+msgid "主题配置文档"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:20
+msgid "选择主题"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:37
+msgid "此主题指的是普通浏览器网页版主题, 与小程序客户端UI无关. 主题上传支持zip压缩包"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:39
+msgid "[上传]功能只对单点部署有效: 集群部署的站点, 请把非压缩的\"主题包\"直接放于各台服务器Osroom系统目录的apps/themes下"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:42
+msgid "[删除]功能只对单点部署有效: 集群部署的站点, 请直接把各台服务器Osroom系统目录的apps/themes下的主题目录删除"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:45
+msgid "[恢复已删默认设置] 为了防止覆盖存在的设置数据, 只恢复已删除的[默认设置],"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:49
+msgid "删除主题前请手动清理主题设置数据, 系统不会主动清理!"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:62
+msgid "点击预览"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:69
+msgid "致命错误"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:74
+msgid "查看配置文档"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:81
+msgid "已启用"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:88
+#: apps/admin_pages/pages/token/rest-token.html:36
+msgid "启用"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:96
+msgid "确定? 只恢复已删除的默认设置"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:100
+msgid "恢复默认设置"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/themes.html:103
+msgid "确定? 刪除前请手动清理该主题设置数据"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:57
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:73
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:57
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:56
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:57
+msgid "展示开关"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/audio-edit.html:62
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:78
+#: apps/admin_pages/pages/theme-setting/display/other-edit.html:62
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:61
+#: apps/admin_pages/pages/theme-setting/display/video-edit.html:62
+msgid "开启"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:2
+msgid "图片展示编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:110
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:93
+msgid "Code类型"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:115
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:98
+msgid "Html/Css/String"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:121
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:104
+msgid "Json/Array"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:126
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:109
+msgid "Code"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/image-edit.html:127
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:110
+msgid "html/array/json"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/text-edit.html:2
+msgid "文本展示编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/display/video.html:2
+msgid "视频"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:10
+#: apps/admin_pages/pages/theme-setting/file/edit.html:11
+msgid "页面"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:12
+#: apps/admin_pages/pages/theme-setting/file/edit.html:13
+#: apps/admin_pages/pages/theme-setting/file/index.html:15
+msgid "页面编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:30
+#: apps/admin_pages/pages/theme-setting/file/edit.html:30
+msgid "此页面功能只是提供给\"单点部署\"站点的快捷修改. 如果你是集群部署,请勿使用此功能"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:35
+msgid "自定义路由"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/add-page.html:36
+msgid "如"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/edit.html:2
+msgid "主题代码编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/edit.html:35
+msgid "当前编辑"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/index.html:2
+msgid "主题静态文件"
+msgstr ""
+
+#: apps/admin_pages/pages/theme-setting/file/index.html:60
+msgid "自添加页面)"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:2
+msgid "Rest Api Token管理"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:8
+msgid "密钥Token与权限"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:9
+#: apps/admin_pages/pages/token/rest-token.html:19
+msgid "密钥Token"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:31
+#: apps/admin_pages/static/js/osr_page_js/token/rest-token.js:32
+msgid "显示"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:39
+msgid "停用后, 使用此token的请求则无法通过服务端验证,确定停用?"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:40
+msgid "停用"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:49
+msgid "创建Token"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:61
+msgid "重要提示"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:63
+msgid "SecretToken与AccessToken用于在无CsrfToken时调用API请求的一个客户端令牌, 以验证客户端是否为伪造的"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:64
+msgid "而SecretToken是长期可用验证令牌(除非你停用或者删除了它), 需要保存在客户端使用"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:66
+msgid "使用令牌时, 可以使用SecretToken做令牌或者OSR-ClientId与AccessToken组合做令牌(见使用方式)"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:68
+msgid ""
+"为了减少SecretToken的暴露风险, Restful api发送请求时, 尽量使用OSR-"
+"ClientId和AccessToken作为客户端验证令牌"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:70
+msgid ""
+"当没有获取过AccessToken或者AccessToken失效时, 请通过/api/token/access-"
+"token获取新的AccessToken(具体请查看/api/token/access-token文档)"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:71
+msgid "这个时候只能使用SecretToken作为客户端令牌验证"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:73
+msgid "使用SecretToken时, 尽量使用https"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:74
+msgid "使用方式"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:75
+msgid "在http请求中设置请求头"
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:76
+msgid "OSR-RestToken:\"SecretToken xxxxx\""
+msgstr ""
+
+#: apps/admin_pages/pages/token/rest-token.html:78
+msgid "OSR-RestToken:\"AccessToken xxxxx\" 和 OSR-ClientId:\"xxxxx\""
+msgstr ""
+
+#: apps/admin_pages/pages/user/add-user.html:2
+#: apps/admin_pages/pages/user/add-user.html:10
+msgid "添加新用户"
+msgstr ""
+
+#: apps/admin_pages/pages/user/add-user.html:18
+msgid "新用户"
+msgstr ""
+
+#: apps/admin_pages/pages/user/edit-user.html:2
+msgid "编辑用户信息"
+msgstr ""
+
+#: apps/admin_pages/pages/user/edit-user.html:32
+msgid "修改密码"
+msgstr ""
+
+#: apps/admin_pages/pages/user/edit-user.html:38
+msgid "将会覆盖原密码"
+msgstr ""
+
+#: apps/admin_pages/pages/user/edit-user.html:44
+msgid "手机号码"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:28
+msgid "添加用户"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:52
+msgid "昵称"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:54
+msgid "域"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:55
+msgid "邮箱"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:56
+msgid "手机号"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:125
+msgid "确定冻结?"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:126
+msgid "冻结"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:129
+msgid "移除"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:200
+msgid "用户信息"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:203
+msgid "登录日志"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:206
+msgid "操作日志"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:218
+msgid "ID"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:222
+msgid "注册时间"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:234
+msgid "常居地址"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:238
+msgid "个人简介"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:249
+msgid "客户端"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:250
+msgid "地理位置"
+msgstr ""
+
+#: apps/admin_pages/pages/user/index.html:313
+msgid "数量"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-common.js:60
+#: apps/admin_pages/static/js/osr-common.js:128
+msgid "删除成功"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-common.js:362
+msgid "刚刚"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-common.js:365
+msgid "分钟前"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-common.js:368
+msgid "小时前"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-common.js:371
+msgid "昨天"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-webuploader.js:1015
+msgid "运行时错误"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-webuploader.js:1085
+msgid "已经连接"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr-webuploader.js:1705
+msgid "按钮指定错误"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/home.js:30
+msgid "数据有缓存延迟"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/home.js:67
+msgid "30天"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/home.js:78
+msgid "总数"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/home.js:100
+msgid "加载中"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/comment/index.js:8
+#: apps/admin_pages/static/js/osr_page_js/message/email.js:9
+#: apps/admin_pages/static/js/osr_page_js/message/sms.js:9
+#: apps/admin_pages/static/js/osr_page_js/post/index.js:9
+#: apps/admin_pages/static/js/osr_page_js/user/index.js:8
+msgid "正常"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/comment/index.js:10
+#: apps/admin_pages/static/js/osr_page_js/post/index.js:12
+msgid "未通过"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/comment/index.js:11
+#: apps/admin_pages/static/js/osr_page_js/post/index.js:14
+msgid "待删除"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/audio.js:37
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/audio.js:41
+msgid "点击选择音频"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/image.js:34
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/image.js:37
+msgid "点击选择图片"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/index.js:2
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/_script.js:3
+msgid "批量上传"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/index.js:29
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/_script.js:33
+msgid "关闭上传"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/index.js:97
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/_script.js:122
+msgid "请选择要删除的项"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/index.js:117
+#: apps/admin_pages/static/js/osr_page_js/media/text.js:86
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/_script.js:148
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/text.js:110
+msgid "取消全选"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/other.js:31
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/other.js:34
+#: apps/admin_pages/static/js/upload/osr-upload.js:143
+#: apps/admin_pages/static/js/upload/osr-upload.js:218
+msgid "点击选择文件"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/media/video.js:39
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/display/video.js:42
+msgid "点击选择视频"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/message/email.js:15
+#: apps/admin_pages/static/js/osr_page_js/permission/url/index.js:9
+msgid "所有"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/message/email.js:16
+msgid "安全码"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/message/send.js:36
+msgid "确认失败,未发送"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/module/_send_code.js:47
+#: apps/admin_pages/static/js/osr_page_js/module/send_code.js:46
+#: apps/admin_pages/static/js/osr_page_js/own/account/send_code.js:77
+#: apps/admin_pages/static/js/osr_page_js/own/account/settings/_send_code.js:78
+msgid "后重发"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/module/editor/markdown.js:41
+#: apps/admin_pages/static/js/osr_page_js/module/markdown.js:41
+msgid "当前使用的是MarkDown文本编辑器"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/module/editor/markdown.js:51
+#: apps/admin_pages/static/js/osr_page_js/module/markdown.js:51
+msgid "每次最多上传5张图片"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/own/content/writer.js:61
+msgid "抱歉!检查到文本编辑器类型错误(editor),请关闭页面重新打开"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/own/content/writer.js:68
+msgid "更新发布"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/own/content/writer.js:71
+msgid "更新草稿"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/own/content/writer.js:149
+msgid "确认已保存内容后才离开哦"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/permission/url/index.js:10
+msgid "ApiUrl"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/post/index.js:34
+msgid "最近更新: "
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/setting/config-edit.js:136
+msgid "Key不能为空"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/setting/config-edit.js:144
+msgid "Value不能为空"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/setting/config-edit.js:147
+msgid "的value格式错误,请检查"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/file/index.js:18
+msgid "所有文件"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/file/index.js:19
+msgid "自带文件"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/theme-setting/file/index.js:20
+msgid "自定义文件"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/token/rest-token.js:25
+msgid "隐藏"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/user/index.js:9
+msgid "未激活"
+msgstr ""
+
+#: apps/admin_pages/static/js/osr_page_js/user/index.js:10
+msgid "已移除"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:95
+msgid "你取消了更新"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:99
+msgid "安装失败"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:103
+msgid "安装成功，请刷新"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:235
+#: apps/admin_pages/static/js/upload/osr-upload.js:236
+msgid "向左"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:244
+msgid "文件超出大小"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:248
+#: apps/admin_pages/static/js/upload/osr-upload.js:255
+msgid "上传失败"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:267
+msgid "预览中"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:272
+msgid "不能预览"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:421
+msgid "选中文件个数"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:421
+#: apps/admin_pages/static/js/upload/osr-upload.js:444
+msgid "共"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:431
+#: apps/admin_pages/static/js/upload/osr-upload.js:453
+msgid "个文件上传失败"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:433
+msgid "重新上传"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:435
+msgid "或"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:437
+msgid "忽略"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:491
+msgid "暂停"
+msgstr ""
+
+#: apps/admin_pages/static/js/upload/osr-upload.js:496
+msgid "继续上传"
+msgstr ""
+

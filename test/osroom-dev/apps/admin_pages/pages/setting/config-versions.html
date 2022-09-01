@@ -1,0 +1,106 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("配置版本设置")}}-{% endblock %}
+{% block content %}
+<div v-cloak id="app" class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="/osr-admin/plugin"><i class="fa fa-cogs"></i> {{_("配置管理")}}</a></li>
+            <li class="active">{{_("配置版本")}}</li>
+        </ul>
+    </div>
+    <div class="col-md-12">
+        <section class="panel">
+          <header class="panel-heading">
+             <i class="fa fa-history"></i> {{_("配置版本")}}
+          </header>
+          <div class="panel-body table-responsive">
+              <div class="alert alert-info osr-alert osr-alert-warning">
+                 <button data-dismiss="alert" class="close close-sm" type="button">
+                     <i class="fa fa-times"></i>
+                 </button>
+                   <div class="osr-remind-alert">
+                    <i class="am-icon-bell-o osr-color-warning" >{{_("提示")}}:</i>
+                    <span>
+                        {{_("配置修改后")}},
+                        <span class="osr-color-danger" >{{_("重启网站生效")}}</span>
+                        {{_('未禁止"重启更新"与未选择"切换版本"的主机则自动更新到最新版配置')}}
+                    </span>
+                </div>
+              </div>
+
+              <table class="table table-hover">
+                <thead>
+                     <tr >
+                        <th>{{_("主机名")}}</th>
+                        <th>{{_("主机IP")}}</th>
+                        <th>{{_("版本")}}</th>
+                        <th>{{_("需要切换到")}}</th>
+                        <th>{{_("切换状态")}}</th>
+                        <th>{{_("重启更新")}}</th>
+                        <th></th>
+                        <th>{{_("重启日志")}}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr v-for="(host, index) in hosts">
+                        <td>
+
+                            {[host.host_info.hostname]}
+                        </td>
+                        <td>{[host.host_info.local_ip]}</td>
+                        <td v-if="host.conf_version != version.new_version" >{[host.conf_version]}</td>
+                          <td v-else >{{_("最新")}}</td>
+                        <td class="am-form-group">
+                            <select :id="'rollback'+index" :name="'rollback'+index"  class="form-control osr-form-control input-sm m-b-10" >
+                                <option v-if="host.switch_conf_version && host.switch_conf_version==v" v-for="v in version.used_versions" selected = "selected" :value="host.switch_conf_version">
+                                    {[host.switch_conf_version]}
+                                </option>
+                                <option v-if="!host.switch_conf_version" selected = "selected" value="">
+                                    无
+                                </option>
+
+                                <option v-if="host.switch_conf_version!=v" v-for="v in version.used_versions" :value="v">
+                                    {[v]}
+                                </option>
+
+                            </select>
+                        </td>
+                        <td v-if="host.switch_conf_version && !host.disable_update_conf">{{_("需重启网站")}}</td>
+                        <td v-if="host.switch_conf_version && host.disable_update_conf">{{_('切换版本请先打开"重启更新"')}}</td>
+                        <td v-if="!host.switch_conf_version">{{_("无")}}</td>
+                        <td class="am-form-group">
+                            <select :id="'update'+index" :name="'update'+index"  class="form-control osr-form-control input-sm m-b-10" >
+                                <option v-if="host.disable_update_conf" selected = "selected"  value="0">{{_("否")}}</option>
+                                <option v-else  value="0">{{_("否")}}</option>
+
+                                <option v-if="!host.disable_update_conf" selected = "selected"  value="1">{{_("是")}}</option>
+                                <option v-else   value="1">{{_("是")}}</option>
+                            </select>
+                        </td>
+                        <td >
+                            <span  v-if="host.disable_update_conf" style="color:#ed6b75" >{{_("警")}}</span>
+                          </td>
+                        <td>
+                            {[host.start_log]}
+                            <a target="_blank" :href="'/osr-admin/sys-logs/log?name=site_start.log&ip='+host.host_info.local_ip">{{_("查看全部")}}</a>
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                            <button v-on:click="post_switch(index)" class="btn osr-btn btn-info">
+                                {{_("保存修改")}}
+                            </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+          </div>
+        </section>
+    </div>
+</div>
+
+<script src="/admin-pages/static/js/osr_page_js/setting/config-versions.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>{% endblock %}
+
+

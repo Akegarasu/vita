@@ -1,0 +1,61 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("命令执行")}}-{% endblock %}
+{% block content %}
+
+<data id="ip" content="{{data.ip}}" hidden></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/setting/host"><i class="fa fa-server"></i> {{_("服务器管理")}}</a></li>
+                <li class="active">{{_("命令执行")}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row osr-adm-edit-page">
+
+        <div class="col-md-12 osr-col-xs-12">
+
+            <section class="panel">
+              <header class="panel-heading">
+                <span><i class="fa fa-linux"></i>  {{_("命令执行")}}: {{data.ip}}</span>
+              </header>
+              <div class="panel-body">
+                  <div>
+                  <div class="form-group">
+                    <strong>{{_("主机IP")}}:</strong> {[host_info.local_ip]}
+                  </div>
+                  <div class="form-group">
+                    <strong>{{_("端口")}}:</strong> {[host_info.port]}
+                  </div>
+                  <div class="form-group">
+                    <strong>{{_("用户")}}:</strong> {[host_info.username]}
+                  </div>
+                  <div class="form-group">
+                    <label for="port">{{_("命令(注释#开头)")}}</label>
+                    <textarea v-model="cmd" style="height:200px;" class="form-control osr-input" id="cmd" placeholder="{{_('Linux shell 命令')}}"></textarea>
+                  </div>
+
+                  <button v-on:click="exec_cmd(cmd)" class="btn osr-btn btn-warning">
+                    {{_("执行命令")}}
+                  </button>
+                  </div>
+
+             </div>
+            </section>
+            <div style="text-align:left">
+                <span v-for="v1 in cmd_result">
+                    <span v-for="v2 in v1">
+                        {[v2]}<br>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="/admin-pages/static/js/osr_page_js/setting/host/exec-cmd.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}

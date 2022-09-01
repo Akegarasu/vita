@@ -1,0 +1,66 @@
+{% extends "based/based.html" %}
+{% block title %}{{_("服务器编辑")}}-{% endblock %}
+{% block content %}
+
+<data id="ip" content="{{data.ip}}" hidden></data>
+<div v-cloak id="app" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="/osr-admin/setting/host"><i class="fa fa-server"></i> {{_("服务器管理")}}</a></li>
+                <li class="active">{{_("服务器编辑")}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row osr-adm-edit-page">
+
+        <div class="col-md-12 osr-col-xs-12">
+
+            <section class="panel">
+              <header class="panel-heading">
+                <span><i class="fa fa-linux"></i>  {{_("编辑")}}: {{data.ip}}</span>
+              </header>
+              <div class="panel-body">
+
+                    <div class="form-group">
+                        <label for="host_ip">{{_("IP")}}</label>
+                        <input v-model="host_ip" type="text" class="form-control osr-input" id="host_ip" minlength="1"
+                           placeholder="{{_('主机IP')}}" required/>
+                    </div>
+
+                      <div class="form-group">
+                        <label for="username">{{_("用户名")}}</label>
+                        <input v-model="username" type="text" class="form-control osr-input" id="username" minlength="1"
+                               placeholder="{{_('主机用户名')}}" required/>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="password">{{_("密码")}}</label>
+                        <input v-model="password" type="password" class="form-control osr-input" id="password" minlength="1"
+                           placeholder="{{_('主机密码')}}" required/>
+                      </div>
+                      <div class="form-group">
+                        <label for="port">{{_("主机端口")}}({{_("默认")}}22)</label>
+                        <input v-model="port" type="text" class="form-control osr-input" id="port" placeholder="{{_('端口')}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="port">{{_("命令(注释#开头)")}}</label>
+                        <textarea v-model="cmd" style="height:200px;" class="form-control osr-input" id="cmd" placeholder="{{_('保存一个需要常用的Linux shell 命令')}}"></textarea>
+                      </div>
+                      <button v-on:click="save_host()" class="btn osr-btn btn-info" >
+                       {{_("保存")}}
+                      </button>
+                      <button v-on:click="test_connect()" class="btn osr-btn btn-success" >
+                        {{_("测试连接")}}
+                      </button>
+              </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/admin-pages/static/js/osr_page_js/setting/host/edit.js?v={{g.site_global.site_config.STATIC_FILE_VERSION}}">
+</script>
+{% endblock %}
