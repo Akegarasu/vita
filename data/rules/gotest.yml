@@ -1,0 +1,33 @@
+language: go
+
+rules:
+  - id: 1
+    name: fmt.Printf
+    description: 输出文字
+    type: ast
+    danger: 10
+    # weight: 0.1
+    patterns:
+      - 'Printf'
+#  - id: 2
+#    name: test2
+#    description: 测试2
+#    type: ast
+#    danger: 1
+#    patterns:
+#      - e.+?x
+#      - "http://.*"
+  - id: 3
+    name: common
+    description: commoncve
+    type: ast
+    danger: 1
+    patterns:
+      - "common"
+#  - id: 3
+#    name: test2
+#    description: 测试2
+#    type: ast
+#    patterns:
+#      - e.+?x
+#      - "http://.*"
