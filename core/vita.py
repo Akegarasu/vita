@@ -91,11 +91,8 @@ class Vita:
             severity_count[r.severity.value % 5] += 1
             severity_count[5] += 1
             tmp['context'] = r.context.printable
-            # todo
-            # tmp_result['ptype'] = r.ptype
-            # tmp_result['confidence'] = r.confidence
-            tmp['ptype'] = "待定"
-            tmp['confidence'] = "NAN"
+            tmp['ptype'] = r.ptype
+            tmp['confidence'] = r.confidence
             out['problems'].append(tmp)
 
             ok = f''' [输出报告]\n等级: {r.severity}\n文件: {r.file_path}\n漏洞: {r.description}\n规则: {r.match_rule}\n{r.context.printable}'''
