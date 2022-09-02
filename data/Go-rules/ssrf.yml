@@ -1,22 +1,13 @@
-﻿language: java
+language: go
 
 rules:
-  - id: 10010
+  - id: 10086
     name: ssrf
-    description: ssrf可能会出现
-    type: ast
-    danger: 9
-    ptype: 后门
+    description: Server Side Request Forgery may occur
+    type: regex
+    ptype: vuln
+    danger: 5
     confidence: 0.1
     patterns:
-      - '(URL|url)\.(openConnection)'
-      - '(ImageIO)\.(read)'
-  - id: 10011
-    name: ssrf
-    description: ssrf可能会出现
-    type: ast
-    danger: 9
-    ptype: 后门
-    confidence: 0.1
-    patterns:
-      - '(HttpClient|HttpURLConnection|)\.(execute|executeMethod)'
+      - '(net|http)\.(Do|Get|Head|Post|PostForm)'
+      - '(\*net|http\.Client)\.(Do|Get|Head|Post|PostForm)'
